@@ -11,7 +11,8 @@ public class Personaje extends Entidad {
     private Arma arma;
     private Armadura armadura;
 
-    public Personaje(Arma arma, Armadura armadura) {
+    public Personaje(String nombre, int salud, Arma arma, Armadura armadura) {
+        super(nombre, salud);
         this.arma = arma;
         this.armadura = armadura;
     }

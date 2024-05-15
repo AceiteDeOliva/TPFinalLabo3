@@ -1,7 +1,9 @@
 package Modelos.Items;
 
-public class Item {
+public abstract class Item {
     private String nombre;
 
-
+    public Item(String nombre) {
+        this.nombre = nombre;
+    }
 }
