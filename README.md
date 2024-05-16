@@ -1,1 +1,1 @@
-Juego rpg
+Juego rogue-like
