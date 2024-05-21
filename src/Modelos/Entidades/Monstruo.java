@@ -8,7 +8,14 @@ public class Monstruo extends Entidad implements Habilidades {
     private int velocidad;
     private int armadura;//Reduccion de danio.
 
-    //constructor
+    //Constructores
+    public Monstruo () {
+        super();
+        this.danio = 0;
+        this.velocidad = 0;
+        this.armadura = 0;
+    }
+    
     public Monstruo(String nombre, int salud, int danio, int velocidad, int armadura) {
         super(nombre, salud);
         this.danio = danio;
@@ -41,7 +48,8 @@ public class Monstruo extends Entidad implements Habilidades {
     public void setArmadura(int armadura) {
         this.armadura = armadura;
     }
-    //metodos
+    
+    //Metodos
     @Override
     public int atacar() {
         return danio;
