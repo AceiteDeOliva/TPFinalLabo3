@@ -61,7 +61,9 @@ public class Monstruo extends Entidad implements Habilidades {
 
     @Override
     public void recibirDanio(int danio){
-        setSalud(getSalud() - danio);
+        float reduccionDanio = (float) armadura / (armadura + 100);
+        int danioEfectivo = (int) (danio * (1 - reduccionDanio));
+        setSalud(getSalud() - danioEfectivo);
     }
 
 }

@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3434498b-7f6c-41c3-bfcb-53621b40d4b9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Juego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Entidad.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Monstruo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Monstruo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" afterDir="false" />
     </list>
@@ -72,6 +71,7 @@
       <workItem from="1715782687014" duration="2540000" />
       <workItem from="1715785240974" duration="3668000" />
       <workItem from="1716316347125" duration="2987000" />
+      <workItem from="1716325837676" duration="2121000" />
     </task>
     <servers />
   </component>

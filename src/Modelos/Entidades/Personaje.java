@@ -44,7 +44,9 @@ public class Personaje extends Entidad {
     }
     @Override
     public void recibirDanio(int danio){
-        setSalud(getSalud() - danio);
+        float reduccionDanio = (float) armadura.getDefensa() / (armadura.getDefensa() + 100);
+        int danioEfectivo = (int) (danio * (1 - reduccionDanio));
+        setSalud(getSalud() - danioEfectivo);
     }
 
 }
