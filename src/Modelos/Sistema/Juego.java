@@ -14,7 +14,8 @@ private Monstruo monstruo;
     }
 
 
-    public void fight() {
+    public boolean fight() {
+        boolean estaVivo = false;
         while (jugador.estaVivo() && monstruo.estaVivo()) {
             // turno del jugador
             int danioJugador = jugador.getArma().atacar();
@@ -26,13 +27,11 @@ private Monstruo monstruo;
                 jugador.recibirDanio(danioMonstruo);
             }
         }
-
-        // Esto no se si va en el main
+        
         if (jugador.estaVivo()) {
-            System.out.println("Ganaste la pelea");
-        } else {
-            System.out.println("Perdiste");
-        }
+            estaVivo = true;
+        } 
+        return estaVivo;
     }
 
 }
