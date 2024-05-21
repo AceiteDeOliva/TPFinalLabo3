@@ -4,9 +4,9 @@ import Modelos.Interfaces.Habilidades;
 
 public class Monstruo extends Entidad implements Habilidades {
 
-    private int danio;
+    private int danio;//valor que le resta a la vida del personaje.
     private int velocidad;
-    private int armadura;
+    private int armadura;//Reduccion de danio.
 
     //constructor
     public Monstruo(String nombre, int salud, int danio, int velocidad, int armadura) {
