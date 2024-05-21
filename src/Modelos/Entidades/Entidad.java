@@ -4,11 +4,12 @@ public abstract class Entidad {
     private String nombre;
     private int salud;
 
-   //constructor
+    //constructor
     public Entidad(String nombre, int salud) {
         this.nombre = nombre;
         this.salud = salud;
     }
+
     //Getters
     public String getNombre() {
         return nombre;
@@ -27,6 +28,9 @@ public abstract class Entidad {
     public void setSalud(int salud) {
         this.salud = salud;
     }
+
+    abstract boolean estaVivo();
+    abstract void recibirDanio(int danio);
 
 
 }

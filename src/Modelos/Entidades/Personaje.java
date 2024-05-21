@@ -36,5 +36,15 @@ public class Personaje extends Entidad {
         this.armadura = NuevaArmadura;
 
     }
+    @Override
+    public  boolean estaVivo() { //devuelve si wl jugador esta viva o no
+        boolean vivo;
+        vivo = getSalud() > 0;
+        return vivo;
+    }
+    @Override
+    public void recibirDanio(int danio){
+        setSalud(getSalud() - danio);
+    }
 
 }

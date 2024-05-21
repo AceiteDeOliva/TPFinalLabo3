@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3434498b-7f6c-41c3-bfcb-53621b40d4b9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Juego.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Entidad.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Monstruo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Monstruo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelos/Items/Arma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Items/Arma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelos/Items/Armadura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Items/Armadura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelos/Items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Items/Item.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +26,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -70,6 +71,7 @@
       <updated>1715782686075</updated>
       <workItem from="1715782687014" duration="2540000" />
       <workItem from="1715785240974" duration="3668000" />
+      <workItem from="1716316347125" duration="2987000" />
     </task>
     <servers />
   </component>

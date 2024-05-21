@@ -51,4 +51,17 @@ public class Monstruo extends Entidad implements Habilidades {
     public int ataqueEspecial() {
         return danio * 2;
     }
+
+    @Override
+    public  boolean estaVivo() { //devuelve si el monstruo esta viva o no
+        boolean vivo;
+        vivo = getSalud() > 0;
+        return vivo;
+    }
+
+    @Override
+    public void recibirDanio(int danio){
+        setSalud(getSalud() - danio);
+    }
+
 }
