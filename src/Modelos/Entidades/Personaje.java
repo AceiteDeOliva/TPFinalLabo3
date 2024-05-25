@@ -7,7 +7,7 @@ import Modelos.Items.Item;
 import java.util.ArrayList;
 
 public class Personaje extends Entidad {
-    private final ArrayList<Item> inventario = new ArrayList<>();
+    private ArrayList<Item> inventario = new ArrayList<>();
     private Arma arma;
     private Armadura armadura;
 

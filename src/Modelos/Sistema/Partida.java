@@ -1,20 +1,26 @@
 package Modelos.Sistema;
 
-import Modelos.Entidades.Monstruo;
 import Modelos.Entidades.Personaje;
+import Modelos.Escenarios.Escenario;
 
-public class Juego{
+import java.util.ArrayList;
+import java.util.HashSet;
+
+public class Partida {
 
 private Personaje jugador;
-private Monstruo monstruo;
+private HashSet<ArrayList<Escenario>> escenarios;
 
-    public Juego(Personaje jugador, Monstruo monstruo) {
+    public Partida(Personaje jugador) {
         this.jugador = jugador;
-        this.monstruo = monstruo;
+        this.escenarios = new HashSet<ArrayList<Escenario>>();
     }
 
 
-    public boolean fight() {
+    
+
+
+    /*public boolean pelea() {
         boolean estaVivo = false;
         while (jugador.estaVivo() && monstruo.estaVivo()) {
             // turno del jugador
@@ -32,6 +38,6 @@ private Monstruo monstruo;
             estaVivo = true;
         } 
         return estaVivo;
-    }
+    }*/
 
 }
