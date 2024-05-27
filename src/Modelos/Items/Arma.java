@@ -6,7 +6,12 @@ public class Arma extends Item implements Habilidades {
 
     private int danio;
 
-    //Constructor
+    //Constructores
+    public Arma () {
+        super();
+        this.danio = 0;
+    }
+    
     public Arma(String nombre, int danio) {
         super(nombre);
         this.danio = danio;

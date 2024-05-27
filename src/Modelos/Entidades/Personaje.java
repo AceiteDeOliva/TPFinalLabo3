@@ -4,12 +4,19 @@ import Modelos.Items.Arma;
 import Modelos.Items.Armadura;
 import Modelos.Items.Item;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Personaje extends Entidad {
-    private final HashSet<Item> inventario = new HashSet<>();
+    private ArrayList<Item> inventario = new ArrayList<>();
     private Arma arma;
     private Armadura armadura;
+
+    //Constructores
+    public Personaje () {
+        super();
+        this.arma = new Arma();
+        this.armadura = new Armadura();
+    }
 
     public Personaje(String nombre, int salud, Arma arma, Armadura armadura) {
         super(nombre, salud);
@@ -32,19 +39,26 @@ public class Personaje extends Entidad {
     }
 
     public void equiparArmadura(Armadura NuevaArmadura){
-
         this.armadura = NuevaArmadura;
-
     }
+
+    //Metodos
+    public void agregarItem (Item unItem) {
+        inventario.add(unItem);
+    }
+    
     @Override
     public  boolean estaVivo() { //devuelve si wl jugador esta viva o no
         boolean vivo;
         vivo = getSalud() > 0;
         return vivo;
     }
+    
     @Override
     public void recibirDanio(int danio){
-        setSalud(getSalud() - danio);
+        float reduccionDanio = (float) armadura.getDefensa() / (armadura.getDefensa() + 100);
+        int danioEfectivo = (int) (danio * (1 - reduccionDanio));
+        setSalud(getSalud() - danioEfectivo);
     }
 
 }
