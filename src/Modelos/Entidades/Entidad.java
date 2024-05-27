@@ -10,9 +10,9 @@ public abstract class Entidad {
         this.salud = 0;
     }
     
-    public Entidad(String nombre, int salud) {
-        this.nombre = nombre;
-        this.salud = salud;
+    public Entidad(String nombreP, int saludP) {
+        this.nombre = nombreP;
+        this.salud = saludP;
     }
 
     //Getters
@@ -26,12 +26,12 @@ public abstract class Entidad {
 
     //Setters
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String nombreP) {
+        this.nombre = nombreP;
     }
 
-    public void setSalud(int salud) {
-        this.salud = salud;
+    public void setSalud(int saludP) {
+        this.salud = saludP;
     }
 
     //Metodos

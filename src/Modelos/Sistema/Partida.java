@@ -14,9 +14,14 @@ public class Partida {
     private HashMap<Integer, ArrayList<Escenario>> escenarios;
     private int nivelActual;
     private static final int nivelInicial = 1;
+    public Partida() {
+        this.jugador = "";
+        this.nivelActual = nivelInicial;
+        this.escenarios = new HashMap<>();
+    }
 
-    public Partida(Personaje jugador) {
-        this.jugador = jugador;
+    public Partida(Personaje jugadorP) {
+        this.jugador = jugadorP;
         this.nivelActual = nivelInicial;
         this.escenarios = new HashMap<>();
     }
