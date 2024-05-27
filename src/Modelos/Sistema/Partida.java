@@ -1,4 +1,6 @@
 package Modelos.Sistema;
+import java.io.Serializable;
+
 
 import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
@@ -8,14 +10,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 
-public class Partida {
+public class Partida <T> implements Serializable {
 
     private Personaje jugador;
     private HashMap<Integer, ArrayList<Escenario>> escenarios;
     private int nivelActual;
     private static final int nivelInicial = 1;
     public Partida() {
-        this.jugador = "";
+        this.jugador = null;
         this.nivelActual = nivelInicial;
         this.escenarios = new HashMap<>();
     }
