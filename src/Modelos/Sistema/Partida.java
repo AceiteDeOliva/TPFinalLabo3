@@ -18,9 +18,53 @@ public class Partida {
     public Partida(Personaje jugador) {
         this.jugador = jugador;
         this.nivelActual = nivelInicial;
-        this.escenarios = new HashMap<Integer, ArrayList<Escenario>>();
+        this.escenarios = new HashMap<>();
     }
 
+    //getters & setters
+    public Personaje getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(Personaje jugador) {
+        this.jugador = jugador;
+    }
+
+    public HashMap<Integer, ArrayList<Escenario>> getEscenarios() {
+        return escenarios;
+    }
+
+    public void setEscenarios(HashMap<Integer, ArrayList<Escenario>> escenarios) {
+        this.escenarios = escenarios;
+    }
+
+    public int getNivelActual() {
+        return nivelActual;
+    }
+
+    public void setNivelActual(int nivelActual) {
+        this.nivelActual = nivelActual;
+    }
+
+    //metodos
+    //metodos de escenario
+    public Escenario escenarioPosible(){ //devuelve una de las opciones de escenario para el jugador
+
+        Escenario escenario = null; // Inicializa como null por defecto
+
+        if (cantidadEscenariosXnivel() > 0) {
+            int indice = indice();
+            escenario = escenarios.get(nivelActual).get(indice);
+        }
+        return escenario;
+    }
+
+    public int indice(){ //devuelve un indice
+
+        int max = cantidadEscenariosXnivel();
+        int indice = numeroAleatorio(max);
+        return indice;
+    }
     public int cantidadEscenariosXnivel() { //devuelve la cantidad de escenario en cierto nivel
         int cantidad = 0;
 
@@ -31,14 +75,14 @@ public class Partida {
         return cantidad;
     }
 
-    public int indiceAleatorio(int maximo) { //devuelve un numero aleatorio que corresponde al indice de alguno de los escenarios del ArrayList del nivel Actual
+    public int numeroAleatorio(int maximo) { //devuelve un numero aleatorio con un maximo que corresponde a la cantidad de escenarios en el nivel actual
 
         Random rand = new Random();
         int indiceAleatorio = rand.nextInt(maximo);
         return indiceAleatorio;
     }
 
-
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*public boolean pelea() {
         boolean estaVivo = false;
         while (jugador.estaVivo() && monstruo.estaVivo()) {
