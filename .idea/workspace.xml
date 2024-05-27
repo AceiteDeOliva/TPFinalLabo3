@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3434498b-7f6c-41c3-bfcb-53621b40d4b9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Modelos/Entidades/TipoDeMonstruo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modelos/Entidades/TipoDePersonaje.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Entidad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Monstruo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Monstruo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Items/Arma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Items/Arma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Items/Armadura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Items/Armadura.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Items/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Archivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Archivo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Partida.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +51,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "milir99-patch-1",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -75,6 +83,7 @@
       <workItem from="1716325837676" duration="2121000" />
       <workItem from="1716653037487" duration="832000" />
       <workItem from="1716823838229" duration="7228000" />
+      <workItem from="1716832369802" duration="3823000" />
     </task>
     <servers />
   </component>

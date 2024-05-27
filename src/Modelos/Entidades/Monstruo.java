@@ -8,6 +8,8 @@ public class Monstruo extends Entidad implements Habilidades {
     private int velocidad;
     private int armadura;//Reduccion de danio.
 
+    private TipoDeMonstruo tipoDeMonstruo;
+
     //Constructores
     public Monstruo () {
         super();
@@ -16,11 +18,11 @@ public class Monstruo extends Entidad implements Habilidades {
         this.armadura = 0;
     }
     
-    public Monstruo(String nombre, int salud, int danio, int velocidad, int armadura) {
-        super(nombre, salud);
-        this.danio = danio;
-        this.velocidad = velocidad;
-        this.armadura = armadura;
+    public Monstruo(String nombreP, int saludP, int danioP, int velocidadP, int armaduraP) {
+        super(nombreP, saludP);
+        this.danio = danioP;
+        this.velocidad = velocidadP;
+        this.armadura = armaduraP;
     }
 
     //Getters
@@ -37,16 +39,16 @@ public class Monstruo extends Entidad implements Habilidades {
     }
 
     //Setters
-    public void setDanio(int danio) {
-        this.danio = danio;
+    public void setDanio(int danioP) {
+        this.danio = danioP;
     }
 
-    public void setVelocidad(int velocidad) {
-        this.velocidad = velocidad;
+    public void setVelocidad(int velocidadP) {
+        this.velocidad = velocidadP;
     }
 
-    public void setArmadura(int armadura) {
-        this.armadura = armadura;
+    public void setArmadura(int armaduraP) {
+        this.armadura = armaduraP;
     }
     
     //Metodos

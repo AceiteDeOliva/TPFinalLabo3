@@ -1,14 +1,27 @@
 package Modelos.Items;
 
 public abstract class Item {
-    private String nombre;
+    private final String nombre;
+    private final String descripcion;
 
     //Constructores
-    public Item () {
+    public Item() {
         this.nombre = "";
+        this.descripcion = "";
     }
 
-    public Item(String nombre) {
-        this.nombre = nombre;
+    public Item (String nombreP, String descripcionP) {
+        this.nombre = nombreP;
+        this.descripcion = descripcionP;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+
 }
