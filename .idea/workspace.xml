@@ -5,6 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3434498b-7f6c-41c3-bfcb-53621b40d4b9" name="Changes" comment="">
+
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Escenarios/Escenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Escenarios/Escenario.java" afterDir="false" />
+
       <change afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Ejecucion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
@@ -15,6 +21,7 @@
       <change beforePath="$PROJECT_DIR$/src/Modelos/Escenarios/Escenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Escenarios/Escenario.java" afterDir="false" />
 
       <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Partida.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +75,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Valen",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -105,9 +112,13 @@
       <workItem from="1716842638978" duration="4345000" />
       <workItem from="1716847021115" duration="652000" />
       <workItem from="1716848049166" duration="3733000" />
+
+      <workItem from="1716899495984" duration="2565000" />
+
       <workItem from="1716901066948" duration="607000" />
       <workItem from="1716915702075" duration="700000" />
       <workItem from="1716916415222" duration="489000" />
+
     </task>
     <servers />
   </component>
