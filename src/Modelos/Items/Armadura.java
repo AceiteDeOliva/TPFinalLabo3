@@ -5,16 +5,17 @@ public class Armadura extends Item {
     private int velocidad;
 
     //Constructores
-    public Armadura () {
+
+    public Armadura() {
         super();
         this.defensa = 0;
         this.velocidad = 0;
     }
 
-    public Armadura(String nombre, int defensa, int velocidad) {
-        super(nombre);
-        this.defensa = defensa;
-        this.velocidad = velocidad;
+    public Armadura(String nombreP, String descripcionP, int defensaP, int velocidadP) {
+        super(nombreP, descripcionP);
+        this.defensa = defensaP;
+        this.velocidad = velocidadP;
     }
 
     //Getters
@@ -27,11 +28,11 @@ public class Armadura extends Item {
     }
 
     //Setters
-    public void setDefensa(int defensa) {
-        this.defensa = defensa;
+    public void setDefensa(int defensaP) {
+        this.defensa = defensaP;
     }
 
-    public void setVelocidad(int velocidad) {
-        this.velocidad = velocidad;
+    public void setVelocidad(int velocidadP) {
+        this.velocidad = velocidadP;
     }
 }

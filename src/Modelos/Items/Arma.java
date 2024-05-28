@@ -7,14 +7,14 @@ public class Arma extends Item implements Habilidades {
     private int danio;
 
     //Constructores
-    public Arma () {
+    public Arma() {
         super();
         this.danio = 0;
     }
-    
-    public Arma(String nombre, int danio) {
-        super(nombre);
-        this.danio = danio;
+
+    public Arma(String nombreP, String descripcionP, int danioP) {
+        super(nombreP, descripcionP);
+        this.danio = danioP;
     }
 
     //Getters
@@ -23,8 +23,8 @@ public class Arma extends Item implements Habilidades {
     }
 
     //Setters
-    public void setDanio(int danio) {
-        this.danio = danio;
+    public void setDanio(int danioP) {
+        this.danio = danioP;
     }
 
     //Metodos
