@@ -8,9 +8,7 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        Partida partida = new Partida(new
-                Personaje());
-
+        Partida partida = new Partida(new Personaje());
 
 
 
