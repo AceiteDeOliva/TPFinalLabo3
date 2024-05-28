@@ -1,25 +1,25 @@
 package Modelos.Sistema;
+import Modelos.Items.Item;
 import java.io.*;
 import java.util.ArrayList;
 
-import java.io.Serializable;
 
 
-public class Archivo <T>  {
+public class Archivo   {
     public Archivo() {
     }
 
     //Pasar datos de archivos a listas use genericos para no tener que escribir codigo para cada cosa que se pasa a una lista
-    public  ArrayList<T> leerArchivoAArray(String archivo) {
+    public  ArrayList<Item> leerArchivoItems(String archivo) {
         ObjectInputStream objectInputStream = null;
-        ArrayList<T> listaItems = new ArrayList<>();
+        ArrayList<Item> listaItems = new ArrayList<>();
 
         try {
             FileInputStream fileInputStream = new FileInputStream(archivo);
             objectInputStream = new ObjectInputStream(fileInputStream);
             while (true) {
                 Object objeto = objectInputStream.readObject();
-                listaItems.add((T) objeto);
+                listaItems.add((Item) objeto);
             }
         } catch (EOFException ex) {
             System.out.println("FIN");
@@ -40,12 +40,12 @@ public class Archivo <T>  {
         return listaItems;
     }
 
-    public void grabarArchivo(ArrayList<T> items, String archivo) {
+    public void grabarArchivo(ArrayList<Item> items, String archivo) {
         ObjectOutputStream objectOutputStream = null;
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(archivo);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            for (T item : items) {
+            for (Item item : items) {
                 objectOutputStream.writeObject(item);
             }
         } catch (IOException ex) {

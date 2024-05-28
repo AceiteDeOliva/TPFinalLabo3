@@ -11,7 +11,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 
-public class Partida<T> implements Serializable {
+
+public class Partida  {
+
 
     private Personaje jugador;
     private HashMap<Integer, ArrayList<Escenario>> escenarios;
