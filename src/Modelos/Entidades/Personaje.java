@@ -18,7 +18,7 @@ public class Personaje extends Entidad {
         super();
         this.arma = new Arma();
         this.armadura = new Armadura();
-        ArrayList<Item> inventario = new ArrayList<>();
+        this.inventario = new ArrayList<>();
 
     }
 
@@ -47,6 +47,7 @@ public class Personaje extends Entidad {
     }
 
     //Getters
+    @SuppressWarnings("unused")
     public Arma getArma() {
         return arma;
     }
@@ -60,7 +61,7 @@ public class Personaje extends Entidad {
     }
 
     //Setters
-    public void EquiparArma(Arma NuevaArma) {
+    public void equiparArma(Arma NuevaArma) {
         this.arma = NuevaArma;
     }
 
