@@ -1,5 +1,8 @@
 
+import Modelos.Entidades.Personaje;
 import Modelos.Sistema.Ejecucion;
+import Modelos.Sistema.Partida;
+
 public class Main {
     public static void main(String[] args) {
 

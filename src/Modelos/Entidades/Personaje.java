@@ -23,7 +23,7 @@ public class Personaje extends Entidad {
     }
 
     public Personaje(String nombreP, int saludP, TipoDePersonaje tipoDePersonajeP, ArrayList<Item> inventarioP) {
-        super(nombreP, saludP);
+        super(nombreP, saludP,1);
 
         this.tipoDePersonaje = tipoDePersonajeP;
         this.inventario = inventarioP;

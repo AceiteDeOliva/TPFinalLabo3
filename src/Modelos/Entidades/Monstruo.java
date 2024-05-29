@@ -19,7 +19,7 @@ public class Monstruo extends Entidad implements Habilidades {
     }
     
     public Monstruo(String nombreP, int saludP, int danioP, int velocidadP, int armaduraP) {
-        super(nombreP, saludP);
+        super(nombreP, saludP,2);
         this.danio = danioP;
         this.velocidad = velocidadP;
         this.armadura = armaduraP;
