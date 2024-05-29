@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Ejecucion {
+    private static Partida partida = new Partida(new Personaje());
+
     public static void Ejecucion() {
 
         //Pasar objetos de los archivos de inventario, armas y armaduras a arrays
@@ -28,15 +30,9 @@ public class Ejecucion {
 
         Scanner scanner = new Scanner(System.in);
 
-        Partida partida = new Partida(new Personaje());
-
 
         //if escenario es una pelea
         Monstruo monstruo = new Monstruo();//reemplazar por el monstruo del escenario con monstruo
-        int chequeoBatalla = 0;
-        ArrayList<Item> inventario = partida.getJugador().getInventario();
-        int itemIndex = 1;
-        Item itemSeleccionado;
         while (partida.getJugador().estaVivo() && monstruo.estaVivo()) {
             /*desc escenario
             nombre monstruo
@@ -61,28 +57,7 @@ public class Ejecucion {
                         System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
                     }
 
-                    chequeoBatalla = partida.chequeoFinDeAtaque(monstruo);//El resultado de la batalla
-                    switch (chequeoBatalla) {
-                        case 1:
-                            System.out.println("Ha ganado la batalla.");
-
-                            break;
-
-                        case 0:
-                            System.out.println("La batalla continua"); //Esto se puede dejar vacio tambien
-
-                            break;
-
-                        case -1:
-                            System.out.println("Ha perdido la batalla");
-                            break;
-
-                        default:
-                            System.out.println("Error: Resultado de batalla invalido");
-                            break;
-
-
-                    }
+                    chequeoBatalla(monstruo);
                     break;
 
                 case 2:
@@ -92,48 +67,11 @@ public class Ejecucion {
                         System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");
                     }
 
-                    chequeoBatalla = partida.chequeoFinDeAtaque(monstruo);
-                    switch (chequeoBatalla) {
-                        case 1:
-                            System.out.println("Ha ganado la batalla.");
-
-                            break;
-
-                        case 0:
-                            System.out.println("La batalla continua"); //Esto se puede dejar vacio tambien
-
-                            break;
-
-                        case -1:
-                            System.out.println("Ha perdido la batalla");
-                            break;
-
-                        default:
-                            System.out.println("Error: Resultado de batalla invalido ");
-                            break;
-
-                    }
+                    chequeoBatalla(monstruo);
                     break;
 
                 case 3:
-                    System.out.println("0. Volver");
-                    for (Item item : inventario) {
-                        System.out.println(itemIndex + ". " + item.getNombre() + ")");
-                        itemIndex++;
-
-                    }
-                    System.out.print("Elige un Item: ");
-                    eleccion = scanner.nextInt();
-                    itemSeleccionado = partida.getJugador().equiparDesdeInventario(eleccion); //manda la eleccion y retorna el item que se equipo
-                    if (eleccion == 0) {
-                        System.out.println("Saliste del inventario.");
-                    } else if(itemSeleccionado == null){
-                        System.out.println("Opción inválida.");
-                    }
-                    if(itemSeleccionado != null){
-
-                        System.out.println("Seleccionaste: " + itemSeleccionado.getNombre());
-                    }
+                    mostrarInventario();
 
                     break;
 
@@ -146,6 +84,62 @@ public class Ejecucion {
 
         }
 
+    }
+
+    //Funciones de print
+    public static void chequeoBatalla(Monstruo monstruo) {
+        int chequeoBatalla = partida.chequeoFinDeAtaque(monstruo);//El resultado de la batalla
+        switch (chequeoBatalla) {
+            case 1:
+                System.out.println("Ha ganado la batalla.");
+
+                break;
+
+            case 0:
+                System.out.println("La batalla continua"); //Esto se puede dejar vacio tambien
+
+                break;
+
+            case -1:
+                System.out.println("Ha perdido la batalla");
+                break;
+
+            default:
+                System.out.println("Error: Resultado de batalla invalido");
+                break;
+
+
+        }
+
+    }
+
+    public static void mostrarInventario() {
+        ArrayList<Item> inventario = partida.getJugador().getInventario();
+        int itemIndex = 1;
+        System.out.println("0. Volver");
+        for (Item item : inventario) {
+
+            System.out.println(itemIndex + ". " + item.getNombre() + ")");
+            itemIndex++;
+        }
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Elige un Item: ");
+        int eleccion = scanner.nextInt();
+        seleccionItem(eleccion);
+
+
+    }
+
+    public static void seleccionItem(int eleccion) {
+        Item itemSeleccionado = partida.getJugador().equiparDesdeInventario(eleccion); //manda la eleccion y retorna el item que se equipo
+
+        if (eleccion == 0) {
+            System.out.println("Saliste del inventario.");
+        } else if (itemSeleccionado == null) {
+            System.out.println("Opción inválida.");
+        }else {
+            System.out.println("Seleccionaste: " + itemSeleccionado.getNombre());
+        }
 
     }
 }
