@@ -3,6 +3,7 @@ package Modelos.Entidades;
 import Modelos.Items.Arma;
 import Modelos.Items.Armadura;
 import Modelos.Items.Item;
+import Modelos.Items.Pocion;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class Personaje extends Entidad {
     }
 
     public Personaje(String nombreP, int saludP, TipoDePersonaje tipoDePersonajeP, ArrayList<Item> inventarioP) {
-        super(nombreP, saludP,1);
+        super(nombreP, saludP, 1);
 
         this.tipoDePersonaje = tipoDePersonajeP;
         this.inventario = inventarioP;
@@ -69,6 +70,7 @@ public class Personaje extends Entidad {
         this.armadura = NuevaArmadura;
     }
 
+    @SuppressWarnings("unused")
     public void setInventario(ArrayList<Item> inventarioP) {
         this.inventario = inventarioP;
     }
@@ -77,6 +79,34 @@ public class Personaje extends Entidad {
     public void agregarItem(Item unItem) {
         inventario.add(unItem);
     }
+
+    public void sacarItem(Item unItem) {
+        inventario.remove(unItem);
+    }
+
+    public Item equiparDesdeInventario(int eleccion) { //funcion que equipa/usa un item del inventario
+        Item itemSeleccionado = null;
+
+        if (eleccion > 0 && eleccion <= inventario.size()) {
+            itemSeleccionado = inventario.get(eleccion - 1);
+            sacarItem(itemSeleccionado); //saca del inventario el item seleccionado
+            if (itemSeleccionado instanceof Pocion) {
+                //((Pocion) ItemSeleccionado).usarPocion(); // No se hizo todavia || funcion de usar pocion
+            } else if (itemSeleccionado instanceof Arma) {
+                agregarItem(getArma()); //agrega el arma previamente equipada al inventario
+                equiparArma((Arma) itemSeleccionado); // Equipa la nueva arma
+            } else if (itemSeleccionado instanceof Armadura) {
+                agregarItem(getArmadura()); //agrega la armadura previamente equipada al inventario
+                equiparArmadura((Armadura) itemSeleccionado);//Equipa la nueva armadura
+            }
+
+        }
+        return itemSeleccionado;
+    }
+
+
+
+
 
     @Override
     public boolean estaVivo() { //devuelve si el jugador esta viva o no

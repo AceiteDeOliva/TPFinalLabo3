@@ -3,7 +3,10 @@ package Modelos.Sistema;
 import Modelos.Entidades.Monstruo;
 import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
+import Modelos.Items.Arma;
+import Modelos.Items.Armadura;
 import Modelos.Items.Item;
+import Modelos.Items.Pocion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,12 +31,13 @@ public class Ejecucion {
         Partida partida = new Partida(new Personaje());
 
 
-
-
         //if escenario es una pelea
         Monstruo monstruo = new Monstruo();//reemplazar por el monstruo del escenario con monstruo
         int chequeoBatalla = 0;
-        while (partida.getJugador().estaVivo()) {
+        ArrayList<Item> inventario = partida.getJugador().getInventario();
+        int itemIndex = 1;
+        Item itemSeleccionado;
+        while (partida.getJugador().estaVivo() && monstruo.estaVivo()) {
             /*desc escenario
             nombre monstruo
             vida de monstruo
@@ -45,7 +49,7 @@ public class Ejecucion {
             System.out.println("1. Ataque basico");
             System.out.println("2. Ataque especial");
             System.out.println("3. Abrir inventario");
-            System.out.println("No se que mas puede ser");
+            System.out.println("4. Ver equipamiento");
 
             eleccion = scanner.nextInt();
             switch (eleccion) {
@@ -53,7 +57,7 @@ public class Ejecucion {
                 case 1:
                     System.out.println("El jugador inflige" + partida.ataqueJugador(monstruo) + "puntos de danio");//El danio que inflige el jugador
 
-                    if (partida.ataqueMonstruo(monstruo) != -1) {
+                    if (partida.ataqueMonstruo(monstruo) != -1) { //Si es -1 el monstruo esta muerto
                         System.out.println("El monstruo inflige" + partida.ataqueMonstruo(monstruo) + "puntos de danio");//el danio que inflige el monstruo
                     }
 
@@ -79,7 +83,6 @@ public class Ejecucion {
 
 
                     }
-
                     break;
 
                 case 2:
@@ -113,6 +116,24 @@ public class Ejecucion {
                     break;
 
                 case 3:
+                    System.out.println("0. Volver");
+                    for (Item item : inventario) {
+                        System.out.println(itemIndex + ". " + item.getNombre() + ")");
+                        itemIndex++;
+
+                    }
+                    System.out.print("Elige un Item: ");
+                    eleccion = scanner.nextInt();
+                    itemSeleccionado = partida.getJugador().equiparDesdeInventario(eleccion); //manda la eleccion y retorna el item que se equipo
+                    if (eleccion == 0) {
+                        System.out.println("Saliste del inventario.");
+                    } else if(itemSeleccionado == null){
+                        System.out.println("Opción inválida.");
+                    }
+                    if(itemSeleccionado != null){
+
+                        System.out.println("Seleccionaste: " + itemSeleccionado.getNombre());
+                    }
 
                     break;
 
