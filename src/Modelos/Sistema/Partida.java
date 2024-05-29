@@ -102,37 +102,6 @@ public class Partida {
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // funciones de batalla
-    public int ataqueJugador(Monstruo monstruo) { //el jugador usa su ataque basico
-
-        int danioJugador = jugador.getArma().atacar();
-        monstruo.recibirDanio(danioJugador);
-        return danioJugador;
-
-    }
-
-    public int ataqueEspecialJugador(Monstruo monstruo) { //el jugador usa su ataque especial
-
-        int danioJugador = jugador.getArma().ataqueEspecial();
-        monstruo.recibirDanio(danioJugador);
-        return danioJugador;
-
-    }
-
-    public int ataqueMonstruo(Monstruo monstruo) { //el monstruo usa su ataque basico
-        int danio = -1;
-        if (monstruo.estaVivo()) {
-            if (monstruo.getEspecialTEspera() <= 0) { // chequea si puede usar el especial
-                danio = monstruo.ataqueEspecial();
-                monstruo.setEspecialTEspera(2);
-            } else {
-                danio = monstruo.atacar();
-                monstruo.setEspecialTEspera(monstruo.getEspecialTEspera() - 1);
-            }
-            jugador.recibirDanio(danio);
-        }
-        return danio;
-
-    }
 
     public int chequeoFinDeAtaque(Monstruo monstruo) { //Chequea al final de un ataque si el monstruo y/o el jugador esta vivo
         int resultado = 0; //devuelve 0 si la batalla continua
