@@ -2,7 +2,7 @@ package Modelos.Items;
 import java.io.Serializable;
 
 
-public abstract class Item <T> implements Serializable {
+public abstract class Item  {
     private final String nombre;
     private final String descripcion;
 
