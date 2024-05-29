@@ -17,7 +17,7 @@ public class Partida {
 
 
     private Personaje jugador;
-    private HashMap<Integer, ArrayList<Escenario>> escenarios;
+    private transient HashMap<Integer, ArrayList<Escenario>> escenarios;
     private int nivelActual;
     private static final int nivelInicial = 1;
 
@@ -73,7 +73,7 @@ public class Partida {
 
         if (cantidadEscenariosXnivel() > 0) {
             int indice = indice();
-            escenario = escenarios.get(nivelActual).get(indice);
+            escenario = escenarios.get(nivelActual).get(indice); //agarra un escenario del arrayList del nivel
         }
         return escenario;
     }
@@ -108,6 +108,7 @@ public class Partida {
         if (jugador.estaVivo()) {
             if (!monstruo.estaVivo()) {
                 resultado = 1; //devuelve 1 si el jugador ha ganado la batalla
+                nivelActual += 1;
             }
         } else {
             resultado = -1; //devuelve -1 si el jugador a perdido la batalla
