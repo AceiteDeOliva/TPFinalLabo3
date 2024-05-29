@@ -3,6 +3,7 @@ package Modelos.Sistema;
 import java.io.Serializable;
 
 
+import Modelos.Entidades.Monstruo;
 import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
 
@@ -12,7 +13,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 
-public class Partida  {
+public class Partida {
 
 
     private Personaje jugador;
@@ -99,25 +100,53 @@ public class Partida  {
         return rand.nextInt(maximo); //devuelve un numero aleatorio con valor maximo maximo
     }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /*public boolean pelea() {
-        boolean estaVivo = false;
-        while (jugador.estaVivo() && monstruo.estaVivo()) {
-            // turno del jugador
-            int danioJugador = jugador.getArma().atacar();
-            monstruo.recibirDanio(danioJugador);
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // funciones de batalla
+    public int ataqueJugador(Monstruo monstruo) { //el jugador usa su ataque basico
 
-            if (monstruo.estaVivo()) {
-                // turno del monstruo
-                int danioMonstruo = monstruo.atacar();
-                jugador.recibirDanio(danioMonstruo);
+        int danioJugador = jugador.getArma().atacar();
+        monstruo.recibirDanio(danioJugador);
+        return danioJugador;
+
+    }
+
+    public int ataqueEspecialJugador(Monstruo monstruo) { //el jugador usa su ataque especial
+
+        int danioJugador = jugador.getArma().ataqueEspecial();
+        monstruo.recibirDanio(danioJugador);
+        return danioJugador;
+
+    }
+
+    public int ataqueMonstruo(Monstruo monstruo) { //el monstruo usa su ataque basico
+        int danio = -1;
+        if (monstruo.estaVivo()) {
+            if (monstruo.getEspecialTEspera() <= 0) { // chequea si puede usar el especial
+                danio = monstruo.ataqueEspecial();
+                monstruo.setEspecialTEspera(2);
+            } else {
+                danio = monstruo.atacar();
+                monstruo.setEspecialTEspera(monstruo.getEspecialTEspera() - 1);
             }
+            jugador.recibirDanio(danio);
         }
-        
-        if (jugador.estaVivo()) {
-            estaVivo = true;
-        } 
-        return estaVivo;
-    }*/
+        return danio;
 
+    }
+
+    public int chequeoFinDeAtaque(Monstruo monstruo) { //Chequea al final de un ataque si el monstruo y/o el jugador esta vivo
+        int resultado = 0; //devuelve 0 si la batalla continua
+        if (jugador.estaVivo()) {
+            if (!monstruo.estaVivo()) {
+                resultado = 1; //devuelve 1 si el jugador ha ganado la batalla
+            }
+        } else {
+            resultado = -1; //devuelve -1 si el jugador a perdido la batalla
+        }
+        return resultado;
+
+    }
 }
+
+
+
