@@ -55,10 +55,10 @@ public class Ejecucion {
             switch (eleccion) {
 
                 case 1:
-                    System.out.println("El jugador inflige" + partida.ataqueJugador(monstruo) + "puntos de danio");//El danio que inflige el jugador
+                    System.out.println("El jugador inflige" + partida.getJugador().ataqueJugador(monstruo) + "puntos de danio");//El danio que inflige el jugador
 
-                    if (partida.ataqueMonstruo(monstruo) != -1) { //Si es -1 el monstruo esta muerto
-                        System.out.println("El monstruo inflige" + partida.ataqueMonstruo(monstruo) + "puntos de danio");//el danio que inflige el monstruo
+                    if (monstruo.ataqueMonstruo(partida.getJugador()) != -1) { //Si es -1 el monstruo esta muerto
+                        System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
                     }
 
                     chequeoBatalla = partida.chequeoFinDeAtaque(monstruo);//El resultado de la batalla
@@ -86,10 +86,10 @@ public class Ejecucion {
                     break;
 
                 case 2:
-                    System.out.println("El jugador inflige" + partida.ataqueEspecialJugador(monstruo) + "puntos de danio");
+                    System.out.println("El jugador inflige" + partida.getJugador().ataqueEspecialJugador(monstruo) + "puntos de danio");
 
-                    if (partida.ataqueMonstruo(monstruo) != -1) {
-                        System.out.println("El monstruo inflige" + partida.ataqueMonstruo(monstruo) + "puntos de danio");
+                    if (monstruo.ataqueMonstruo(partida.getJugador()) != -1) {
+                        System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");
                     }
 
                     chequeoBatalla = partida.chequeoFinDeAtaque(monstruo);

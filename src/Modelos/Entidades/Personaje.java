@@ -105,9 +105,23 @@ public class Personaje extends Entidad {
     }
 
 
+    //metodos de pelea
 
+    public int ataqueJugador(Monstruo monstruo) { //el jugador usa su ataque basico
 
+        int danioJugador = getArma().atacar();
+        monstruo.recibirDanio(danioJugador);
+        return danioJugador;
 
+    }
+
+    public int ataqueEspecialJugador(Monstruo monstruo) { //el jugador usa su ataque especial
+
+        int danioJugador = getArma().ataqueEspecial();
+        monstruo.recibirDanio(danioJugador);
+        return danioJugador;
+
+    }
     @Override
     public boolean estaVivo() { //devuelve si el jugador esta viva o no
         boolean vivo;
