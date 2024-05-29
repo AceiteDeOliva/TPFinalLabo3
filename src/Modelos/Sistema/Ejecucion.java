@@ -88,7 +88,7 @@ public class Ejecucion {
 
     //Funciones de print
     public static void chequeoBatalla(Monstruo monstruo) {
-        int chequeoBatalla = partida.chequeoFinDeAtaque(monstruo);//El resultado de la batalla
+        int chequeoBatalla = partida.chequeoFinDeAtaque(monstruo);//El resultado de la batalla || 1 si gano || 0 si continua || -1 si perdio
         switch (chequeoBatalla) {
             case 1:
                 System.out.println("Ha ganado la batalla.");
@@ -114,13 +114,11 @@ public class Ejecucion {
     }
 
     public static void mostrarInventario() {
-        ArrayList<Item> inventario = partida.getJugador().getInventario();
+        ArrayList<String> inventarioNombres = partida.getJugador().getInventarioNombres();
         int itemIndex = 1;
         System.out.println("0. Volver");
-        for (Item item : inventario) {
-
-            System.out.println(itemIndex + ". " + item.getNombre() + ")");
-            itemIndex++;
+        for (int i = 0; i < inventarioNombres.size(); i++) {
+            System.out.println((i + 1) + ". " + inventarioNombres.get(i) + ")");
         }
         Scanner scanner = new Scanner(System.in);
         System.out.print("Elige un Item: ");
@@ -131,14 +129,14 @@ public class Ejecucion {
     }
 
     public static void seleccionItem(int eleccion) {
-        Item itemSeleccionado = partida.getJugador().equiparDesdeInventario(eleccion); //manda la eleccion y retorna el item que se equipo
+        String itemSeleccionado = partida.getJugador().equiparDesdeInventario(eleccion); //manda la eleccion y retorna el item que se equipo
 
         if (eleccion == 0) {
             System.out.println("Saliste del inventario.");
         } else if (itemSeleccionado == null) {
             System.out.println("Opción inválida.");
         }else {
-            System.out.println("Seleccionaste: " + itemSeleccionado.getNombre());
+            System.out.println("Seleccionaste: " + itemSeleccionado);
         }
 
     }

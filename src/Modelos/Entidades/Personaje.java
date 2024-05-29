@@ -4,6 +4,7 @@ import Modelos.Items.Arma;
 import Modelos.Items.Armadura;
 import Modelos.Items.Item;
 import Modelos.Items.Pocion;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 
@@ -60,6 +61,13 @@ public class Personaje extends Entidad {
     public ArrayList<Item> getInventario() {
         return inventario;
     }
+    public ArrayList<String> getInventarioNombres() {
+        ArrayList<String> nombres = new ArrayList<>();
+        for (Item item : inventario) {
+            nombres.add(item.getNombre());
+        }
+        return nombres;
+    }
 
     //Setters
     public void equiparArma(Arma NuevaArma) {
@@ -84,7 +92,7 @@ public class Personaje extends Entidad {
         inventario.remove(unItem);
     }
 
-    public Item equiparDesdeInventario(int eleccion) { //funcion que equipa/usa un item del inventario
+    public String equiparDesdeInventario(int eleccion) { //funcion que equipa/usa un item del inventario
         Item itemSeleccionado = null;
 
         if (eleccion > 0 && eleccion <= inventario.size()) {
@@ -101,7 +109,7 @@ public class Personaje extends Entidad {
             }
 
         }
-        return itemSeleccionado;
+        return "" + itemSeleccionado;
     }
 
 
@@ -136,4 +144,14 @@ public class Personaje extends Entidad {
         setSalud(getSalud() - danioEfectivo);
     }
 
+    @Override
+    public String toString() {
+        return "Personaje{" +
+                "inventario=" + inventario +
+                ", arma=" + arma +
+                ", armadura=" + armadura +
+                ", tipoDePersonaje=" + tipoDePersonaje +
+                ", especialTEspera=" + especialTEspera +
+                '}';
+    }
 }
