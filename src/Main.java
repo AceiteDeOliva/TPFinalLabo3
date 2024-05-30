@@ -6,7 +6,9 @@ import Modelos.Sistema.Ejecucion;
 public class Main {
     public static void main(String[] args) {
 
-        Ejecucion.Ejecucion();
+        Ejecucion.ejecucion();
+
+
 
         //por si acaso
         /*String art1 =
@@ -87,6 +89,7 @@ public class Main {
 
 
         }*/
+
 
     }
 }

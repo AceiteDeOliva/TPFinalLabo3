@@ -49,5 +49,10 @@ public abstract class Entidad {
 
     abstract void recibirDanio(int danio);
 
-
+    @Override
+    public String toString() {
+        return "Entidad" +
+                "Nombre: '" + nombre + '\'' +
+                ",Salud: " + salud;
+    }
 }

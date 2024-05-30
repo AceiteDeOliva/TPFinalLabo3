@@ -92,4 +92,12 @@ public class Monstruo extends Entidad implements Habilidades {
         setSalud(getSalud() - danioEfectivo);
     }
 
+    @Override
+    public String toString() {
+        return "Monstruo: " + super.toString()+
+                "Danio=" + danio +
+                ",Velocidad=" + velocidad +
+                ",Armadura=" + armadura +
+                ",TipoDeMonstruo: " + tipoDeMonstruo;
+    }
 }
