@@ -3,6 +3,7 @@ package Modelos.Sistema;
 import java.io.Serializable;
 
 
+import Modelos.Entidades.Monstruo;
 import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
 
@@ -12,11 +13,14 @@ import java.util.HashSet;
 import java.util.Random;
 
 
-public class Partida  {
+
+public class Partida implements Serializable {
+
+
 
 
     private Personaje jugador;
-    private HashMap<Integer, ArrayList<Escenario>> escenarios;
+    private transient HashMap<Integer, ArrayList<Escenario>> escenarios;
     private int nivelActual;
     private static final int nivelInicial = 1;
 
@@ -72,7 +76,7 @@ public class Partida  {
 
         if (cantidadEscenariosXnivel() > 0) {
             int indice = indice();
-            escenario = escenarios.get(nivelActual).get(indice);
+            escenario = escenarios.get(nivelActual).get(indice); //agarra un escenario del arrayList del nivel
         }
         return escenario;
     }
@@ -99,25 +103,23 @@ public class Partida  {
         return rand.nextInt(maximo); //devuelve un numero aleatorio con valor maximo maximo
     }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /*public boolean pelea() {
-        boolean estaVivo = false;
-        while (jugador.estaVivo() && monstruo.estaVivo()) {
-            // turno del jugador
-            int danioJugador = jugador.getArma().atacar();
-            monstruo.recibirDanio(danioJugador);
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // funciones de batalla
 
-            if (monstruo.estaVivo()) {
-                // turno del monstruo
-                int danioMonstruo = monstruo.atacar();
-                jugador.recibirDanio(danioMonstruo);
-            }
-        }
-        
+    public int chequeoFinDeAtaque(Monstruo monstruo) { //Chequea al final de un ataque si el monstruo y/o el jugador esta vivo
+        int resultado = 0; //devuelve 0 si la batalla continua
         if (jugador.estaVivo()) {
-            estaVivo = true;
-        } 
-        return estaVivo;
-    }*/
+            if (!monstruo.estaVivo()) {
+                resultado = 1; //devuelve 1 si el jugador ha ganado la batalla
+                nivelActual += 1;
+            }
+        } else {
+            resultado = -1; //devuelve -1 si el jugador a perdido la batalla
+        }
+        return resultado;
 
+    }
 }
+
+
+
