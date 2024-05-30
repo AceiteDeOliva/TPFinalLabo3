@@ -1,6 +1,7 @@
 package Modelos.Items;
 
 public class Pocion extends Item{
+
     private int salud;
     private int velocidad;
 
@@ -32,4 +33,5 @@ public class Pocion extends Item{
     }
 
     //metodos para aumentarle la velocidad y la salud al personaje
+
 }

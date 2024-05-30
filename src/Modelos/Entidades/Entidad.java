@@ -3,16 +3,19 @@ package Modelos.Entidades;
 public abstract class Entidad {
     private String nombre;
     private int salud;
+    int especialTEspera;
 
     //Constructor
-    public Entidad () {
+    public Entidad() {
         this.nombre = "";
         this.salud = 0;
+        this.especialTEspera = 2;
     }
-    
-    public Entidad(String nombreP, int saludP) {
+
+    public Entidad(String nombreP, int saludP,int especialTEsperaP) {
         this.nombre = nombreP;
         this.salud = saludP;
+        this.especialTEspera = especialTEsperaP;
     }
 
     //Getters
@@ -24,8 +27,11 @@ public abstract class Entidad {
         return salud;
     }
 
-    //Setters
+    public int getEspecialTEspera() {
+        return especialTEspera;
+    }
 
+    //Setters
     public void setNombre(String nombreP) {
         this.nombre = nombreP;
     }
@@ -34,9 +40,13 @@ public abstract class Entidad {
         this.salud = saludP;
     }
 
+    public void setEspecialTEspera(int especialTEspera) {
+        this.especialTEspera = especialTEspera;
+    }
     //Metodos
 
     abstract boolean estaVivo();
+
     abstract void recibirDanio(int danio);
 
     @Override

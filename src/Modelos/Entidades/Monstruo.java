@@ -19,7 +19,7 @@ public class Monstruo extends Entidad implements Habilidades {
     }
     
     public Monstruo(String nombreP, int saludP, int danioP, int velocidadP, int armaduraP) {
-        super(nombreP, saludP);
+        super(nombreP, saludP,2);
         this.danio = danioP;
         this.velocidad = velocidadP;
         this.armadura = armaduraP;
@@ -62,6 +62,22 @@ public class Monstruo extends Entidad implements Habilidades {
         return danio * 2;
     }
 
+    //metodos de pelea
+    public int ataqueMonstruo(Personaje jugador) { //el monstruo usa su ataque basico
+        int danio = -1;
+        if (estaVivo()) {
+            if (especialTEspera <= 0) { // chequea si puede usar el especial
+                danio = ataqueEspecial();
+                setEspecialTEspera(2);
+            } else {
+                danio = atacar();
+                setEspecialTEspera(especialTEspera - 1);
+            }
+            jugador.recibirDanio(danio);
+        }
+        return danio;
+
+    }
     @Override
     public  boolean estaVivo() { //devuelve si el monstruo esta viva o no
         boolean vivo;
