@@ -2,7 +2,7 @@ package Modelos.Items;
 import java.io.Serializable;
 
 
-public abstract class Item  {
+public class Item  {
     private final String nombre;
     private final String descripcion;
 
@@ -25,5 +25,10 @@ public abstract class Item  {
         return descripcion;
     }
 
-
+    @Override
+    public String toString() {
+        return "Item: " +
+                "Nombre: '" + nombre + '\'' +
+                ",Descripcion: '" + descripcion + '\'';
+    }
 }

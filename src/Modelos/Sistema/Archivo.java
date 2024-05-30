@@ -73,7 +73,7 @@ public class  Archivo   {
         JSONObject object = new JSONObject();
         JSONArray JsonArray = new JSONArray();
         try{
-            Iterator<String> iterator = HashSet.iterator();
+            Iterator<String> iterator = listaEscenariosItem.iterator();
             while (iterator.hasNext()) {
                 String escenarioMonstruo = iterator.next();
                 object.put("nombre",escenarioMonstruo.getNombre);

@@ -37,4 +37,10 @@ public class Arma extends Item implements Habilidades {
     public int ataqueEspecial() {
         return danio * 2;
     }
+
+    @Override
+    public String toString() {
+        return "Arma: " + super.toString() +
+                "Danio=" + danio;
+    }
 }

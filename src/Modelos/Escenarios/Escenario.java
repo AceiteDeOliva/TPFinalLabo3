@@ -36,5 +36,8 @@ public class Escenario {
         this.descripcion = descripcion;
     }
 
-
+    @Override
+    public String toString() {
+        return "Escenario" + "Nombre='" + nombre + '\'' + ", Nivel=" + nivel + ", Descripcion='" + descripcion + '\'';
+    }
 }
