@@ -35,4 +35,11 @@ public class Armadura extends Item {
     public void setVelocidad(int velocidadP) {
         this.velocidad = velocidadP;
     }
+
+    @Override
+    public String toString() {
+        return "Armadura: " + super.toString()+
+                "Defensa=" + defensa +
+                ",Velocidad= " + velocidad;
+    }
 }
