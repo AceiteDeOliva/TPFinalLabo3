@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 
-public class Partida  {
+public class Partida implements Serializable {
 
 
     private Personaje jugador;
