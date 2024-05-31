@@ -13,6 +13,7 @@ public class Personaje extends Entidad {
     private Arma arma;
     private Armadura armadura;
     private TipoDePersonaje tipoDePersonaje;
+    private int velocidad;
 
 
     //Constructores
@@ -21,14 +22,15 @@ public class Personaje extends Entidad {
         this.arma = new Arma();
         this.armadura = new Armadura();
         this.inventario = new ArrayList<>();
-
+        this.velocidad = 0;
     }
 
-    public Personaje(String nombreP, int saludP, TipoDePersonaje tipoDePersonajeP, ArrayList<Item> inventarioP) {
+    public Personaje(int velocidadP, String nombreP, int saludP, TipoDePersonaje tipoDePersonajeP, ArrayList<Item> inventarioP) {
         super(nombreP, saludP, 1);
 
         this.tipoDePersonaje = tipoDePersonajeP;
         this.inventario = inventarioP;
+        this.velocidad = velocidadP;
 
         switch (tipoDePersonajeP) {
             case GUERRERO:
@@ -69,6 +71,10 @@ public class Personaje extends Entidad {
         return nombres;
     }
 
+    public int getVelocidad() {
+        return velocidad;
+    }
+
     //Setters
     public void equiparArma(Arma NuevaArma) {
         this.arma = NuevaArma;
@@ -81,6 +87,10 @@ public class Personaje extends Entidad {
     @SuppressWarnings("unused")
     public void setInventario(ArrayList<Item> inventarioP) {
         this.inventario = inventarioP;
+    }
+
+    public void setVelocidad(int velocidad) {
+        this.velocidad = velocidad;
     }
 
     //Metodos
@@ -150,6 +160,7 @@ public class Personaje extends Entidad {
                 "inventario=" + inventario +
                 ", arma=" + arma +
                 ", armadura=" + armadura +
+                ",velocidad=" + velocidad +
                 ", tipoDePersonaje=" + tipoDePersonaje +
                 ", especialTEspera=" + especialTEspera +
                 '}';
