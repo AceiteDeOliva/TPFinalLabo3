@@ -3,6 +3,8 @@ package Modelos.Sistema;
 import Modelos.Entidades.Monstruo;
 import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
+import Modelos.Escenarios.EscenarioItem;
+import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Items.Arma;
 import Modelos.Items.Armadura;
 import Modelos.Items.Item;
@@ -14,8 +16,6 @@ import java.util.Scanner;
 
 public class Ejecucion {
 
-    
-
     public static void Ejecucion() {
 
         //Pasar objetos de los archivos de inventario, armas y armaduras a arrays
@@ -23,13 +23,15 @@ public class Ejecucion {
 
 
         //Pasar info de partida
-       ArrayList<Partida> listaPartidas = new ArrayList<>()(archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre()));
+        ArrayList<Partida> listaPartidas = new ArrayList<>()
+        (archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre()));
 
 
         //pasar info de escenarios con json
 
 
-        archivo.grabarArchivoPartidas(listaPartidas,NombreArchivos.Partidas.getNombre());
+        archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre());
+        Partida partida = listaPartidas.getFirst();//por ahora
 
 
         //Pasar info de monstruo
@@ -37,11 +39,49 @@ public class Ejecucion {
         //pasar info de escenarios
         archivo.grabarArchivo(ListaItems, NombreArchivos.Items.getNombre());
 
+        Escenario escenario = partida.escenarioPosible();
+
+        if (escenario instanceof EscenarioMonstruo) {
+            encuentro(partida, (EscenarioMonstruo) escenario);
+
+        } else if (escenario instanceof EscenarioItem){
+            encuentro(partida, (EscenarioItem) escenario);
+
+        }
+
+
+    }
+    public static void elegirEncuentro(Partida partida){
+        Escenario escenario1 = partida.escenarioPosible();
+        Escenario escenario2 = partida.escenarioPosible();
         Scanner scanner = new Scanner(System.in);
+        int eleccion = -1;
 
+        System.out.println("Estas en una bifurcacion en el camino.");
+        System.out.println("A un lado ves:");
+        System.out.println(escenario1.getDescripcion());
+        System.out.println("Al otro lado ves:");
+        System.out.println(escenario2.getDescripcion());
+        System.out.println("Que camino deseas tomar?");
+        System.out.println("1. Primer camino");
+        System.out.println("2. Segundo camino");
+        while(eleccion != 1 && eleccion != 2){
+            eleccion = scanner.nextInt();
+        }
+        switch (eleccion){
 
-        //if escenario es una pelea
-        Monstruo monstruo = new Monstruo();//reemplazar por el monstruo del escenario con monstruo
+            case 1:
+                //no se donde se guardaria esto
+                break;
+            case 2:
+                //idem lo de arriba
+                break;
+        }
+    }
+
+    public static void encuentro(Partida partida, EscenarioMonstruo escenario) {
+        Scanner scanner = new Scanner(System.in);
+        Monstruo monstruo = escenario.elegirMounstruo();
         while (partida.getJugador().estaVivo() && monstruo.estaVivo()) {
             /*desc escenario
             nombre monstruo
@@ -66,7 +106,7 @@ public class Ejecucion {
                         System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
                     }
 
-                    chequeoBatalla(monstruo);
+                    chequeoBatalla(partida, monstruo);
                     break;
 
                 case 2:
@@ -76,11 +116,11 @@ public class Ejecucion {
                         System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");
                     }
 
-                    chequeoBatalla(monstruo);
+                    chequeoBatalla(partida, monstruo);
                     break;
 
                 case 3:
-                    mostrarInventario();
+                    mostrarInventario(partida);
 
                     break;
 
@@ -95,8 +135,16 @@ public class Ejecucion {
 
     }
 
+    public static void encuentro(Partida partida, EscenarioItem escenario){
+        System.out.println(escenario.getNombre());
+        System.out.println("Exploras el lugar");
+        String itemEncontrado = partida.itemEncontrado(escenario);
+        System.out.println("Econtraste:" + itemEncontrado + "!!!");
+
+    }
+
     //Funciones de print
-    public static void chequeoBatalla(Monstruo monstruo) {
+    public static void chequeoBatalla(Partida partida, Monstruo monstruo) {
         int chequeoBatalla = partida.chequeoFinDeAtaque(monstruo);//El resultado de la batalla || 1 si gano || 0 si continua || -1 si perdio
         switch (chequeoBatalla) {
             case 1:
@@ -122,7 +170,7 @@ public class Ejecucion {
 
     }
 
-    public static void mostrarInventario() {
+    public static void mostrarInventario(Partida partida) {
         ArrayList<String> inventarioNombres = partida.getJugador().getInventarioNombres();
         int itemIndex = 1;
         System.out.println("0. Volver");
@@ -132,19 +180,19 @@ public class Ejecucion {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Elige un Item: ");
         int eleccion = scanner.nextInt();
-        seleccionItem(eleccion);
+        seleccionItem(partida, eleccion);
 
 
     }
 
-    public static void seleccionItem(int eleccion) {
+    public static void seleccionItem(Partida partida, int eleccion) {
         String itemSeleccionado = partida.getJugador().equiparDesdeInventario(eleccion); //manda la eleccion y retorna el item que se equipo
 
         if (eleccion == 0) {
             System.out.println("Saliste del inventario.");
         } else if (itemSeleccionado == null) {
             System.out.println("Opción inválida.");
-        }else {
+        } else {
             System.out.println("Seleccionaste: " + itemSeleccionado);
         }
 
