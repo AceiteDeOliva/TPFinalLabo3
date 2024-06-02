@@ -4,20 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
     <list default="true" id="526ddedb-0a1f-4afb-97bd-2157b6090c03" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Entidad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Monstruo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Monstruo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelos/Escenarios/Escenario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Escenarios/Escenario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Escenarios/EscenarioItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Escenarios/EscenarioItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelos/Escenarios/EscenarioMonstruo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Escenarios/EscenarioMonstruo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelos/Items/Arma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Items/Arma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelos/Items/Armadura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Items/Armadura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelos/Items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Items/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelos/Items/Pocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Items/Pocion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Archivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Archivo.java" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Ejecucion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Ejecucion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Partida.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +25,6 @@
       </list>
     </option>
   </component>
-
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -42,80 +35,64 @@
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 7
 }</component>
-
   <component name="ProjectId" id="2h9KnqjVF5xkaUnjtsvD99TdMrC" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-
-    &quot;git-widget-placeholder&quot;: &quot;milir99-patch-1&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-
-
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/OneDrive/Facultad/UTN/Programacion y laboratorio III/TPFinalLabo3/java-json.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Valen",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/user/OneDrive/Facultad/UTN/Programacion y laboratorio III/TPFinalLabo3/java-json.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-corretto-21.0.2-4caba194b151-51586f01" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-
       <changelist id="526ddedb-0a1f-4afb-97bd-2157b6090c03" name="Changes" comment="" />
-      <created>1717001024451</created>
+      <created>1716996222201</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1717001024451</updated>
+      <updated>1716996222201</updated>
       <workItem from="1717001029340" duration="273000" />
       <workItem from="1717001312381" duration="3637000" />
       <workItem from="1717017502776" duration="2846000" />
       <workItem from="1717020858589" duration="4830000" />
       <workItem from="1717070344851" duration="3856000" />
-
-      <changelist id="f78580a7-8a76-4d48-8e06-deb77d8bbd69" name="Changes" comment="" />
-      <created>1716996222201</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1716996222201</updated>
       <workItem from="1716996226510" duration="6911000" />
       <workItem from="1717004110108" duration="3637000" />
-
+      <workItem from="1717356855566" duration="3400000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
-
 </project>
