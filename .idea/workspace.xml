@@ -7,11 +7,15 @@
     <list default="true" id="526ddedb-0a1f-4afb-97bd-2157b6090c03" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Items/Pocion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Items/Pocion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Monstruo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Monstruo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Escenarios/EscenarioItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Escenarios/EscenarioItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Ejecucion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Ejecucion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Partida.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +52,11 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+
+    "git-widget-placeholder": "Chiari13-patch-1",
+
     "git-widget-placeholder": "Valen",
+
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/user/OneDrive/Facultad/UTN/Programacion y laboratorio III/TPFinalLabo3/java-json.jar",
@@ -63,6 +71,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -70,10 +79,13 @@
       </set>
     </attachedChunks>
   </component>
+
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="526ddedb-0a1f-4afb-97bd-2157b6090c03" name="Changes" comment="" />
+
+      <changelist id="f78580a7-8a76-4d48-8e06-deb77d8bbd69" name="Changes" comment="" />
       <created>1716996222201</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -86,12 +98,26 @@
       <workItem from="1716996226510" duration="6911000" />
       <workItem from="1717004110108" duration="3637000" />
       <workItem from="1717356855566" duration="3400000" />
+
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>

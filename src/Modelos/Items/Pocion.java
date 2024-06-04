@@ -1,5 +1,7 @@
 package Modelos.Items;
 
+import Modelos.Entidades.Personaje;
+
 public class Pocion extends Item{
 
     private int salud;
@@ -33,5 +35,14 @@ public class Pocion extends Item{
     }
 
     //metodos para aumentarle la velocidad y la salud al personaje
+    public void aumentarSalud (Personaje personajeP)
+    {
+        personajeP.setSalud(personajeP.getSalud()+salud);
+    }
+
+    public void aumentarVelocidad (Personaje personajeP)
+    {
+        personajeP.setVelocidad(personajeP.getVelocidad()+velocidad);
+    }
 
 }
