@@ -18,7 +18,7 @@ public class EscenarioItem extends Escenario {
         this.listaItems = new ArrayList<>();
     }
 
-    public Item elegirItem (Item item)
+    public Item elegirItem ()
     {
         Item itemElegido = new Item();
         Random random = new Random();
