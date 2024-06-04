@@ -3,13 +3,16 @@ package Modelos.Sistema;
 import Modelos.Entidades.Monstruo;
 import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
+import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Items.Arma;
 import Modelos.Items.Armadura;
 import Modelos.Items.Item;
 import Modelos.Items.Pocion;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Ejecucion {
@@ -21,28 +24,27 @@ public class Ejecucion {
         //Pasar objetos de los archivos de inventario, armas y armaduras a arrays
         Archivo archivo = new Archivo();
 
-
         //Pasar info de partida
-       ArrayList<Partida> listaPartidas = new ArrayList<>()(archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre()));
-
-
+       ArrayList<Partida> listaPartidas = new ArrayList<>();
+       listaPartidas= archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
         //pasar info de escenarios con json
-
+        try {
+            HashSet<EscenarioMonstruo> escenarioMonstruos = new HashSet<>(archivo.jsonAEscenario()) ;
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
 
         archivo.grabarArchivoPartidas(listaPartidas,NombreArchivos.Partidas.getNombre());
 
-
         //Pasar info de monstruo
         //Pasar info de personaje
-        //pasar info de escenarios
-        archivo.grabarArchivo(ListaItems, NombreArchivos.Items.getNombre());
 
         Scanner scanner = new Scanner(System.in);
 
-
+// HAY QUE DECLARAR UN OBJETO PARTIDA QUE SEA LA PARTIDA DE LA PERSONA PARA QUE SE VAYA EL ERROR DE NON STATIC METOD...
         //if escenario es una pelea
         Monstruo monstruo = new Monstruo();//reemplazar por el monstruo del escenario con monstruo
-        while (partida.getJugador().estaVivo() && monstruo.estaVivo()) {
+        while (Partida.getJugador().estaVivo() && monstruo.estaVivo()) {
             /*desc escenario
             nombre monstruo
             vida de monstruo
@@ -60,10 +62,10 @@ public class Ejecucion {
             switch (eleccion) {
 
                 case 1:
-                    System.out.println("El jugador inflige" + partida.getJugador().ataqueJugador(monstruo) + "puntos de danio");//El danio que inflige el jugador
+                    System.out.println("El jugador inflige" + Partida.getJugador().ataqueJugador(monstruo) + "puntos de danio");//El danio que inflige el jugador
 
-                    if (monstruo.ataqueMonstruo(partida.getJugador()) != -1) { //Si es -1 el monstruo esta muerto
-                        System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
+                    if (monstruo.ataqueMonstruo(Partida.getJugador()) != -1) { //Si es -1 el monstruo esta muerto
+                        System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(Partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
                     }
 
                     chequeoBatalla(monstruo);

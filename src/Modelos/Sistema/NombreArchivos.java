@@ -1,10 +1,11 @@
 package Modelos.Sistema;
 
 public enum NombreArchivos {
-    Items("item.dat"),
+
     Partidas("Partidas.dat"),
-    Escenarios("Escenarios.dat"),
-    Monstruos("Monstruos.dat");
+    EscenariosM("Escenarios Monstruos"),
+    EscenrariosI("Escenarios items ")
+
     private String nombre;
 
     NombreArchivos(String nombre) {

@@ -4,7 +4,11 @@ public class Escenario {
     private final String nombre;
     private int nivel;
     private String descripcion;
-
+    public Escenario() {
+        this.nombre = "";
+        this.nivel = 0;
+        this.descripcion = "";
+    }
     public Escenario(String nombre, int nivel, String descripcion) {
         this.nombre = nombre;
         this.nivel = nivel;
