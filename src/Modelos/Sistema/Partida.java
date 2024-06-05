@@ -15,7 +15,7 @@ import java.util.Random;
 public class Partida implements Serializable {
 
     private Personaje jugador;
-    private transient HashMap<Integer, ArrayList<Escenario>> escenarios;
+    private transient HashMap<Integer, ArrayList<Escenario>> escenarios; //transient porque no se guarda en el archivo; clave del hashmap es el nivel; Valor es todos los escenarios pertenecientes al nivel
     private int nivelActual;
     private static final int nivelInicial = 1;
 
