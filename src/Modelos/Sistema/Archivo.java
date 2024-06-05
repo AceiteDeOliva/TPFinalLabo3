@@ -36,21 +36,26 @@ public class Archivo {
         } catch (EOFException ex) {
             System.out.println("FIN");
         } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
             System.out.println("El archivo no existe");
+            System.out.println("error");
+
         } catch (IOException | ClassNotFoundException exception) {
-            exception.printStackTrace();
+            System.out.println("error");
+
         } finally {
             try {
                 if (objectInputStream != null) {
                     objectInputStream.close();
                 }
             } catch (IOException ex) {
-                ex.printStackTrace();
+                System.out.println("error");
+
             }
         }
         return listaPartidas;
     }
+
+
 
     public void grabarArchivoPartidas(ArrayList<Partida> partidas, String archivo) {
         ObjectOutputStream objectOutputStream = null;
@@ -68,7 +73,7 @@ public class Archivo {
                     objectOutputStream.close();
                 }
             } catch (IOException ex) {
-                ex.printStackTrace();
+                System.out.println("error");
             }
         }
     }
@@ -84,7 +89,7 @@ public class Archivo {
                 object.put("nombre", escenarioMonstruo.getNombre());
                 object.put("nivel", escenarioMonstruo.getNivel());
                 object.put("descripcion", escenarioMonstruo.getDescripcion());
-                JSONArray monstruosJSONArray = new JSONArray(); // Create a JSONArray for monsters
+                JSONArray monstruosJSONArray = new JSONArray();
 
                 // Loop through Monstruos and add their data to the JSONArray
                 for (Monstruo monstruo : escenarioMonstruo.getListaMonstruos()) {
@@ -108,7 +113,7 @@ public class Archivo {
 
     }
 
-    public HashSet<EscenarioMonstruo> jsonAEscenario() throws JSONException {
+    public HashSet<EscenarioMonstruo> jsonAEscenario()  {
 
         try {
             HashSet<EscenarioMonstruo> listaEscenarios = new HashSet<>();
@@ -134,13 +139,18 @@ public class Archivo {
             EscenarioMonstruo escenario = new EscenarioMonstruo(nombre, nivel, descripcion, listaMonstruos);
             listaEscenarios.add(escenario);
             return listaEscenarios;
-        }
-        finally {
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        } finally {
+            System.out.println("Fin");
 
         }
 
 
 
     }
+
+
+
 
 }
