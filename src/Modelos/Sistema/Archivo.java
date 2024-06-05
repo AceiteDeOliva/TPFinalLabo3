@@ -1,7 +1,9 @@
 package Modelos.Sistema;
 
 import Modelos.Entidades.Monstruo;
+import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
+import Modelos.Items.Item;
 import Modelos.Sistema.JsonUtiles;
 
 import java.io.*;
@@ -78,12 +80,11 @@ public class Archivo {
         }
     }
 
-    public void EscenariosAJson(HashSet<EscenarioMonstruo> listaEscenariosItem) {
-
+    public void EscenariosAJson(HashSet<EscenarioMonstruo> listaEscenarioMounstruos) {
 
         JSONObject object = new JSONObject();
         try {
-            Iterator<EscenarioMonstruo> iterator = listaEscenariosItem.iterator();
+            Iterator<EscenarioMonstruo> iterator = listaEscenarioMounstruos.iterator();
             while (iterator.hasNext()) {
                 EscenarioMonstruo escenarioMonstruo = iterator.next();
                 object.put("nombre", escenarioMonstruo.getNombre());
@@ -101,11 +102,8 @@ public class Archivo {
                     monstruosJSONArray.put(monstruoJSONObject);
                 }
                 object.put("monstruos", monstruosJSONArray);
-
             }
             JsonUtiles.grabar(object,NombreArchivos.EscenariosM.getNombre());
-
-
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -143,14 +141,40 @@ public class Archivo {
             throw new RuntimeException(e);
         } finally {
             System.out.println("Fin");
-
         }
-
-
-
     }
 
+    public void escenarioItemAJson (HashSet<EscenarioItem> listaEscenarioItems)
+    {
+        JSONObject object = new JSONObject();
+        try
+        {
+            Iterator<EscenarioItem> iterator = listaEscenarioItems.iterator();
+            while (iterator.hasNext())
+            {
+                EscenarioItem escenarioItem = iterator.next();
+                object.put("Nombre", escenarioItem.getNombre());
+                object.put("Nivel", escenarioItem.getNivel());
+                object.put("Descripcion", escenarioItem.getDescripcion());
+                JSONArray itemsJSONArray = new JSONArray();
 
+                for(Item item : escenarioItem.getListaItems())
+                {
+                    JSONObject itemJSONObject = new JSONObject();
+                    itemJSONObject.put("Nombre", item.getNombre());
+                    itemJSONObject.put("Descripcion", item.getDescripcion());
 
+                    itemsJSONArray.put(itemJSONObject);
+                }
+                object.put("items", itemsJSONArray);
+            }
+
+            JsonUtiles.grabar(object, NombreArchivos.EscenrariosI.getNombre());
+
+        }catch(JSONException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

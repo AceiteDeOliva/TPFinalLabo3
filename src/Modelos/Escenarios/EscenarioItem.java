@@ -19,6 +19,10 @@ public class EscenarioItem extends Escenario {
         this.listaItems = new ArrayList<>();
     }
 
+    public ArrayList<Item> getListaItems() {
+        return listaItems;
+    }
+
     public Item elegirItem ()
     {
         Item itemElegido = new Item();
