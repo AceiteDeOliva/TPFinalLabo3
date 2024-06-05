@@ -13,12 +13,13 @@ import java.util.Random;
 public class EscenarioItem extends Escenario {
 
     private ArrayList<Item> listaItems;
+
     public EscenarioItem(String nombre, int nivel, String descripcion) {
         super(nombre, nivel, descripcion);
         this.listaItems = new ArrayList<>();
     }
 
-    public Item elegirItem (Item item)
+    public Item elegirItem ()
     {
         Item itemElegido = new Item();
         Random random = new Random();

@@ -6,12 +6,13 @@ import java.io.Serializable;
 import Modelos.Entidades.Monstruo;
 import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
+import Modelos.Escenarios.EscenarioItem;
+import Modelos.Items.Item;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Random;
-
+import java.util.Scanner;
 
 
 public class Partida implements Serializable {
@@ -103,6 +104,12 @@ public class Partida implements Serializable {
         return rand.nextInt(maximo); //devuelve un numero aleatorio con valor maximo maximo
     }
 
+    public String itemEncontrado(EscenarioItem escenarioItem){
+        Item nuevoItem = escenarioItem.elegirItem();
+        jugador.agregarItem(nuevoItem);
+        return "" + nuevoItem;
+    }
+
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // funciones de batalla
 
@@ -119,6 +126,31 @@ public class Partida implements Serializable {
         return resultado;
 
     }
+
+    public boolean compararVelocidad(Monstruo monstruo){ //devuelve true si el jugador es igual o mas rapido y false si empieza el monstruo
+        boolean respuesta = false;
+            if (jugador.getArmadura().getVelocidad() >= monstruo.getVelocidad()) {
+                respuesta = true;
+            } else if (jugador.getArmadura().getVelocidad() < monstruo.getVelocidad()) {
+                respuesta = true;
+            }
+
+        return respuesta;
+    }
+    // inicializar partidas
+    public ArrayList<Partida> PartidasVacias(ArrayList<Partida> listaPartidas) {
+        for (int i = 0; i < 3; i++) {
+            if (listaPartidas.get(i) == null) {
+                Personaje jugadorVacio = new Personaje() ;
+                jugadorVacio.setNombre("Partida Vacia");
+                Partida aux = new Partida(jugadorVacio);
+                listaPartidas.set(i,aux);
+            }
+
+        }
+        return listaPartidas;
+    }
+
 }
 
 

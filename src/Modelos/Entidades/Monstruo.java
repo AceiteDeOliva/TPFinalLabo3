@@ -94,7 +94,7 @@ public class Monstruo extends Entidad implements Habilidades {
 
     @Override
     public String toString() {
-        return "Monstruo: " + super.toString()+
+        return "Monstruo: " + super.toString() +
                 "Danio=" + danio +
                 ",Velocidad=" + velocidad +
                 ",Armadura=" + armadura +

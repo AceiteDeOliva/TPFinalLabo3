@@ -1,18 +1,23 @@
 package Modelos.Sistema;
-import Modelos.Escenarios.Escenario;
+
+import Modelos.Entidades.Monstruo;
 import Modelos.Escenarios.EscenarioMonstruo;
-import Modelos.Items.Item;
+import Modelos.Sistema.JsonUtiles;
+
 import java.io.*;
 import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
+
 import java.util.HashSet;
 import java.util.Iterator;
 
 
-
-public class  Archivo   {
+public class Archivo {
     public Archivo() {
     }
 
@@ -31,21 +36,26 @@ public class  Archivo   {
         } catch (EOFException ex) {
             System.out.println("FIN");
         } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
             System.out.println("El archivo no existe");
+            System.out.println("error");
+
         } catch (IOException | ClassNotFoundException exception) {
-            exception.printStackTrace();
+            System.out.println("error");
+
         } finally {
             try {
                 if (objectInputStream != null) {
                     objectInputStream.close();
                 }
             } catch (IOException ex) {
-                ex.printStackTrace();
+                System.out.println("error");
+
             }
         }
         return listaPartidas;
     }
+
+
 
     public void grabarArchivoPartidas(ArrayList<Partida> partidas, String archivo) {
         ObjectOutputStream objectOutputStream = null;
@@ -63,28 +73,84 @@ public class  Archivo   {
                     objectOutputStream.close();
                 }
             } catch (IOException ex) {
-                ex.printStackTrace();
+                System.out.println("error");
             }
         }
     }
-    public void jsonEscenarios(HashSet<EscenarioMonstruo> listaEscenariosItem){
+
+    public void EscenariosAJson(HashSet<EscenarioMonstruo> listaEscenariosItem) {
 
 
         JSONObject object = new JSONObject();
-        JSONArray JsonArray = new JSONArray();
-        try{
-            Iterator<String> iterator = listaEscenariosItem.iterator();
+        try {
+            Iterator<EscenarioMonstruo> iterator = listaEscenariosItem.iterator();
             while (iterator.hasNext()) {
-                String escenarioMonstruo = iterator.next();
-                object.put("nombre",escenarioMonstruo.getNombre);
+                EscenarioMonstruo escenarioMonstruo = iterator.next();
+                object.put("nombre", escenarioMonstruo.getNombre());
+                object.put("nivel", escenarioMonstruo.getNivel());
+                object.put("descripcion", escenarioMonstruo.getDescripcion());
+                JSONArray monstruosJSONArray = new JSONArray();
 
+                // Loop through Monstruos and add their data to the JSONArray
+                for (Monstruo monstruo : escenarioMonstruo.getListaMonstruos()) {
+                    JSONObject monstruoJSONObject = new JSONObject();
+                    monstruoJSONObject.put("nombre", monstruo.getNombre()); // Add monster properties
+                    monstruoJSONObject.put("ataque", monstruo.getDanio());
+                    monstruoJSONObject.put("defensa", monstruo.getVelocidad());
 
+                    monstruosJSONArray.put(monstruoJSONObject);
+                }
+                object.put("monstruos", monstruosJSONArray);
 
             }
+            JsonUtiles.grabar(object,NombreArchivos.EscenariosM.getNombre());
 
 
+
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
         }
 
     }
+
+    public HashSet<EscenarioMonstruo> jsonAEscenario()  {
+
+        try {
+            HashSet<EscenarioMonstruo> listaEscenarios = new HashSet<>();
+            JSONObject object = new JSONObject(JsonUtiles.leer(NombreArchivos.EscenariosM.getNombre()));
+            String nombre = object.getString("nombre");
+            int nivel = object.getInt("nivel");
+            String descripcion = object.getString("descripcion");
+
+            ArrayList<Monstruo> listaMonstruos = new ArrayList<>();
+            JSONArray lista = object.getJSONArray("monstruo");
+
+
+            for (int i = 0; i < lista.length(); i++) {
+                JSONObject monstruoJson = lista.getJSONObject(i);
+                String nombreMonstruo = monstruoJson.getString("nombre");
+                int salud = monstruoJson.getInt("salud");
+                int danio = monstruoJson.getInt("danio");
+                int velocidad = monstruoJson.getInt("velocidad");
+                int armadura = monstruoJson.getInt("armadura");
+                Monstruo monstruo = new Monstruo(nombreMonstruo, salud, danio, velocidad, armadura);
+                listaMonstruos.add(i, monstruo);
+            }
+            EscenarioMonstruo escenario = new EscenarioMonstruo(nombre, nivel, descripcion, listaMonstruos);
+            listaEscenarios.add(escenario);
+            return listaEscenarios;
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        } finally {
+            System.out.println("Fin");
+
+        }
+
+
+
+    }
+
+
+
 
 }
