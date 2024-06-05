@@ -1,24 +1,21 @@
 package Modelos.Sistema;
 
 import Modelos.Entidades.Monstruo;
-import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Exceptions.ExcepcionSwitch;
-import Modelos.Items.Arma;
-import Modelos.Items.Armadura;
-import Modelos.Items.Item;
-import Modelos.Items.Pocion;
-import org.json.JSONException;
-import Modelos.Sistema.Partida;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Ejecucion {
     private static Escenario escenarioActual;
 
-    public static void ejecucion() {
+    public static void ejecucion() throws ExcepcionSwitch {
+
         // Pasar objetos de los archivos de inventario, armas y armaduras a arrays
         Archivo archivo = new Archivo();
 
@@ -27,7 +24,7 @@ public class Ejecucion {
         // si la lista es menor a 3 agregar partidas vacias
         // pasar info de escenarios con json
         HashSet<EscenarioMonstruo> escenarioMonstruos = new HashSet<>();
-        escenarioMonstruos= archivo.jsonAEscenario();
+        escenarioMonstruos = archivo.jsonAEscenario();
 
         Scanner scan = new Scanner(System.in);
         // Menu
@@ -66,7 +63,8 @@ public class Ejecucion {
     }
 
 
-    public static void manejarEncuentro(Partida partida) {
+    public static void manejarEncuentro(Partida partida) throws ExcepcionSwitch {
+
         try {
             elegirEncuentro(partida);
         } catch (ExcepcionSwitch e) {
@@ -93,17 +91,16 @@ public class Ejecucion {
         System.out.println("Al otro lado ves:");
         System.out.println(escenario2.getDescripcion());
         System.out.println("Que camino deseas tomar?");
-        System.out.println("1. Primer camino");
-        System.out.println("2. Segundo camino");
+        System.out.println("1. Primer camino.");
+        System.out.println("2. Segundo camino.");
         while (eleccion != 1 && eleccion != 2) {
             try {
                 eleccion = scanner.nextInt();
-                // Check for invalid choice (1 or 2) and throw exception if needed
                 if (eleccion != 1 && eleccion != 2) {
                     throw new ExcepcionSwitch("Opcion invalida. Solo se permiten 1 o 2.");
                 }
             } catch (InputMismatchException e) {
-                scanner.nextLine(); // Clear invalid input from the scanner
+                scanner.nextLine();
                 System.out.println("Error: Ingrese un numero valido (1 or 2).");
             }
         }
@@ -118,42 +115,51 @@ public class Ejecucion {
         }
     }
 
-    public static void encuentro(Partida partida, EscenarioMonstruo escenario) {
+    public static void encuentro(Partida partida, EscenarioMonstruo escenario) throws ExcepcionSwitch {
         Scanner scanner = new Scanner(System.in);
         Monstruo monstruo = escenario.elegirMounstruo();
+        boolean velocidadComparada;
         while (partida.getJugador().estaVivo() && monstruo.estaVivo()) {
 
-            /*desc escenario
-            nombre monstruo
-            vida de monstruo
-            datos del jugador
-            todo lo de arriba habria que ponerlo lindo */
+            System.out.println("\n" +escenario.getNombre());
+            System.out.println(escenario.getDescripcion());
+            System.out.println(monstruo);
+            System.out.println(partida.getJugador());
 
-            int eleccion = -1;
+
+            int eleccion;
             System.out.println("Que desea hacer?");
             System.out.println("1. Ataque basico");
             System.out.println("2. Ataque especial");
             System.out.println("3. Abrir inventario");
             System.out.println("4. Ver equipamiento");
 
-            eleccion = scanner.nextInt();
+            try {
+                eleccion = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                scanner.nextLine(); // Limpiar la entrada no válida del scanner
+                System.out.println("Error: Ingrese un numero valido.");
+                continue;
+            }
             switch (eleccion) {
 
                 case 1:
-                    System.out.println("El jugador inflige" + partida.getJugador().ataqueJugador(monstruo) + "puntos de danio");//El danio que inflige el jugador
-
-                    if (monstruo.ataqueMonstruo(partida.getJugador()) != -1) { //Si es -1 el monstruo esta muerto
-                        System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
+                    velocidadComparada = partida.compararVelocidad(monstruo); //devuelve true si el jugador es igual o mas rapido que el monstruo y si no false
+                    if(velocidadComparada){
+                        ataqueJugadorPrimero(partida,monstruo);
+                    }else{
+                        ataqueMonstruoPrimero(partida,monstruo);
                     }
 
                     chequeoBatalla(partida, monstruo);
                     break;
 
                 case 2:
-                    System.out.println("El jugador inflige" + partida.getJugador().ataqueEspecialJugador(monstruo) + "puntos de danio");
-
-                    if (monstruo.ataqueMonstruo(partida.getJugador()) != -1) {
-                        System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");
+                    velocidadComparada = partida.compararVelocidad(monstruo); //devuelve true si el jugador es igual o mas rapido que el monstruo y si no false
+                    if(velocidadComparada){
+                        ataqueEspecialJugadorPrimero(partida,monstruo);
+                    }else{
+                        ataqueEspecialMonstruoPrimero(partida,monstruo);
                     }
 
                     chequeoBatalla(partida, monstruo);
@@ -161,30 +167,75 @@ public class Ejecucion {
 
                 case 3:
                     mostrarInventario(partida);
+                    break;
 
+                case 4:
+                    System.out.println(partida.getJugador().getArma().toString());
+                    System.out.println(" ");
+                    System.out.println(partida.getJugador().getArmadura().toString());
                     break;
 
                 default:
-                    System.out.println("Decision invalida");
-                    break;
+                    throw new ExcepcionSwitch("Opción inválida. Solo se permiten 1, 2, 3 o 4.");
+
 
 
             }
+
 
         }
 
     }
 
+    public static void ataqueJugadorPrimero(Partida partida, Monstruo monstruo){
+        System.out.println("El jugador inflige" + partida.getJugador().ataqueJugador(monstruo) + "puntos de danio");//El danio que inflige el jugador
+
+        if (monstruo.estaVivo()) {
+            System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
+        }
+
+    }
+
+    public static void ataqueMonstruoPrimero(Partida partida, Monstruo monstruo){
+        System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
+
+        if (partida.getJugador().estaVivo()) {
+            System.out.println("El jugador inflige" + partida.getJugador().ataqueJugador(monstruo) + "puntos de danio");//El danio que inflige el jugador
+
+        }
+
+    }
+
+    public static void ataqueEspecialJugadorPrimero(Partida partida, Monstruo monstruo){
+        System.out.println("El jugador inflige" + partida.getJugador().ataqueEspecialJugador(monstruo) + "puntos de danio");
+
+        if (monstruo.estaVivo()) {
+            System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");
+        }
+
+    }
+
+    public static void ataqueEspecialMonstruoPrimero(Partida partida, Monstruo monstruo){
+        System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
+
+        if (partida.getJugador().estaVivo()) {
+            System.out.println("El jugador inflige" + partida.getJugador().ataqueEspecialJugador(monstruo) + "puntos de danio");//El danio que inflige el jugador
+
+        }
+
+    }
+
+
     public static void encuentro(Partida partida, EscenarioItem escenario) {
         System.out.println(escenario.getNombre());
-        System.out.println("Exploras el lugar");
+        System.out.println("Exploras el lugar...");
         String itemEncontrado = partida.itemEncontrado(escenario);
         System.out.println("Econtraste:" + itemEncontrado + "!!!");
 
     }
 
     //Funciones de print
-    public static void chequeoBatalla(Partida partida, Monstruo monstruo) {
+    public static void chequeoBatalla(Partida partida, Monstruo monstruo) throws ExcepcionSwitch {
         int chequeoBatalla = partida.chequeoFinDeAtaque(monstruo);//El resultado de la batalla || 1 si gano || 0 si continua || -1 si perdio
         switch (chequeoBatalla) {
             case 1:
@@ -202,8 +253,8 @@ public class Ejecucion {
                 break;
 
             default:
-                System.out.println("Error: Resultado de batalla invalido");
-                break;
+                throw  new ExcepcionSwitch("Error: Resultado de batalla invalido");
+
 
 
         }
@@ -226,7 +277,6 @@ public class Ejecucion {
 
     public static void mostrarInventario(Partida partida) {
         ArrayList<String> inventarioNombres = partida.getJugador().getInventarioNombres();
-        int itemIndex = 1;
         System.out.println("0. Volver");
         for (int i = 0; i < inventarioNombres.size(); i++) {
             System.out.println((i + 1) + ". " + inventarioNombres.get(i) + ")");
@@ -236,10 +286,11 @@ public class Ejecucion {
         int eleccion = scanner.nextInt();
         seleccionItem(partida, eleccion);
 
-
     }
 
+
     public static int comenzarPartida(ArrayList<Partida> listaPartidas) {
+
         Scanner scan = new Scanner(System.in);
         System.out.println("Partidas:");
         System.out.println("0. Volver");
@@ -254,7 +305,9 @@ public class Ejecucion {
         }
         scan.close();
 
+
         return eleccion - 1;
+
     }
 
     public static void figuras(){
@@ -326,6 +379,8 @@ public class Ejecucion {
                         """;
 
 
+
     }
+
 }
 
