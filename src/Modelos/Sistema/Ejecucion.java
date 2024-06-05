@@ -1,19 +1,15 @@
 package Modelos.Sistema;
 
 import Modelos.Entidades.Monstruo;
-import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Exceptions.ExcepcionSwitch;
-import Modelos.Items.Arma;
-import Modelos.Items.Armadura;
-import Modelos.Items.Item;
-import Modelos.Items.Pocion;
-import org.json.JSONException;
-import Modelos.Sistema.Partida;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Ejecucion {
     private static Escenario escenarioActual;
@@ -25,8 +21,7 @@ public class Ejecucion {
 
         //Pasar info de partida
 
-        ArrayList<Partida> listaPartidas = new ArrayList<>();
-        listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
+        ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
         // si la lista es menor a 3 agregar partidas vacias
         //pasar info de escenarios con json
         HashSet<EscenarioMonstruo> escenarioMonstruos = new HashSet<>(archivo.jsonAEscenario());
@@ -105,7 +100,7 @@ public class Ejecucion {
             System.out.println(partida.getJugador());
 
 
-            int eleccion = -1;
+            int eleccion;
             System.out.println("Que desea hacer?");
             System.out.println("1. Ataque basico");
             System.out.println("2. Ataque especial");
@@ -119,8 +114,6 @@ public class Ejecucion {
                 System.out.println("Error: Ingrese un numero valido.");
                 continue;
             }
-
-            eleccion = scanner.nextInt();
             switch (eleccion) {
 
                 case 1:
@@ -205,40 +198,6 @@ public class Ejecucion {
 
     }
 
-    private static void monstruoAtacaPrimero(Partida partida, Monstruo monstruo, int eleccion) throws ExcepcionSwitch {
-        switch (eleccion) {
-            case 1:
-                if (monstruo.estaVivo()) {
-                    System.out.println("El monstruo inflige " + monstruo.ataqueMonstruo(partida.getJugador()) + " puntos de daño.");
-                }
-                if (partida.getJugador().estaVivo()) {
-                    System.out.println("El jugador inflige " + partida.getJugador().ataqueJugador(monstruo) + " puntos de daño.");
-                }
-                chequeoBatalla(partida, monstruo);
-                break;
-
-            case 2:
-                if (monstruo.estaVivo()) {
-                    System.out.println("El monstruo inflige " + monstruo.ataqueMonstruo(partida.getJugador()) + " puntos de daño.");
-                }
-                if (partida.getJugador().estaVivo()) {
-                    System.out.println("El jugador inflige " + partida.getJugador().ataqueEspecialJugador(monstruo) + " puntos de daño.");
-                }
-                chequeoBatalla(partida, monstruo);
-                break;
-
-            case 3:
-                mostrarInventario(partida);
-                break;
-
-            case 4:
-                //mostrarEquipamiento(partida);
-                break;
-
-            default:
-                throw new ExcepcionSwitch("Opción inválida. Solo se permiten 1, 2, 3 o 4.");
-        }
-    }
 
     public static void encuentro(Partida partida, EscenarioItem escenario) {
         System.out.println(escenario.getNombre());
@@ -291,7 +250,6 @@ public class Ejecucion {
 
     public static void mostrarInventario(Partida partida) {
         ArrayList<String> inventarioNombres = partida.getJugador().getInventarioNombres();
-        int itemIndex = 1;
         System.out.println("0. Volver");
         for (int i = 0; i < inventarioNombres.size(); i++) {
             System.out.println((i + 1) + ". " + inventarioNombres.get(i) + ")");
@@ -300,7 +258,6 @@ public class Ejecucion {
         System.out.print("Elige un Item: ");
         int eleccion = scanner.nextInt();
         seleccionItem(partida, eleccion);
-
 
     }
 
@@ -317,8 +274,7 @@ public class Ejecucion {
             eleccion = scan.nextInt();
         }
         scan.close();
-        Partida partidaActual = listaPartidas.get(eleccion + 1);
-        return partidaActual;
+        return listaPartidas.get(eleccion + 1);
     }
 
 

@@ -1,24 +1,18 @@
 package Modelos.Sistema;
 
-import java.io.Serializable;
-
-
 import Modelos.Entidades.Monstruo;
 import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Items.Item;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-import java.util.Scanner;
 
 
 public class Partida implements Serializable {
-
-
-
 
     private Personaje jugador;
     private transient HashMap<Integer, ArrayList<Escenario>> escenarios;

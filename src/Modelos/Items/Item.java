@@ -1,6 +1,4 @@
 package Modelos.Items;
-import java.io.Serializable;
-
 
 public class Item  {
     private final String nombre;
