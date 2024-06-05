@@ -3,7 +3,10 @@ package Modelos.Sistema;
 import Modelos.Entidades.Monstruo;
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
+import Modelos.Items.Arma;
+import Modelos.Items.Armadura;
 import Modelos.Items.Item;
+import Modelos.Items.Pocion;
 import Modelos.Sistema.JsonUtiles;
 
 import java.io.*;
@@ -153,17 +156,29 @@ public class Archivo {
             while (iterator.hasNext())
             {
                 EscenarioItem escenarioItem = iterator.next();
-                object.put("Nombre", escenarioItem.getNombre());
-                object.put("Nivel", escenarioItem.getNivel());
-                object.put("Descripcion", escenarioItem.getDescripcion());
+                object.put("nombre", escenarioItem.getNombre());
+                object.put("nivel", escenarioItem.getNivel());
+                object.put("descripcion", escenarioItem.getDescripcion());
                 JSONArray itemsJSONArray = new JSONArray();
 
                 for(Item item : escenarioItem.getListaItems())
                 {
                     JSONObject itemJSONObject = new JSONObject();
-                    itemJSONObject.put("Nombre", item.getNombre());
-                    itemJSONObject.put("Descripcion", item.getDescripcion());
+                    itemJSONObject.put("nombre", item.getNombre());
+                    itemJSONObject.put("descripcion", item.getDescripcion());
 
+                    if(item instanceof Arma)
+                    {
+                        itemJSONObject.put("danio", ((Arma) item).getDanio());
+                    }else if(item instanceof Armadura)
+                    {
+                        itemJSONObject.put("defensa", ((Armadura) item).getDefensa());
+                        itemJSONObject.put("velocidad", ((Armadura) item).getVelocidad());
+                    }else if(item instanceof Pocion)
+                    {
+                        itemJSONObject.put("salud", ((Pocion) item).getVelocidad());
+                        itemJSONObject.put("velocidad", ((Pocion) item).getVelocidad());
+                    }
                     itemsJSONArray.put(itemJSONObject);
                 }
                 object.put("items", itemsJSONArray);
