@@ -137,6 +137,7 @@ public class Partida implements Serializable {
 
         return respuesta;
     }
+
     // inicializar partidas
     public ArrayList<Partida> PartidasVacias(ArrayList<Partida> listaPartidas) {
         for (int i = 0; i < 3; i++) {
