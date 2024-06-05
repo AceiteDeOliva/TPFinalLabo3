@@ -160,7 +160,7 @@ public class Personaje extends Entidad {
                 ", armadura=" + armadura +
                 ",velocidad=" + velocidad +
                 ", tipoDePersonaje=" + tipoDePersonaje +
-                ", especialTEspera=" + especialTEspera +
+                ", especialTEspera=" + especialTEspera + //todo si se pone private en especialTEspera marca error
                 '}';
     }
 }

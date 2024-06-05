@@ -176,7 +176,7 @@ public class Archivo {
                         itemJSONObject.put("velocidad", ((Armadura) item).getVelocidad());
                     }else if(item instanceof Pocion)
                     {
-                        itemJSONObject.put("salud", ((Pocion) item).getVelocidad());
+                        itemJSONObject.put("salud", ((Pocion) item).getSalud());
                         itemJSONObject.put("velocidad", ((Pocion) item).getVelocidad());
                     }
                     itemsJSONArray.put(itemJSONObject);
