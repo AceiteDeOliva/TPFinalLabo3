@@ -11,9 +11,8 @@ import Modelos.Items.Item;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Random;
-
+import java.util.Scanner;
 
 
 public class Partida implements Serializable {
@@ -138,6 +137,20 @@ public class Partida implements Serializable {
 
         return respuesta;
     }
+    // inicializar partidas
+    public ArrayList<Partida> PartidasVacias(ArrayList<Partida> listaPartidas) {
+        for (int i = 0; i < 3; i++) {
+            if (listaPartidas.get(i) == null) {
+                Personaje jugadorVacio = new Personaje() ;
+                jugadorVacio.setNombre("Partida Vacia");
+                Partida aux = new Partida(jugadorVacio);
+                listaPartidas.set(i,aux);
+            }
+
+        }
+        return listaPartidas;
+    }
+
 }
 
 
