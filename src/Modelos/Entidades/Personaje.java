@@ -4,7 +4,6 @@ import Modelos.Items.Arma;
 import Modelos.Items.Armadura;
 import Modelos.Items.Item;
 import Modelos.Items.Pocion;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 
@@ -60,6 +59,7 @@ public class Personaje extends Entidad {
         return armadura;
     }
 
+    @SuppressWarnings("unused")
     public ArrayList<Item> getInventario() {
         return inventario;
     }
@@ -122,9 +122,7 @@ public class Personaje extends Entidad {
         return "" + itemSeleccionado;
     }
 
-
     //metodos de pelea
-
     public int ataqueJugador(Monstruo monstruo) { //el jugador usa su ataque basico
 
         int danioJugador = getArma().atacar();
