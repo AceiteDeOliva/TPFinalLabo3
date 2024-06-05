@@ -5,6 +5,7 @@ import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
+import Modelos.Exceptions.ExcepcionSwitch;
 import Modelos.Items.Arma;
 import Modelos.Items.Armadura;
 import Modelos.Items.Item;
@@ -12,13 +13,10 @@ import Modelos.Items.Pocion;
 import org.json.JSONException;
 import Modelos.Sistema.Partida;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class Ejecucion {
-
+private static Escenario escenarioActual;
     public static void Ejecucion() {
 
         //Pasar objetos de los archivos de inventario, armas y armaduras a arrays
@@ -38,21 +36,28 @@ public class Ejecucion {
 
         //Pasar info de monstruo
         //Pasar info de personaje
+        manejarEncuentro(partida);
 
-        Escenario escenario = partida.escenarioPosible();
 
-        if (escenario instanceof EscenarioMonstruo) {
-            encuentro(partida, (EscenarioMonstruo) escenario);
-
-        } else if (escenario instanceof EscenarioItem) {
-            encuentro(partida, (EscenarioItem) escenario);
-
-        }
 
 
     }
+    public static void manejarEncuentro(Partida partida){
+        try {
+            elegirEncuentro(partida);
+        } catch (ExcepcionSwitch e) {
+            throw new RuntimeException(e);
+        }
+        if (escenarioActual instanceof EscenarioMonstruo) {
+            encuentro(partida, (EscenarioMonstruo) escenarioActual);
 
-    public static void elegirEncuentro(Partida partida) {
+        } else if (escenarioActual instanceof EscenarioItem) {
+            encuentro(partida, (EscenarioItem) escenarioActual);
+        }
+
+    }
+
+    public static void elegirEncuentro(Partida partida) throws ExcepcionSwitch{
         Escenario escenario1 = partida.escenarioPosible();
         Escenario escenario2 = partida.escenarioPosible();
         Scanner scanner = new Scanner(System.in);
@@ -67,23 +72,25 @@ public class Ejecucion {
         System.out.println("1. Primer camino");
         System.out.println("2. Segundo camino");
         while (eleccion != 1 && eleccion != 2) {
-            eleccion = scanner.nextInt();
+            try {
+                eleccion = scanner.nextInt();
+                // Check for invalid choice (1 or 2) and throw exception if needed
+                if (eleccion != 1 && eleccion != 2) {
+                    throw new ExcepcionSwitch("Opcion invalida. Solo se permiten 1 o 2.");
+                }
+            } catch (InputMismatchException e) {
+                scanner.nextLine(); // Clear invalid input from the scanner
+                System.out.println("Error: Ingrese un numero valido (1 or 2).");
+            }
         }
         switch (eleccion) {
-
-
-            //if escenario es una pelea
-            Monstruo monstruo = new Monstruo();//reemplazar por el monstruo del escenario con monstruo
-            while (partida.getJugador().estaVivo() && monstruo.estaVivo()) {
-
-
                 case 1:
-                    //no se donde se guardaria esto
+                    escenarioActual = escenario1;
                     break;
                 case 2:
-                    //idem lo de arriba
+                    escenarioActual = escenario2;
                     break;
-            }
+
         }
     }
 
