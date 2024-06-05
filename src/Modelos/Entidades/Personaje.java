@@ -122,9 +122,7 @@ public class Personaje extends Entidad {
         return "" + itemSeleccionado;
     }
 
-
     //metodos de pelea
-
     public int ataqueJugador(Monstruo monstruo) { //el jugador usa su ataque basico
 
         int danioJugador = getArma().atacar();
