@@ -16,33 +16,57 @@ import Modelos.Sistema.Partida;
 import java.util.*;
 
 public class Ejecucion {
-private static Escenario escenarioActual;
-    public static void Ejecucion() {
+    private static Escenario escenarioActual;
 
-        //Pasar objetos de los archivos de inventario, armas y armaduras a arrays
+    public static void ejecucion() {
+        // Pasar objetos de los archivos de inventario, armas y armaduras a arrays
         Archivo archivo = new Archivo();
 
-        //Pasar info de partida
-
-        ArrayList<Partida> listaPartidas = new ArrayList<>();
-        listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
+        // Pasar info de partida
+        ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
         // si la lista es menor a 3 agregar partidas vacias
-        //pasar info de escenarios con json
-        HashSet<EscenarioMonstruo> escenarioMonstruos = new HashSet<>(archivo.jsonAEscenario());
+        // pasar info de escenarios con json
+        HashSet<EscenarioMonstruo> escenarioMonstruos = new HashSet<>();
+        escenarioMonstruos= archivo.jsonAEscenario();
 
+        Scanner scan = new Scanner(System.in);
+        // Menu
+        int eleccion;
+        // Leer la elección del usuario
+
+        do {
+            System.out.println(Ejecucion.titulo());
+            // Presentar las opciones del menú
+            System.out.println("1.Jugar");
+            System.out.println("2.Salir del juego");
+            // Leer la elección del usuario
+            eleccion = scan.nextInt();
+
+            // Realizar acciones basadas en la elección del usuario usando un switch
+            switch (eleccion) {
+                case 1:
+                    // Si el usuario elige jugar, manejar encuentros
+                    // Partida partida = listaPartidas.getFirst();
+                    // Esto asigna la primera partida de la lista, pero deberías implementar la lógica para seleccionar o crear una partida
+                    // manejarEncuentro(partida); // Llamar al método para manejar los encuentros del juego
+                    System.out.println("Iniciando el juego...");
+                    break;
+                case 2:
+                    // Si el usuario elige salir, terminar el programa
+                    System.out.println("Saliendo del juego...");
+                    break;
+                default:
+                    // Si la elección no es válida, mostrar un mensaje de error
+                    System.out.println("Elección no válida. Por favor, selecciona una opción válida.");
+                    break;
+            }
+        } while (eleccion != 1 && eleccion != 2);
         archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre());
 
-        Partida partida = listaPartidas.getFirst();//por ahora
-
-        //Pasar info de monstruo
-        //Pasar info de personaje
-        manejarEncuentro(partida);
-
-
-
-
     }
-    public static void manejarEncuentro(Partida partida){
+
+
+    public static void manejarEncuentro(Partida partida) {
         try {
             elegirEncuentro(partida);
         } catch (ExcepcionSwitch e) {
@@ -57,7 +81,7 @@ private static Escenario escenarioActual;
 
     }
 
-    public static void elegirEncuentro(Partida partida) throws ExcepcionSwitch{
+    public static void elegirEncuentro(Partida partida) throws ExcepcionSwitch {
         Escenario escenario1 = partida.escenarioPosible();
         Escenario escenario2 = partida.escenarioPosible();
         Scanner scanner = new Scanner(System.in);
@@ -84,12 +108,12 @@ private static Escenario escenarioActual;
             }
         }
         switch (eleccion) {
-                case 1:
-                    escenarioActual = escenario1;
-                    break;
-                case 2:
-                    escenarioActual = escenario2;
-                    break;
+            case 1:
+                escenarioActual = escenario1;
+                break;
+            case 2:
+                escenarioActual = escenario2;
+                break;
 
         }
     }
@@ -214,24 +238,94 @@ private static Escenario escenarioActual;
 
 
     }
-    public Partida ComenzarPartida(ArrayList<Partida> listaPartidas) {
+
+    public static int comenzarPartida(ArrayList<Partida> listaPartidas) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Partidas:");
+        System.out.println("0. Volver");
         for (int i = 0; i < listaPartidas.size(); i++) {
             System.out.println((i + 1) + ". " + listaPartidas.get(i).getJugador());
         }
         System.out.println("Ingrese el número de la partida:");
         int eleccion = scan.nextInt();
-        while (eleccion < 1 || eleccion > listaPartidas.size()) {
+        while (eleccion < 1 || eleccion > listaPartidas.size() + 1) {
             System.out.println("Selección inválida. Ingrese nuevamente:");
             eleccion = scan.nextInt();
         }
         scan.close();
-        Partida partidaActual = listaPartidas.get(eleccion + 1);
-        return partidaActual;
+
+        return eleccion - 1;
     }
 
+    public static void figuras(){
+        // Mostrar las figuras ASCII
+
+        String art1 = """
+                     _,.
+                    ,` -.)
+                   ( _/-\\\\-._
+                  /,|`--._,-^|            ,
+                  \\_| |`-._/||          ,'|
+                    |  `-, / |         /  /
+                    |     || |        /  /
+                     `r-._||/   __   /  /
+                 __,-<_     )`-/  `./  /
+                '  \\   `---'   \\   /  /
+                    |           |./  /
+                    /           //  /
+                \\_/' \\         |/  /
+                 |    |   _,^-'/  /
+                 |    , ``  (\\/  /_
+                  \\,.->._    \\X-=/^
+                  (  /   `-._//^`
+                   `Y-.____(__}
+                    |     {__)
+                          ()""";
+
+        String art2 = """
+                       ,     .
+                        /(     )\\               A
+                   .--.( `.___.' ).--.         /_\\
+                   `._ `%_&%#%$_ ' _.'     /| <___> |\\
+                      `|(@\\*%%/@)|'       / (  |L|  ) \\
+                       |  |%%#|  |       J d8bo|=|od8b L
+                        \\ \\$#%/ /        | 8888|=|8888 |
+                        |\\|%%#|/|        J Y8P"|=|"Y8P F
+                        | (.".)%|         \\ (  |L|  ) /
+                    ___.'  `-'  `.___      \\|  |L|  |/
+                  .'#*#`-       -'$#*`.       / )|
+                 /#%^#%*_ *%^%_  #  %$%\\    .J (__)
+                 #&  . %%%#% ###%*.   *%\\.-'&# (__)
+                 %*  J %.%#_|_#$.\\J* \\ %'#%*^  (__)
+                 *#% J %$%%#|#$#$ J\\%   *   .--|(_)
+                 |%  J\\ `%%#|#%%' / `.   _.'   |L|
+                 |#$%||` %%%$### '|    `-'     |L|
+                 (#%%||` #$#$%%% '|            |L|
+                 | ##||  $%%.%$%  |            |L|
+                 |$%^||   $%#$%   |            |L|
+                """;
 
 
+        String[] art1Lines = art1.split("\n");
+        String[] art2Lines = art2.split("\n");
+
+        for (int i = 0; i < Math.max(art1Lines.length, art2Lines.length); i++) {
+            String line1 = i < art1Lines.length ? art1Lines[i] : "";
+            String line2 = i < art2Lines.length ? art2Lines[i] : "";
+            System.out.printf("%-80s %s%n", line1, line2);
+        }
+
+    }
+    public static String titulo()
+    {
+        return
+                """
+                        _______  _____   ______  ______  _____  _______ _______ _______ __   _      ______  _______  _____  _     _ _______ _______
+                         |______ |     | |_____/ |  ____ |     |    |       |    |______ | \\  |      |     \\ |______ |_____] |_____|    |    |______
+                         |       |_____| |    \\_ |_____| |_____|    |       |    |______ |  \\_|      |_____/ |______ |       |     |    |    ______|
+                        """;
+
+
+    }
 }
 
