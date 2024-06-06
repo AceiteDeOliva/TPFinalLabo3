@@ -8,7 +8,7 @@ public class Pocion <EfectoPocion extends Efecto> extends Item {
 
     private EfectoPocion efecto;
 
-    public Pocion(String nombreP, String descripcionP, String nombre, EfectoPocion efecto) {
+    public Pocion(String nombreP, String descripcionP, EfectoPocion efecto) {
         super(nombreP, descripcionP);
         this.efecto = efecto;
     }

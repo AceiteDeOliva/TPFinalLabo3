@@ -151,14 +151,14 @@ public class Partida implements Serializable {
 
     }
     //Eliminar una partida de la lista
-    public static int eliminarPartida(ArrayList<Partida> listaPartidas, Partida partidaEliminar) {
+    public static boolean eliminarPartida(ArrayList<Partida> listaPartidas, Partida partidaEliminar) {
         Iterator<Partida> iter = listaPartidas.iterator();
-        int flag = 0;
+        boolean flag = false;
         while (iter.hasNext()) {
             Partida partida = iter.next();
             if (partida.equals(partidaEliminar)) {
                 iter.remove(); // Eliminar de forma segura utilizando el iterador
-                flag = 1;
+                flag = true;
             }
         }
         return flag;

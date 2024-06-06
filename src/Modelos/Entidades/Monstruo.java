@@ -8,7 +8,6 @@ public class Monstruo extends Entidad implements Habilidades {
     private int velocidad;
     private int armadura;//Reduccion de danio.
 
-    private TipoDeMonstruo tipoDeMonstruo;
 
     //Constructores
     public Monstruo () {
@@ -76,7 +75,6 @@ public class Monstruo extends Entidad implements Habilidades {
             jugador.recibirDanio(danio);
         }
         return danio;
-
     }
     @Override
     public  boolean estaVivo() { //devuelve si el monstruo esta vivo o no
