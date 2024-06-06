@@ -9,6 +9,7 @@ import Modelos.Items.Item;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
 
 
@@ -65,6 +66,7 @@ public class Partida implements Serializable {
 
     //metodos
     //metodos de escenario
+
     public Escenario escenarioPosible() { //devuelve una de las opciones de escenario para el jugador
 
         Escenario escenario = null; // Inicializa como null por defecto
@@ -133,17 +135,53 @@ public class Partida implements Serializable {
     }
 
     // inicializar partidas
-    public ArrayList<Partida> PartidasVacias(ArrayList<Partida> listaPartidas) {
+
+    public boolean chequearExistencia(Partida partida){
+        //Chequea si la partida ingresada esta vacia y devuelve true si lo esta
+        return partida.getJugador().getNombre().equals("Partida Vacia");
+
+
+    }
+    //Eliminar una partida de la lista
+    public static int eliminarPartida(ArrayList<Partida> listaPartidas, Partida partidaEliminar) {
+        Iterator<Partida> iter = listaPartidas.iterator();
+        int flag = 0;
+        while (iter.hasNext()) {
+            Partida partida = iter.next();
+            if (partida.equals(partidaEliminar)) {
+                iter.remove(); // Eliminar de forma segura utilizando el iterador
+                flag = 1;
+            }
+        }
+        return flag;
+    }
+    public static boolean saberSiContienePartidas(ArrayList<Partida> listaPartidas) {
+        boolean  flag=false;
+        for(Partida partida: listaPartidas)
+        {
+            if (!partida.chequearExistencia(partida))
+            {
+                flag= true;
+            }
+        }
+        return flag;
+    }
+    public static void agregarPartidasVacias (ArrayList<Partida>listaPartidas)
+    {
+        if (listaPartidas.size() < 3) {
+            crearPartidasVacias(listaPartidas);
+        }
+    }
+    public static void crearPartidasVacias(ArrayList<Partida> listaPartidas) {
         for (int i = 0; i < 3; i++) {
             if (listaPartidas.get(i) == null) {
-                Personaje jugadorVacio = new Personaje() ;
+                Personaje jugadorVacio = new Personaje();
                 jugadorVacio.setNombre("Partida Vacia");
                 Partida aux = new Partida(jugadorVacio);
-                listaPartidas.set(i,aux);
+                listaPartidas.set(i, aux);
             }
-
         }
-        return listaPartidas;
+
     }
 
 }
