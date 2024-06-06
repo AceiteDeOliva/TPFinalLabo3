@@ -3,7 +3,7 @@ package Modelos.Entidades;
 import Modelos.Items.Arma;
 import Modelos.Items.Armadura;
 import Modelos.Items.Item;
-import Modelos.Items.Pocion;
+import Modelos.Items.pociones.Pocion;
 
 import java.util.ArrayList;
 
@@ -121,7 +121,17 @@ public class Personaje extends Entidad {
         }
         return "" + itemSeleccionado;
     }
+    //efectos
+    //-------------------------------------------------------------------------------------------------------------
+    public void curar(int cantidad){
+        setSalud(getSalud() + cantidad);
 
+    }
+
+    public void aumentarVelocidad(int cantidad){
+        setVelocidad(getVelocidad() + cantidad);
+    }
+//------------------------------------------------------------------------------------------------------------------
     //metodos de pelea
     public int ataqueJugador(Monstruo monstruo) { //el jugador usa su ataque basico
 

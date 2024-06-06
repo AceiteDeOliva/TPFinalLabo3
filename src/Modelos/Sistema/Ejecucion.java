@@ -74,24 +74,24 @@ public class Ejecucion {
     }
 
 
-    public static void manejarEncuentro(Partida partida) throws ExcepcionSwitch {
+    public static void manejarEncuentro(Partida partida) throws ExcepcionSwitch {//funcion que maneja la eleccion de encuentros
 
         try {
-            elegirEncuentro(partida);
+            elegirEncuentro(partida); //funcion en la que elegis un encuentro
         } catch (ExcepcionSwitch e) {
             throw new RuntimeException(e);
         }
-        if (escenarioActual instanceof EscenarioMonstruo) {
-            encuentro(partida, (EscenarioMonstruo) escenarioActual);
+        if (escenarioActual instanceof EscenarioMonstruo) { // cheque el tipo de instancia elegifa
+            encuentro(partida, (EscenarioMonstruo) escenarioActual); //se llama a la funcion de escenario correspondiente(polimorfismo)
 
-        } else if (escenarioActual instanceof EscenarioItem) {
+        } else if (escenarioActual instanceof EscenarioItem) { //idem if the arriba
             encuentro(partida, (EscenarioItem) escenarioActual);
         }
 
     }
 
-    public static void elegirEncuentro(Partida partida) throws ExcepcionSwitch {
-        Escenario escenario1 = partida.escenarioPosible();
+    public static void elegirEncuentro(Partida partida) throws ExcepcionSwitch { //te da 2 opciones de encuentro de tu nivel para elegir
+        Escenario escenario1 = partida.escenarioPosible(); //usa una funcion para devolver 2 escenario aleatorios del nivel actual
         Escenario escenario2 = partida.escenarioPosible();
         Scanner scanner = new Scanner(System.in);
         int eleccion = -1;
@@ -115,21 +115,22 @@ public class Ejecucion {
                 System.out.println("Error: Ingrese un numero valido (1 or 2).");
             }
         }
-        switch (eleccion) {
+        switch (eleccion) { //iguala el escenario actual a la eleccion
             case 1:
                 escenarioActual = escenario1;
                 break;
             case 2:
                 escenarioActual = escenario2;
                 break;
+            default:
+                throw new ExcepcionSwitch("Error: eleccion invalida");
 
         }
     }
 
-    public static void encuentro(Partida partida, EscenarioMonstruo escenario) throws ExcepcionSwitch {
+    public static void encuentro(Partida partida, EscenarioMonstruo escenario) throws ExcepcionSwitch { //encuentro de pelea
         Scanner scanner = new Scanner(System.in);
         Monstruo monstruo = escenario.elegirMounstruo();
-        boolean velocidadComparada;
         while (partida.getJugador().estaVivo() && monstruo.estaVivo()) {
 
             System.out.println("\n" + escenario.getNombre());
@@ -155,33 +156,36 @@ public class Ejecucion {
             switch (eleccion) {
 
                 case 1:
-                    velocidadComparada = partida.compararVelocidad(monstruo); //devuelve true si el jugador es igual o mas rapido que el monstruo y si no false
-                    if (velocidadComparada) {
+
+
+                    if (partida.compararVelocidad(monstruo)) {//devuelve true si el jugador es igual o mas rapido que el monstruo y si no false
+
                         ataqueJugadorPrimero(partida, monstruo);
                     } else {
                         ataqueMonstruoPrimero(partida, monstruo);
                     }
 
-                    chequeoBatalla(partida, monstruo);
+                    chequeoBatalla(partida, monstruo); //muestra el resultado del ataque
                     break;
 
                 case 2:
-                    velocidadComparada = partida.compararVelocidad(monstruo); //devuelve true si el jugador es igual o mas rapido que el monstruo y si no false
-                    if (velocidadComparada) {
+
+                    if (partida.compararVelocidad(monstruo)) {//devuelve true si el jugador es igual o mas rapido que el monstruo y si no false
+
                         ataqueEspecialJugadorPrimero(partida, monstruo);
                     } else {
                         ataqueEspecialMonstruoPrimero(partida, monstruo);
                     }
 
-                    chequeoBatalla(partida, monstruo);
+                    chequeoBatalla(partida, monstruo);//muestra el resultado del ataque
                     break;
 
                 case 3:
-                    mostrarInventario(partida);
+                    mostrarInventario(partida); //muestra el inventario y te deja equipar lo que esta en el
                     break;
 
                 case 4:
-                    System.out.println(partida.getJugador().getArma().toString());
+                    System.out.println(partida.getJugador().getArma().toString()); //muestra lo equipado
                     System.out.println(" ");
                     System.out.println(partida.getJugador().getArmadura().toString());
                     break;
@@ -197,7 +201,16 @@ public class Ejecucion {
 
     }
 
-    public static void ataqueJugadorPrimero(Partida partida, Monstruo monstruo) {
+
+    public static void encuentro(Partida partida, EscenarioItem escenario) { //encuentro de item
+        System.out.println(escenario.getNombre());
+        System.out.println("Exploras el lugar...");
+        String itemEncontrado = partida.itemEncontrado(escenario);
+        System.out.println("Econtraste:" + itemEncontrado + "!!!");
+    }
+
+    public static void ataqueJugadorPrimero(Partida partida, Monstruo monstruo) { //Situacion en la que el jugador ataca primero
+
         System.out.println("El jugador inflige" + partida.getJugador().ataqueJugador(monstruo) + "puntos de danio");//El danio que inflige el jugador
 
         if (monstruo.estaVivo()) {
@@ -206,7 +219,9 @@ public class Ejecucion {
 
     }
 
-    public static void ataqueMonstruoPrimero(Partida partida, Monstruo monstruo) {
+
+    public static void ataqueMonstruoPrimero(Partida partida, Monstruo monstruo) { //situacion en la que el monstruo ataca primero
+
         System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
 
         if (partida.getJugador().estaVivo()) {
@@ -216,7 +231,8 @@ public class Ejecucion {
 
     }
 
-    public static void ataqueEspecialJugadorPrimero(Partida partida, Monstruo monstruo) {
+    public static void ataqueEspecialJugadorPrimero(Partida partida, Monstruo monstruo) { //situacion en la que el usa un ataque especial primero
+
         System.out.println("El jugador inflige" + partida.getJugador().ataqueEspecialJugador(monstruo) + "puntos de danio");
 
         if (monstruo.estaVivo()) {
@@ -225,7 +241,9 @@ public class Ejecucion {
 
     }
 
-    public static void ataqueEspecialMonstruoPrimero(Partida partida, Monstruo monstruo) {
+
+    public static void ataqueEspecialMonstruoPrimero(Partida partida, Monstruo monstruo) {// el monstruo es mas rapido y el jugador usa un ataque especial
+
         System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
 
         if (partida.getJugador().estaVivo()) {
@@ -235,17 +253,8 @@ public class Ejecucion {
 
     }
 
-
-    public static void encuentro(Partida partida, EscenarioItem escenario) {
-        System.out.println(escenario.getNombre());
-        System.out.println("Exploras el lugar...");
-        String itemEncontrado = partida.itemEncontrado(escenario);
-        System.out.println("Econtraste:" + itemEncontrado + "!!!");
-
-    }
-
     //Funciones de print
-    public static void chequeoBatalla(Partida partida, Monstruo monstruo) throws ExcepcionSwitch {
+    public static void chequeoBatalla(Partida partida, Monstruo monstruo) throws ExcepcionSwitch {// chequea y printea el resultado de la batalla
         int chequeoBatalla = partida.chequeoFinDeAtaque(monstruo);//El resultado de la batalla || 1 si gano || 0 si continua || -1 si perdio
         switch (chequeoBatalla) {
             case 1:
@@ -284,7 +293,7 @@ public class Ejecucion {
 
     }
 
-    public static void mostrarInventario(Partida partida) {
+    public static void mostrarInventario(Partida partida) { //muestra el inventario y recibe la seleccion del jugador
         ArrayList<String> inventarioNombres = partida.getJugador().getInventarioNombres();
         System.out.println("0. Volver");
         for (int i = 0; i < inventarioNombres.size(); i++) {
@@ -322,6 +331,7 @@ public class Ejecucion {
         return eleccion - 1;
 
     }
+
 
     public static int menuPartida(ArrayList<Partida> listaPartidas) {
         Partida.agregarPartidasVacias(listaPartidas);
@@ -401,6 +411,7 @@ public class Ejecucion {
         scan.close();
         return indice;
     }
+
 
 
 
