@@ -8,6 +8,7 @@ import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Items.Arma;
 import Modelos.Items.Armadura;
 import Modelos.Items.Item;
+import Modelos.Items.pociones.EfectoPocion;
 import Modelos.Items.pociones.Pocion;
 import Modelos.Items.pociones.EfectoCuracion;
 import Modelos.Items.pociones.EfectoVelocidad;
@@ -101,9 +102,8 @@ public class Archivo {
                 String descripcion = object.optString("descripcion", null);
 
                 ArrayList<Monstruo> listaMonstruos = new ArrayList<>();
-                if (object.has("monstruo"))  //verifica si el JSONObject tiene la clave "monstruo"
-                {
-                    JSONArray lista = object.getJSONArray("monstruo"); //si hay, se obtiene un JSONArray a partir de la clave "monstruo"
+                if (object.has("monstruo")) {
+                    JSONArray lista = object.getJSONArray("monstruo");
 
                     for (int j = 0; j < lista.length(); j++) {
                         JSONObject monstruoJson = lista.getJSONObject(j);
@@ -113,14 +113,12 @@ public class Archivo {
                         int velocidad = monstruoJson.optInt("velocidad", 0);
                         int armadura = monstruoJson.optInt("armadura", 0);
                         int especialTEspera = monstruoJson.optInt("especialTEspera", 0);
-                        //valueOf: Convierte el String obtenido ("tipoDeMonstruo" o "DEFAULT") a la constante del enum que corresponda
 
                         Item botin = null;
                         if (monstruoJson.has("botin")) {
-                            JSONObject botinJson = monstruoJson.getJSONObject("botin"); // busca el objeto asociado con la clave "botin"
-                            String nombreItem = botinJson.optString("nombre", null); // extrae sus atributos
+                            JSONObject botinJson = monstruoJson.getJSONObject("botin");
+                            String nombreItem = botinJson.optString("nombre", null);
                             String descripcionItem = botinJson.optString("descripcion", null);
-                            int especialTEsperaPItem = botinJson.optInt("especialTEsperaP", 0);
 
                             if (botinJson.has("danio")) {
                                 int danioItem = botinJson.optInt("danio", 0);
@@ -131,45 +129,38 @@ public class Archivo {
                                 botin = new Armadura(nombreItem, descripcionItem, defensaItem, velocidadItem);
                             } else if (botinJson.has("efecto")) {
                                 String efectoTipo = botinJson.getString("efecto");
-                                EfectoPocion efecto = null;
+
                                 if (efectoTipo.equals("EfectoVelocidad")) {
                                     int cantidadVelocidad = botinJson.optInt("cantidadVelocidad", 0);
-                                    efecto = new EfectoVelocidad(cantidadVelocidad);
+                                   EfectoVelocidad efecto = new EfectoVelocidad(cantidadVelocidad);
+                                    botin = new Pocion<>(nombreItem, descripcionItem, efecto);
                                 } else if (efectoTipo.equals("EfectoCuracion")) {
                                     int cantidadCuracion = botinJson.optInt("cantidadCuracion", 0);
-                                    efecto = new EfectoCuracion(cantidadCuracion);
+                                    EfectoCuracion efecto = new EfectoCuracion(cantidadCuracion);
+                                    botin = new Pocion<>(nombreItem, descripcionItem, efecto);
                                 }
-                                botin = new Pocion<>(nombreItem, descripcionItem, efecto);
 
-                                Monstruo monstruo = new Monstruo(nombreMonstruo, salud, especialTEsperaPItem, danio,velocidad, armadura, botin);
-                                listaMonstruos.add(monstruo);
                             }
                         }
-                        EscenarioMonstruo escenario = new EscenarioMonstruo(nombre, nivel, descripcion, listaMonstruos);
-                        listaDeEscenarios.add(escenario);
+
+                        Monstruo monstruo = new Monstruo(nombreMonstruo, salud, especialTEspera, danio, velocidad, armadura, botin);
+                        listaMonstruos.add(monstruo);
                     }
                 }
-
 
                 EscenarioMonstruo escenario = new EscenarioMonstruo(nombre, nivel, descripcion, listaMonstruos);
                 listaDeEscenarios.add(escenario);
             }
         } catch (JSONException e) {
-            System.out.println("ERROR AL LEER EL JASON");
-
-            }
-        catch (JSONException e) {
-
-            throw new RuntimeException(e);
-        }catch (IllegalArgumentException e)
-        {
+            System.err.println("ERROR AL LEER EL JSON: " + e.getMessage());
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
             System.err.println("Error de argumento ilegal: " + e.getMessage());
             e.printStackTrace();
         } finally {
             System.out.println("Fin");
         }
     }
-
 
 
 
@@ -209,16 +200,13 @@ public class Archivo {
                         if ("Pocion".equals(tipo)) {
                             int cantidadCuracion = itemJSONObject.optInt("cantidadCuracion", 0);
                             int cantidadVelocidad = itemJSONObject.optInt("cantidadVelocidad", 0);
-                            switch (efecto) {
-                                case "EfectoCuracion":
-                                    item = new Pocion<EfectoCuracion>(nombreItem, descripcionItem, new EfectoCuracion(cantidadCuracion));
-                                    break;
-                                case "EfectoVelocidad":
-                                    item = new Pocion<EfectoVelocidad>(nombreItem, descripcionItem, new EfectoVelocidad(cantidadVelocidad));
-                                    break;
-                                default:
-                                    // Manejar cualquier otro tipo de efecto
-                            }
+                            item = switch (efecto) {
+                                case "EfectoCuracion" ->
+                                        new Pocion<EfectoCuracion>(nombreItem, descripcionItem, new EfectoCuracion(cantidadCuracion));
+                                case "EfectoVelocidad" ->
+                                        new Pocion<EfectoVelocidad>(nombreItem, descripcionItem, new EfectoVelocidad(cantidadVelocidad));
+                                default -> item;
+                            };
                         }
                     }
 
