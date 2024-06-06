@@ -19,7 +19,7 @@ public class Monstruo extends Entidad implements Habilidades {
         this.armadura = 0;
     }
 
-    public Monstruo(String nombreP, int saludP, int especialTEsperaP, int danio, int velocidad, int armadura, Item botin, TipoDeMonstruo tipoDeMonstruo) {
+    public Monstruo(String nombreP, int saludP, int especialTEsperaP, int danio, int velocidad, int armadura, Item botin) {
         super(nombreP, saludP, especialTEsperaP);
         this.danio = danio;
         this.velocidad = velocidad;
@@ -111,10 +111,11 @@ public class Monstruo extends Entidad implements Habilidades {
 
     @Override
     public String toString() {
-        return "Monstruo: " + super.toString() +
-                "Danio=" + danio +
-                ",Velocidad=" + velocidad +
-                ",Armadura=" + armadura +
-                ",TipoDeMonstruo: " + tipoDeMonstruo;
+        return "Monstruo{" +
+                "danio=" + danio +
+                ", velocidad=" + velocidad +
+                ", armadura=" + armadura +
+                ", botin=" + botin +
+                '}';
     }
 }

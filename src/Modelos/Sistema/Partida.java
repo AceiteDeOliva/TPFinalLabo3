@@ -4,19 +4,10 @@ import Modelos.Entidades.Monstruo;
 import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
 import Modelos.Escenarios.EscenarioItem;
-import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Items.Item;
 
-import javax.swing.text.html.HTMLDocument;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import java.util.HashSet;
-
-import java.util.Iterator;
-
-import java.util.Random;
+import java.util.*;
 
 
 public class Partida implements Serializable {
@@ -115,6 +106,7 @@ public class Partida implements Serializable {
     public void escenariosAHashMap(HashSet<Escenario> listaEscenarios) { //funcion que ordena los monstruos por nivel en listas
         Iterator<Escenario> iterator = listaEscenarios.iterator(); //Se crea iterator para recorrer la lista
 
+        //noinspection WhileLoopReplaceableByForEach
         while (iterator.hasNext()) {
             Escenario escenarioIterado = iterator.next();
             //recibe la lista del nivel y si la lista no existe crea una nueva lista
