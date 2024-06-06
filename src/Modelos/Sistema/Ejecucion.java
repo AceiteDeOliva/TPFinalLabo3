@@ -56,7 +56,6 @@ public class Ejecucion {
                          partida = listaPartidas.get(indice);
                      }
 
-
                     break;
                 case 2:
                     // Si el usuario elige salir, terminar el programa
