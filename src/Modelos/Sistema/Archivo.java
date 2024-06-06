@@ -2,26 +2,20 @@ package Modelos.Sistema;
 
 import Modelos.Entidades.Monstruo;
 import Modelos.Escenarios.Escenario;
-
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Items.Arma;
 import Modelos.Items.Armadura;
 import Modelos.Items.Item;
-import Modelos.Items.pociones.EfectoPocion;
-import Modelos.Items.pociones.Pocion;
 import Modelos.Items.pociones.EfectoCuracion;
 import Modelos.Items.pociones.EfectoVelocidad;
-
-import java.io.*;
-import java.util.ArrayList;
-
+import Modelos.Items.pociones.Pocion;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 
@@ -166,10 +160,9 @@ public class Archivo {
 
     public void jsonAEscenarioItem(HashSet<Escenario> listaEscenarios) throws JSONException  {
 
-        JSONObject jsonObject = new JSONObject(JsonUtiles.leer(NombreArchivos.EscenariosM.getNombre()));
 
         try {
-            JSONArray escenariosJSONArray = new JSONArray(jsonObject);
+            JSONArray escenariosJSONArray = new JSONArray(JsonUtiles.leer(NombreArchivos.EscenariosI.getNombre()));
 
             for (int i = 0; i < escenariosJSONArray.length(); i++) {
                 JSONObject escenarioJSONObject = escenariosJSONArray.getJSONObject(i);
