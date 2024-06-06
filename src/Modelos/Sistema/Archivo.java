@@ -176,25 +176,25 @@ public class Archivo {
                     itemJSONObject.put("nombre", item.getNombre());
                     itemJSONObject.put("descripcion", item.getDescripcion());
 
-                    switch (item) {
-                        case Arma arma -> itemJSONObject.put("danio", arma.getDanio());
-                        case Armadura armadura -> {
-                            itemJSONObject.put("defensa", armadura.getDefensa());
-                            itemJSONObject.put("velocidad", armadura.getVelocidad());
-                        }
-                        case Pocion<?> pocion -> {
-                            itemJSONObject.put("tipo", "Pocion");
-                            itemJSONObject.put("efecto", pocion.getEfecto().getClass().getSimpleName());
 
-                            // Agregar detalles específicos del efecto de la poción
-                            Object efecto = pocion.getEfecto();
-                            if (efecto instanceof EfectoCuracion) {
-                                itemJSONObject.put("cantidadCuracion", ((EfectoCuracion) efecto).getCantidadCuracion());
-                            } else if (efecto instanceof EfectoVelocidad) {
-                                itemJSONObject.put("cantidadVelocidad", ((EfectoVelocidad) efecto).getCantidadVelocidad());
-                            }
-                        }
-                        default -> {
+                    if(item instanceof Arma)
+                    {
+                        itemJSONObject.put("danio", ((Arma) item).getDanio());
+                    }else if(item instanceof Armadura)
+                    {
+                        itemJSONObject.put("defensa", ((Armadura) item).getDefensa());
+                        itemJSONObject.put("velocidad", ((Armadura) item).getVelocidad());
+                    }else if(item instanceof Pocion<?>)
+                    {
+                        EfectoPocion efecto = (EfectoPocion) ((Pocion<?>) item).getEfecto();
+                        itemJSONObject.put("efecto", efecto.getClass().getSimpleName()); //obtiene el nombre del efecto
+
+                        if(efecto instanceof EfectoCuracion)
+                        {
+                            itemJSONObject.put("cantidad curacion", ((EfectoCuracion) efecto).getCantidadCuracion());
+                        }else if(efecto instanceof EfectoVelocidad)
+                        {
+                            itemJSONObject.put("cantidad velocidad", ((EfectoVelocidad) efecto).getCantidadVelocidad());
                         }
                     }
                     itemsJSONArray.put(itemJSONObject);
