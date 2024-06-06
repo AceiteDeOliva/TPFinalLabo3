@@ -3,7 +3,7 @@ package Modelos.Entidades;
 public abstract class Entidad {
     private String nombre;
     private int salud;
-    int especialTEspera;
+    private int especialTEspera; //todo no es private
 
     //Constructor
     public Entidad() {

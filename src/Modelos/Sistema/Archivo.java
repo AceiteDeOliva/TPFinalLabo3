@@ -1,7 +1,12 @@
 package Modelos.Sistema;
 
 import Modelos.Entidades.Monstruo;
+import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
+import Modelos.Items.Arma;
+import Modelos.Items.Armadura;
+import Modelos.Items.Item;
+import Modelos.Items.Pocion;
 import Modelos.Sistema.JsonUtiles;
 
 import java.io.*;
@@ -78,12 +83,13 @@ public class Archivo {
         }
     }
 
-    public void EscenariosAJson(HashSet<EscenarioMonstruo> listaEscenariosMonstruos) {
 
+    public void EscenariosAJson(HashSet<EscenarioMonstruo> listaEscenarioMounstruos) {
 
         JSONObject object = new JSONObject();
         try {
-            Iterator<EscenarioMonstruo> iterator = listaEscenariosMonstruos.iterator();
+            Iterator<EscenarioMonstruo> iterator = listaEscenarioMounstruos.iterator();
+
             while (iterator.hasNext()) {
                 EscenarioMonstruo escenarioMonstruo = iterator.next();
                 object.put("nombre", escenarioMonstruo.getNombre());
@@ -101,11 +107,8 @@ public class Archivo {
                     monstruosJSONArray.put(monstruoJSONObject);
                 }
                 object.put("monstruos", monstruosJSONArray);
-
             }
             JsonUtiles.grabar(object,NombreArchivos.EscenariosM.getNombre());
-
-
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -143,14 +146,52 @@ public class Archivo {
             throw new RuntimeException(e);
         } finally {
             System.out.println("Fin");
-
         }
-
-
-
     }
 
+    public void escenarioItemAJson (HashSet<EscenarioItem> listaEscenarioItems)
+    {
+        JSONObject object = new JSONObject();
+        try
+        {
+            Iterator<EscenarioItem> iterator = listaEscenarioItems.iterator();
+            while (iterator.hasNext())
+            {
+                EscenarioItem escenarioItem = iterator.next();
+                object.put("nombre", escenarioItem.getNombre());
+                object.put("nivel", escenarioItem.getNivel());
+                object.put("descripcion", escenarioItem.getDescripcion());
+                JSONArray itemsJSONArray = new JSONArray();
 
+                for(Item item : escenarioItem.getListaItems())
+                {
+                    JSONObject itemJSONObject = new JSONObject();
+                    itemJSONObject.put("nombre", item.getNombre());
+                    itemJSONObject.put("descripcion", item.getDescripcion());
 
+                    if(item instanceof Arma)
+                    {
+                        itemJSONObject.put("danio", ((Arma) item).getDanio());
+                    }else if(item instanceof Armadura)
+                    {
+                        itemJSONObject.put("defensa", ((Armadura) item).getDefensa());
+                        itemJSONObject.put("velocidad", ((Armadura) item).getVelocidad());
+                    }else if(item instanceof Pocion)
+                    {
+                        itemJSONObject.put("salud", ((Pocion) item).getSalud());
+                        itemJSONObject.put("velocidad", ((Pocion) item).getVelocidad());
+                    }
+                    itemsJSONArray.put(itemJSONObject);
+                }
+                object.put("items", itemsJSONArray);
+            }
+
+            JsonUtiles.grabar(object, NombreArchivos.EscenrariosI.getNombre());
+
+        }catch(JSONException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
