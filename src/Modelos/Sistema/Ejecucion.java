@@ -1,6 +1,8 @@
 package Modelos.Sistema;
 
 import Modelos.Entidades.Monstruo;
+import Modelos.Entidades.Personaje;
+import Modelos.Entidades.TipoDePersonaje;
 import Modelos.Escenarios.Escenario;
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
@@ -29,54 +31,10 @@ public class Ejecucion {
         //archivo.jsonAEscenarioMonstruo(escenarioMonstruos);
 
         archivo.jsonAEscenarioItem(escenarioMonstruos);
+listaPartidas.add(new Partida(new Personaje("mili", TipoDePersonaje.ASESINO)));
 
 
-
-        // Menu
-        // Leer la elección del usuario
-
-        try (Scanner scan = new Scanner(System.in)) {
-            int eleccion;
-            int indice = 0;
-            Partida partida;
-            do {
-                for (int i = 0; i < 50; ++i) System.out.println();
-                System.out.println(Ejecucion.titulo());
-                // Presentar las opciones del menú
-                System.out.println("1.Jugar");
-                System.out.println("2.Salir del juego");
-                // Leer la elección del usuario
-                eleccion = scan.nextInt();
-
-                // Realizar acciones basadas en la elección del usuario usando un switch
-                switch (eleccion) {
-                    case 1:
-                        //CONTROLA LA ELECCION Y CREACION DE PARTIDAS
-                        indice = menuPartida(listaPartidas);
-                        //SI NO QUIERE VOLVER AL MENU INICIAL
-                        if (indice != -1) {
-                            //Esta es la partida que cambiara mientras juega
-                            partida = listaPartidas.get(indice);
-                            manejarEncuentro(partida);
-                        }
-
-                    break;
-                case 2:
-                    // Si el usuario elige salir, terminar el programa
-                    System.out.println("Saliendo del juego...");
-                    break;
-                default:
-                    // Si la elección no es válida, mostrar un mensaje de error
-                    System.out.println("Elección no válida. Por favor, selecciona una opción válida.");
-                    break;
-            }
-        } while (eleccion != 2);
-        }catch(InputMismatchException e) {
-          
-            System.out.println("Error: Se esperaba un valor entero. " + e.getMessage());
-        }
-        //se asegura que el scanner se cierre haya excepcion o no
-
+        menuPrincipal(listaPartidas,escenarioMonstruos);
 
         archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre());
     }
@@ -324,7 +282,55 @@ public class Ejecucion {
             seleccionItem(partida, eleccion);
         }
     }
+ public  static void menuPrincipal (ArrayList<Partida>listaPartidas,HashSet<Escenario> listaEscenarios)
+ {
+     try (Scanner scan = new Scanner(System.in)) {
+         int eleccion;
+         int indice = 0;
+         Partida partida;
+         do {
 
+             for (int i = 0; i < 50; ++i) System.out.println();
+             System.out.println(Ejecucion.titulo());
+             // Presentar las opciones del menú
+             System.out.println("1.Jugar");
+             System.out.println("2.Salir del juego");
+             // Leer la elección del usuario
+             eleccion = Integer.parseInt( scan.nextLine());
+
+
+             // Realizar acciones basadas en la elección del usuario usando un switch
+             switch (eleccion) {
+                 case 1:
+                     //CONTROLA LA ELECCION Y CREACION DE PARTIDAS
+                     indice = menuPartida(listaPartidas);
+                     //SI NO QUIERE VOLVER AL MENU INICIAL
+                     if (indice != -1) {
+                         //Esta es la partida que cambiara mientras juega
+                         partida = listaPartidas.get(indice);
+                         manejarEncuentro(partida);
+                     }
+                     else {
+
+                         menuPrincipal(listaPartidas,listaEscenarios);
+                     }
+
+                     break;
+                 case 2:
+                     // Si el usuario elige salir, terminar el programa
+                     System.out.println("Saliendo del juego...");
+                     break;
+                 default:
+                     // Si la elección no es válida, mostrar un mensaje de error
+                     System.out.println("Elección no válida. Por favor, selecciona una opción válida.");
+                     break;
+             }
+         } while (eleccion != 2);
+     }catch(InputMismatchException e) {
+
+         System.out.println("Error: Se esperaba un valor entero. " + e.getMessage());
+     }
+ }
     //Elegir dentro de las partidas existentes en el caso de no elegir una devuelve -1
     public static int elegirPartida(ArrayList<Partida> listaPartidas) {
         int contador = 0;
@@ -371,17 +377,24 @@ public class Ejecucion {
         while (eleccion != 0) {
             System.out.println("1. Nueva partida");
 
-            if (Partida.saberSiContienePartidas(listaPartidas)) {//Imprime el continuar partida solo si existe una partida para continuar
+            if (Partida.saberSiContienePartidas(listaPartidas)) {
                 System.out.println("2. Continuar partida");
             }
             System.out.println("0. Salir");
 
             try {
                 eleccion = scan.nextInt();
+
+
                 if ((eleccion != 1 && eleccion != 2 && eleccion != 0) || (eleccion == 2 && !Partida.saberSiContienePartidas(listaPartidas))) {
                     System.out.println("No es una opción correcta. Por favor, elige otra opción.");
                 } else if (eleccion != 0) {
                     indice = manejarPartidas(eleccion, listaPartidas);
+                    eleccion =0;
+                    // Si el índice es 0, significa que el usuario eligió volver atrás
+                    if (indice == -1) {
+                        eleccion = -1; // Reiniciar la variable eleccion para continuar el bucle
+                    }
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Entrada no válida. Por favor, ingrese un número.");
@@ -389,9 +402,9 @@ public class Ejecucion {
             }
         }
         scan.close();
+
         return indice;
     }
-
 
     public static int manejarPartidas(int eleccion, ArrayList<Partida> listaPartidas) {
         int indice = -1;
@@ -406,36 +419,34 @@ public class Ejecucion {
                             indice = i;
                         }
                     }
-                    //Si el indice es -1 significa que no hay partida disponible
                     if (indice == -1) {
                         System.out.println("No hay espacio para nuevas partidas");
                         System.out.println("Elija que partida eliminar");
-                        // Si no quiere elegir una partida para eliminar y elije volver se devuelve -1
                         indice = elegirPartida(listaPartidas);
                         if (indice != -1) {
-                            if(Partida.eliminarPartida(listaPartidas, listaPartidas.get(indice)))
-                            {
-                                System.out.println("Parida eliminada exitosamente");
+                            if(Partida.eliminarPartida(listaPartidas, listaPartidas.get(indice))) {
+                                System.out.println("Partida eliminada exitosamente");
                                 Partida.agregarPartidasVacias(listaPartidas);
                                 indice = 2;
-                                //todo hacer exeption
                             }
-
                         } else {
                             volver = indice;
                         }
                     }
                     if (volver != -1) {
                         Partida partida = listaPartidas.get(indice);
-                        System.out.println("Ingrese un nombre de jugador");
-                        nombre = scan.nextLine();
-                        partida.getJugador().setNombre(nombre);
+                        partida =CrearPersonaje();
                     }
                     break;
 
                 case 2:
-                    //Te deja elegir entre las partidas existentes
                     indice = elegirPartida(listaPartidas);
+
+                    break;
+
+                case 0:
+                    // El usuario eligió volver atrás
+                    indice = -1;
                     break;
             }
         } catch (IndexOutOfBoundsException e) {
@@ -445,7 +456,46 @@ public class Ejecucion {
         } catch (Exception e) {
             System.out.println("Error: Ha ocurrido un error inesperado. " + e.getMessage());
         }
+        System.out.println(indice);
         return indice;
+    }
+
+    public static Partida CrearPersonaje() {
+        Scanner scan = new Scanner(System.in); // Crear un objeto Scanner
+
+        System.out.println("Ingrese un nombre para su personaje:");
+        String nombrePersonaje = scan.nextLine();
+
+        // Solicitar al usuario que elija un tipo de personaje mediante un número
+        System.out.println("Seleccione el tipo de su personaje:");
+        System.out.println("1. GUERRERO");
+        System.out.println("2. MAGO");
+        System.out.println("3. ASESINO");
+        int opcion = scan.nextInt();
+        scan.nextLine(); // Limpiar el buffer
+
+        // Validar la opción ingresada por el usuario y crear el personaje
+        TipoDePersonaje clasePersonaje;
+        switch (opcion) {
+            case 1:
+                clasePersonaje = TipoDePersonaje.GUERRERO;
+                break;
+            case 2:
+                clasePersonaje = TipoDePersonaje.MAGO;
+                break;
+            case 3:
+                clasePersonaje = TipoDePersonaje.ASESINO;
+                break;
+            default:
+                System.out.println("Opción no válida. Se utilizará la clase predeterminada.");
+                clasePersonaje = TipoDePersonaje.GUERRERO; // Clase predeterminada en caso de error
+                break;
+        }
+
+        // Crear un nuevo personaje con el nombre y la clase elegida por el usuario y asignarlo a la partida
+        Personaje nuevoPersonaje = new Personaje(nombrePersonaje, clasePersonaje);
+        Partida partida = new Partida(nuevoPersonaje); // Asumiendo que partida es una variable accesible aquí
+        return partida;
     }
 
 
