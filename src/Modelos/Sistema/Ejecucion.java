@@ -1,6 +1,7 @@
 package Modelos.Sistema;
 
 import Modelos.Entidades.Monstruo;
+import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
@@ -14,24 +15,28 @@ import java.util.Scanner;
 public class Ejecucion {
     private static Escenario escenarioActual;
 
-    public static void ejecucion() throws ExcepcionSwitch {
+    public static void ejecucion() {
 
-        // Pasar objetos de los archivos de inventario, armas y armaduras a arrays
+       // Pasar objetos de los archivos de inventario, armas y armaduras a arrays
         Archivo archivo = new Archivo();
 
         // Pasar info de partida
         ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
-        // si la lista es menor a 3 agregar partidas vacias
+
         // pasar info de escenarios con json
         HashSet<EscenarioMonstruo> escenarioMonstruos = new HashSet<>();
         escenarioMonstruos = archivo.jsonAEscenario();
 
+
         Scanner scan = new Scanner(System.in);
         // Menu
         int eleccion;
+        int indice=0;
+        Partida partida = new Partida();
         // Leer la elección del usuario
 
         do {
+            for (int i = 0; i < 50; ++i) System.out.println();
             System.out.println(Ejecucion.titulo());
             // Presentar las opciones del menú
             System.out.println("1.Jugar");
@@ -42,11 +47,16 @@ public class Ejecucion {
             // Realizar acciones basadas en la elección del usuario usando un switch
             switch (eleccion) {
                 case 1:
-                    // Si el usuario elige jugar, manejar encuentros
-                    // Partida partida = listaPartidas.getFirst();
-                    // Esto asigna la primera partida de la lista, pero deberías implementar la lógica para seleccionar o crear una partida
-                    // manejarEncuentro(partida); // Llamar al método para manejar los encuentros del juego
-                    System.out.println("Iniciando el juego...");
+                    //CONTROLA LA ELECCION Y CREACION DE PARTIDAS
+                     indice = menuPartida(listaPartidas);
+                     //SI NO QUIERE VOLVER AL MENU INICIAL
+                     if(indice !=-1)
+                     {
+                         //Esta es la partida que cambiara mientras juega
+                         partida = listaPartidas.get(indice);
+                     }
+
+
                     break;
                 case 2:
                     // Si el usuario elige salir, terminar el programa
@@ -57,7 +67,8 @@ public class Ejecucion {
                     System.out.println("Elección no válida. Por favor, selecciona una opción válida.");
                     break;
             }
-        } while (eleccion != 1 && eleccion != 2);
+        } while (eleccion != 2);
+
         archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre());
 
     }
@@ -121,7 +132,7 @@ public class Ejecucion {
         boolean velocidadComparada;
         while (partida.getJugador().estaVivo() && monstruo.estaVivo()) {
 
-            System.out.println("\n" +escenario.getNombre());
+            System.out.println("\n" + escenario.getNombre());
             System.out.println(escenario.getDescripcion());
             System.out.println(monstruo);
             System.out.println(partida.getJugador());
@@ -145,10 +156,10 @@ public class Ejecucion {
 
                 case 1:
                     velocidadComparada = partida.compararVelocidad(monstruo); //devuelve true si el jugador es igual o mas rapido que el monstruo y si no false
-                    if(velocidadComparada){
-                        ataqueJugadorPrimero(partida,monstruo);
-                    }else{
-                        ataqueMonstruoPrimero(partida,monstruo);
+                    if (velocidadComparada) {
+                        ataqueJugadorPrimero(partida, monstruo);
+                    } else {
+                        ataqueMonstruoPrimero(partida, monstruo);
                     }
 
                     chequeoBatalla(partida, monstruo);
@@ -156,10 +167,10 @@ public class Ejecucion {
 
                 case 2:
                     velocidadComparada = partida.compararVelocidad(monstruo); //devuelve true si el jugador es igual o mas rapido que el monstruo y si no false
-                    if(velocidadComparada){
-                        ataqueEspecialJugadorPrimero(partida,monstruo);
-                    }else{
-                        ataqueEspecialMonstruoPrimero(partida,monstruo);
+                    if (velocidadComparada) {
+                        ataqueEspecialJugadorPrimero(partida, monstruo);
+                    } else {
+                        ataqueEspecialMonstruoPrimero(partida, monstruo);
                     }
 
                     chequeoBatalla(partida, monstruo);
@@ -179,7 +190,6 @@ public class Ejecucion {
                     throw new ExcepcionSwitch("Opción inválida. Solo se permiten 1, 2, 3 o 4.");
 
 
-
             }
 
 
@@ -187,7 +197,7 @@ public class Ejecucion {
 
     }
 
-    public static void ataqueJugadorPrimero(Partida partida, Monstruo monstruo){
+    public static void ataqueJugadorPrimero(Partida partida, Monstruo monstruo) {
         System.out.println("El jugador inflige" + partida.getJugador().ataqueJugador(monstruo) + "puntos de danio");//El danio que inflige el jugador
 
         if (monstruo.estaVivo()) {
@@ -196,7 +206,7 @@ public class Ejecucion {
 
     }
 
-    public static void ataqueMonstruoPrimero(Partida partida, Monstruo monstruo){
+    public static void ataqueMonstruoPrimero(Partida partida, Monstruo monstruo) {
         System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
 
         if (partida.getJugador().estaVivo()) {
@@ -206,7 +216,7 @@ public class Ejecucion {
 
     }
 
-    public static void ataqueEspecialJugadorPrimero(Partida partida, Monstruo monstruo){
+    public static void ataqueEspecialJugadorPrimero(Partida partida, Monstruo monstruo) {
         System.out.println("El jugador inflige" + partida.getJugador().ataqueEspecialJugador(monstruo) + "puntos de danio");
 
         if (monstruo.estaVivo()) {
@@ -215,7 +225,7 @@ public class Ejecucion {
 
     }
 
-    public static void ataqueEspecialMonstruoPrimero(Partida partida, Monstruo monstruo){
+    public static void ataqueEspecialMonstruoPrimero(Partida partida, Monstruo monstruo) {
         System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
 
         if (partida.getJugador().estaVivo()) {
@@ -253,8 +263,7 @@ public class Ejecucion {
                 break;
 
             default:
-                throw  new ExcepcionSwitch("Error: Resultado de batalla invalido");
-
+                throw new ExcepcionSwitch("Error: Resultado de batalla invalido");
 
 
         }
@@ -289,28 +298,113 @@ public class Ejecucion {
     }
 
 
-    public static int comenzarPartida(ArrayList<Partida> listaPartidas) {
 
+    //Elegir dentro de las partidas existentes en el caso de no elegir una devuelve -1
+    public static int elegirPartida(ArrayList<Partida> listaPartidas) {
+        int contador = 0;
         Scanner scan = new Scanner(System.in);
         System.out.println("Partidas:");
-        System.out.println("0. Volver");
+        System.out.println("0.Volver");
         for (int i = 0; i < listaPartidas.size(); i++) {
-            System.out.println((i + 1) + ". " + listaPartidas.get(i).getJugador());
+            if (!listaPartidas.get(i).chequearExistencia(listaPartidas.get(i))) {
+                System.out.println((i + 1) + ". " + listaPartidas.get(i).getJugador());
+                contador++;
+            }
         }
         System.out.println("Ingrese el número de la partida:");
         int eleccion = scan.nextInt();
-        while (eleccion < 1 || eleccion > listaPartidas.size() + 1) {
+        while (eleccion < 0 || eleccion > contador) {
             System.out.println("Selección inválida. Ingrese nuevamente:");
             eleccion = scan.nextInt();
         }
         scan.close();
 
-
         return eleccion - 1;
 
     }
 
-    public static void figuras(){
+    public static int menuPartida(ArrayList<Partida> listaPartidas) {
+        Partida.agregarPartidasVacias(listaPartidas);
+        Scanner scan = new Scanner(System.in);
+        int eleccion = -1;
+        int indice=-1;
+
+        while (eleccion != 0) {
+            System.out.println("1. Nueva partida");
+
+            if (Partida.saberSiContienePartidas(listaPartidas)) {//Imprime el continuar partida solo si existe una partida para continuar
+                System.out.println("2. Continuar partida");
+            }
+            System.out.println("0. Salir");
+            eleccion = scan.nextInt();
+
+            if ((eleccion != 1 && eleccion != 2 && eleccion != 0) || (eleccion == 2 && !Partida.saberSiContienePartidas(listaPartidas))) {
+                System.out.println("No es una opción correcta. Por favor, elige otra opción.");
+            } else if (eleccion != 0) {
+                indice=manejarPartidas(eleccion, listaPartidas);
+            }
+        }
+        scan.close();
+        return indice;
+    }
+
+
+    public static int manejarPartidas(int eleccion, ArrayList<Partida> listaPartidas) {
+        int indice=-1;
+        Scanner scan = new Scanner(System.in);
+        String nombre;
+        int volver = 0;
+        switch (eleccion) {
+            case 1:
+
+                for (int i = 0; i< listaPartidas.size();i++)
+                {
+                    if(listaPartidas.get(i).chequearExistencia(listaPartidas.get(i)))
+                    {
+                        indice = i;
+                    }
+                }
+//Si el indice es -1 significa que no hay partida disponible
+                if (indice==-1)
+                {
+                    System.out.println("No hay espacio para nuevas partidas");
+                    System.out.println("Elija que partida eliminar");
+                    // Si no quiere elegir una partida para eliminar y elije volver se devuelve -1
+                    indice= elegirPartida(listaPartidas);
+                    if (indice!=-1)
+                    {
+                        Partida.eliminarPartida(listaPartidas,listaPartidas.get(indice));
+                        Partida.agregarPartidasVacias(listaPartidas);
+                        indice =2;
+                    }
+                    else {
+                        volver = indice;
+                    }
+
+                }
+                if(volver!= -1){
+                    Partida partida =listaPartidas.get(indice);
+                    System.out.println("Ingrese un nombre de jugador");
+                    nombre= scan.nextLine();
+                    partida.getJugador().setNombre(nombre);
+                }
+
+
+
+                break;
+
+            case 2:
+            //Te deja elegir entre las partidas existentes
+                indice = elegirPartida(listaPartidas);
+                break;
+        }
+        scan.close();
+        return indice;
+    }
+
+
+
+    public static void figuras() {
         // Mostrar las figuras ASCII
 
         String art1 = """
@@ -361,16 +455,28 @@ public class Ejecucion {
 
         String[] art1Lines = art1.split("\n");
         String[] art2Lines = art2.split("\n");
-
+        System.out.println(Ejecucion.titulo());
         for (int i = 0; i < Math.max(art1Lines.length, art2Lines.length); i++) {
             String line1 = i < art1Lines.length ? art1Lines[i] : "";
             String line2 = i < art2Lines.length ? art2Lines[i] : "";
             System.out.printf("%-80s %s%n", line1, line2);
         }
 
+
     }
-    public static String titulo()
-    {
+
+    public static void pantallaDeCarga() {
+        String patron =
+                """
+                                      ______  ______   ______   ______   ______   ______   _____    ______ \s
+                                      | |     | |  | | | |  | \\ | | ____ | |  | | | |  \\ \\ | | \\ \\  / |  | \\\s
+                                      | |     | |__| | | |__| | | |  | | | |__| | | |  | | | |  | | | |  | |\s
+                                      |_|____ |_|  |_| |_|  \\_\\ |_|__|_| |_|  |_| |_|  |_| |_|_/_/  \\_|__|_/ \
+                        """;
+        System.out.println(patron);
+    }
+
+    public static String titulo() {
         return
                 """
                         _______  _____   ______  ______  _____  _______ _______ _______ __   _      ______  _______  _____  _     _ _______ _______
@@ -379,8 +485,14 @@ public class Ejecucion {
                         """;
 
 
-
     }
 
+    public static void esperar(int segundos) {
+        try {
+            Thread.sleep((long) segundos * 1000); // Convertimos 'segundos' a 'long' antes de multiplicar
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
 }
 
