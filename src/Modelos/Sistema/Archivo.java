@@ -113,7 +113,6 @@ public class Archivo {
                         int velocidad = monstruoJson.optInt("velocidad", 0);
                         int armadura = monstruoJson.optInt("armadura", 0);
                         int especialTEspera = monstruoJson.optInt("especialTEspera", 0);
-                        TipoDeMonstruo tipoDeMonstruo = TipoDeMonstruo.valueOf(monstruoJson.optString("tipoDeMonstruo", "DEFAULT"));
                         //valueOf: Convierte el String obtenido ("tipoDeMonstruo" o "DEFAULT") a la constante del enum que corresponda
 
                         Item botin = null;
@@ -121,6 +120,7 @@ public class Archivo {
                             JSONObject botinJson = monstruoJson.getJSONObject("botin"); // busca el objeto asociado con la clave "botin"
                             String nombreItem = botinJson.optString("nombre", null); // extrae sus atributos
                             String descripcionItem = botinJson.optString("descripcion", null);
+                            int especialTEsperaPItem = botinJson.optInt("especialTEsperaP", 0);
 
                             if (botinJson.has("danio")) {
                                 int danioItem = botinJson.optInt("danio", 0);
@@ -141,12 +141,12 @@ public class Archivo {
                                 }
                                 botin = new Pocion<>(nombreItem, descripcionItem, efecto);
 
-                                Monstruo monstruo = new Monstruo(nombreMonstruo, salud, danio, velocidad, armadura, botin);
+                                Monstruo monstruo = new Monstruo(nombreMonstruo, salud, especialTEsperaPItem, danio,velocidad, armadura, botin);
                                 listaMonstruos.add(monstruo);
                             }
                         }
                         EscenarioMonstruo escenario = new EscenarioMonstruo(nombre, nivel, descripcion, listaMonstruos);
-                        listaEscenarios.add(escenario);
+                        listaDeEscenarios.add(escenario);
                     }
                 }
 
@@ -158,7 +158,7 @@ public class Archivo {
             System.out.println("ERROR AL LEER EL JASON");
 
             }
-        }catch (JSONException e) {
+        catch (JSONException e) {
 
             throw new RuntimeException(e);
         }catch (IllegalArgumentException e)
@@ -176,15 +176,6 @@ public class Archivo {
     public void jsonAEscenarioItem(HashSet<Escenario> listaEscenarios) throws JSONException  {
 
         JSONObject jsonObject = new JSONObject(JsonUtiles.leer(NombreArchivos.EscenariosM.getNombre()));
-
-        }catch(JSONException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static HashSet<EscenarioItem> jsonAEscenarioItem(JSONObject object) {
-        HashSet<EscenarioItem> escenarioItems = new HashSet<>();
 
         try {
             JSONArray escenariosJSONArray = new JSONArray(jsonObject);
@@ -245,6 +236,7 @@ public class Archivo {
         }
 
     }
+
 
 
 
