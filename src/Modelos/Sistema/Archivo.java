@@ -6,19 +6,21 @@ import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Items.Arma;
 import Modelos.Items.Armadura;
 import Modelos.Items.Item;
-//import Modelos.Items.Pocion;
+
 import Modelos.Sistema.JsonUtiles;
 import Modelos.Items.pociones.*;
 
 import java.io.*;
 import java.util.ArrayList;
 
+
+import Modelos.Items.pociones.Pocion;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -177,10 +179,10 @@ public class Archivo {
                     {
                         itemJSONObject.put("defensa", ((Armadura) item).getDefensa());
                         itemJSONObject.put("velocidad", ((Armadura) item).getVelocidad());
-                    }else if(item instanceof Pocion)
+                    }else if(item instanceof Pocion<?>)
                     {
-                        itemJSONObject.put("salud", ((Pocion) item).getSalud());
-                        itemJSONObject.put("velocidad", ((Pocion) item).getVelocidad());
+                        //itemJSONObject.put("salud", ((Pocion) item).getSalud());
+                       // itemJSONObject.put("velocidad", ((Pocion) item).getVelocidad());
                     }
                     itemsJSONArray.put(itemJSONObject);
                 }

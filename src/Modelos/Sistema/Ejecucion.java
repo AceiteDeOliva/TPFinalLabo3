@@ -1,7 +1,6 @@
 package Modelos.Sistema;
 
 import Modelos.Entidades.Monstruo;
-import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
@@ -15,7 +14,7 @@ import java.util.Scanner;
 public class Ejecucion {
     private static Escenario escenarioActual;
 
-    public static void ejecucion() {
+    public static void ejecucion() throws ExcepcionSwitch {
 
        // Pasar objetos de los archivos de inventario, armas y armaduras a arrays
         Archivo archivo = new Archivo();
@@ -24,8 +23,7 @@ public class Ejecucion {
         ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
 
         // pasar info de escenarios con json
-        HashSet<EscenarioMonstruo> escenarioMonstruos = new HashSet<>();
-        escenarioMonstruos = archivo.jsonAEscenario();
+        HashSet<EscenarioMonstruo> escenarioMonstruos = archivo.jsonAEscenario();
 
 
         Scanner scan = new Scanner(System.in);
@@ -35,45 +33,49 @@ public class Ejecucion {
         Partida partida = new Partida();
         // Leer la elección del usuario
 
+
         try
         {
-            do {
-                for (int i = 0; i < 50; ++i) System.out.println();
-                System.out.println(Ejecucion.titulo());
-                // Presentar las opciones del menú
-                System.out.println("1.Jugar");
-                System.out.println("2.Salir del juego");
-                // Leer la elección del usuario
-                eleccion = scan.nextInt();
+          do {
+            for (int i = 0; i < 50; ++i) System.out.println();
+            System.out.println(Ejecucion.titulo());
+            // Presentar las opciones del menú
+            System.out.println("1.Jugar");
+            System.out.println("2.Salir del juego");
+            // Leer la elección del usuario
+            eleccion = scan.nextInt();
 
-                // Realizar acciones basadas en la elección del usuario usando un switch
-                switch (eleccion) {
-                    case 1:
-                        //CONTROLA LA ELECCION Y CREACION DE PARTIDAS
-                        indice = menuPartida(listaPartidas);
-                        //SI NO QUIERE VOLVER AL MENU INICIAL
-                        if(indice !=-1)
-                        {
-                            //Esta es la partida que cambiara mientras juega
-                            partida = listaPartidas.get(indice);
-                        }
+            // Realizar acciones basadas en la elección del usuario usando un switch
+            switch (eleccion) {
+                case 1:
+                    //CONTROLA LA ELECCION Y CREACION DE PARTIDAS
+                     indice = menuPartida(listaPartidas);
+                     //SI NO QUIERE VOLVER AL MENU INICIAL
+                     if(indice !=-1)
+                     {
+                         //Esta es la partida que cambiara mientras juega
+                         partida = listaPartidas.get(indice);
+                         manejarEncuentro(partida);
+                     }
 
-                        break;
-                    case 2:
-                        // Si el usuario elige salir, terminar el programa
-                        System.out.println("Saliendo del juego...");
-                        break;
-                    default:
-                        // Si la elección no es válida, mostrar un mensaje de error
-                        System.out.println("Elección no válida. Por favor, selecciona una opción válida.");
-                        break;
-                }
-            } while (eleccion != 2);
+
+                    break;
+                case 2:
+                    // Si el usuario elige salir, terminar el programa
+                    System.out.println("Saliendo del juego...");
+                    break;
+                default:
+                    // Si la elección no es válida, mostrar un mensaje de error
+                    System.out.println("Elección no válida. Por favor, selecciona una opción válida.");
+                    break;
+            }
+        } while (eleccion != 2);
         }catch(InputMismatchException e) {
             System.out.println("Error: Se esperaba un valor entero. " + e.getMessage());
         } finally {
             scan.close(); //se asegura que el scanner se cierre haya excepcion o no
         }
+
 
         archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre());
     }
