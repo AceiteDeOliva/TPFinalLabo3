@@ -7,6 +7,7 @@
     <list default="true" id="526ddedb-0a1f-4afb-97bd-2157b6090c03" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Entidad.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Monstruo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Monstruo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" afterDir="false" />
@@ -14,6 +15,7 @@
       <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Archivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Archivo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Ejecucion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Ejecucion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Partida.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +54,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+
     "git-widget-placeholder": "Valen",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",

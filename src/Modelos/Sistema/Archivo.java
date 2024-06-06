@@ -6,6 +6,14 @@ import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Items.Arma;
 import Modelos.Items.Armadura;
 import Modelos.Items.Item;
+
+import Modelos.Sistema.JsonUtiles;
+import Modelos.Items.pociones.*;
+
+import java.io.*;
+import java.util.ArrayList;
+
+
 import Modelos.Items.pociones.Pocion;
 import org.json.JSONArray;
 import org.json.JSONException;
