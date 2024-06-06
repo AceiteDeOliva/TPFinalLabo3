@@ -2,7 +2,7 @@ package Modelos.Interfaces;
 
 import Modelos.Entidades.Personaje;
 
-public interface Efecto {
+public interface IEfecto {
 
     void aplicarEfecto(Personaje personaje);
 

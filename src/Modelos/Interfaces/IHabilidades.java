@@ -1,6 +1,6 @@
 package Modelos.Interfaces;
 
-public interface Habilidades {
+public interface IHabilidades {
 
 int atacar();
 

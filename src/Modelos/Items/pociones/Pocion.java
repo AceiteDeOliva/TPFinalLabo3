@@ -1,10 +1,10 @@
 package Modelos.Items.pociones;
 
 import Modelos.Entidades.Personaje;
-import Modelos.Interfaces.Efecto;
+import Modelos.Interfaces.IEfecto;
 import Modelos.Items.Item;
 
-public class Pocion <E extends Efecto> extends Item {
+public class Pocion <E extends IEfecto> extends Item {
 
     private E efecto;
 

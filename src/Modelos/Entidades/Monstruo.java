@@ -1,9 +1,9 @@
 package Modelos.Entidades;
 
-import Modelos.Interfaces.Habilidades;
+import Modelos.Interfaces.IHabilidades;
 import Modelos.Items.Item;
 
-public class Monstruo extends Entidad implements Habilidades {
+public class Monstruo extends Entidad implements IHabilidades {
 
     private int danio;//valor que le resta a la vida del personaje.
     private int velocidad;
@@ -26,15 +26,6 @@ public class Monstruo extends Entidad implements Habilidades {
         this.velocidad = velocidad;
         this.armadura = armadura;
         this.botin = botin;
-    }
-
-    public Monstruo(String nombreP, int saludP, int danioP, int velocidadP, int armaduraP) {//todo para que sirve este constructor?
-        super(nombreP, saludP,2);
-        this.danio = danioP;
-        this.velocidad = velocidadP;
-        this.armadura = armaduraP;
-        this.botin = botinP;
-
     }
 
     //Getters
