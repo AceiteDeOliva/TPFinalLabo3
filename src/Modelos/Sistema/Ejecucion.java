@@ -4,7 +4,6 @@ import Modelos.Entidades.Monstruo;
 import Modelos.Escenarios.Escenario;
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
-import Modelos.Exceptions.ExcepcionSwitch;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -28,7 +27,6 @@ public class Ejecucion {
 
         // Menu
         // Leer la elección del usuario
-
 
         try (Scanner scan = new Scanner(System.in)) {
             int eleccion;

@@ -7,6 +7,7 @@ import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Items.Item;
 
+import javax.swing.text.html.HTMLDocument;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -111,9 +112,15 @@ public class Partida implements Serializable {
         return "" + nuevoItem;
     }
 
-    public void monstruosAArrayList(HashSet<EscenarioMonstruo> listaMonstruos)
-    {
+    public void escenariosAHashMap(HashSet<Escenario> listaEscenarios) { //funcion que ordena los monstruos por nivel en listas
+        Iterator<Escenario> iterator = listaEscenarios.iterator(); //Se crea iterator para recorrer la lista
 
+        while (iterator.hasNext()) {
+            Escenario escenarioIterado = iterator.next();
+            //recibe la lista del nivel y si la lista no existe crea un nuevo array
+            ArrayList<Escenario> listaNivel = escenarios.computeIfAbsent(escenarioIterado.getNivel(), k -> new ArrayList<>());
+            listaNivel.add(escenarioIterado); // Agrega el escenario al nivel
+        }
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
