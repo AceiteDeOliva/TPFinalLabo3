@@ -15,7 +15,7 @@ public class Main {
         Ejecucion.pantallaDeCarga();
         Ejecucion.esperar(2);
 
-        Ejecucion.ejecucion();
+        // Ejecucion.ejecucion();
 
 
 
