@@ -13,9 +13,9 @@ public class EscenarioItem extends Escenario {
 
     private ArrayList<Item> listaItems;
 
-    public EscenarioItem(String nombre, int nivel, String descripcion) {
-        super(nombre, nivel, descripcion);
-        this.listaItems = new ArrayList<>();
+    public EscenarioItem(String nombreP, int nivelP, String descripcionP ,ArrayList<Item> listaItemsP) {
+        super(nombreP, nivelP, descripcionP);
+        this.listaItems = listaItemsP;
     }
 
     public ArrayList<Item> getListaItems() {
@@ -24,7 +24,7 @@ public class EscenarioItem extends Escenario {
 
     public Item elegirItem ()
     {
-        Item itemElegido = new Item();
+        Item itemElegido;
         Random random = new Random();
         int indice = random.nextInt(listaItems.size());
         itemElegido = listaItems.get(indice);
@@ -40,7 +40,7 @@ public class EscenarioItem extends Escenario {
         }else if(item instanceof Armadura armadura)
         {
             interaccion+= armadura.toString()+"!";
-        }else if(item instanceof Pocion pocionDrop)
+        }else if(item instanceof Pocion<?> pocionDrop)
         {
             interaccion+= pocionDrop.toString()+"!";
         }
