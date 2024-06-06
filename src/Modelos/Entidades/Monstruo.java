@@ -66,12 +66,12 @@ public class Monstruo extends Entidad implements Habilidades {
     public int ataqueMonstruo(Personaje jugador) { //el monstruo usa su ataque basico
         int danio = -1;
         if (estaVivo()) {
-            if (especialTEspera <= 0) { // chequea si puede usar el especial //todo si se pone private en especialTEspera marca error
+            if (getEspecialTEspera() <= 0) { // chequea si puede usar el especial
                 danio = ataqueEspecial();
                 setEspecialTEspera(2);
             } else {
                 danio = atacar();
-                setEspecialTEspera(especialTEspera - 1); //todo si se pone private en especialTEspera marca error
+                setEspecialTEspera(getEspecialTEspera() - 1);
             }
             jugador.recibirDanio(danio);
         }

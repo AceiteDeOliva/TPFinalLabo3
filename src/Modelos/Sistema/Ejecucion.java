@@ -1,7 +1,6 @@
 package Modelos.Sistema;
 
 import Modelos.Entidades.Monstruo;
-import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
@@ -15,7 +14,7 @@ import java.util.Scanner;
 public class Ejecucion {
     private static Escenario escenarioActual;
 
-    public static void ejecucion() {
+    public static void ejecucion() throws ExcepcionSwitch {
 
        // Pasar objetos de los archivos de inventario, armas y armaduras a arrays
         Archivo archivo = new Archivo();
@@ -24,8 +23,7 @@ public class Ejecucion {
         ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
 
         // pasar info de escenarios con json
-        HashSet<EscenarioMonstruo> escenarioMonstruos = new HashSet<>();
-        escenarioMonstruos = archivo.jsonAEscenario();
+        HashSet<EscenarioMonstruo> escenarioMonstruos = archivo.jsonAEscenario();
 
 
         Scanner scan = new Scanner(System.in);
@@ -54,6 +52,7 @@ public class Ejecucion {
                      {
                          //Esta es la partida que cambiara mientras juega
                          partida = listaPartidas.get(indice);
+                         manejarEncuentro(partida);
                      }
 
 
