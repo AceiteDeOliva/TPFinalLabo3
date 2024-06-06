@@ -1,8 +1,8 @@
 package Modelos.Items;
 
 public class Item  {
-    private final String nombre;
-    private final String descripcion;
+    private  String nombre;
+    private  String descripcion;
 
     //Constructores
     public Item() {
@@ -21,6 +21,14 @@ public class Item  {
 
     public String getDescripcion() {
         return descripcion;
+    }
+
+    public void setNombre(String nombreP) {
+        this.nombre = nombreP;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @Override

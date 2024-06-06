@@ -1,7 +1,7 @@
 package Modelos.Escenarios;
 
 public class Escenario {
-    private final String nombre;
+    private  String nombre;
     private int nivel;
     private String descripcion;
     public Escenario() {
@@ -28,6 +28,10 @@ public class Escenario {
     @SuppressWarnings("unused")
     public void setNivel(int nivel) {
         this.nivel = nivel;
+    }
+    @SuppressWarnings("unused")
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @SuppressWarnings("unused")

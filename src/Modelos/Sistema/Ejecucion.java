@@ -53,19 +53,19 @@ public class Ejecucion {
                             manejarEncuentro(partida);
                         }
 
-
-                        break;
-                    case 2:
-                        // Si el usuario elige salir, terminar el programa
-                        System.out.println("Saliendo del juego...");
-                        break;
-                    default:
-                        // Si la elección no es válida, mostrar un mensaje de error
-                        System.out.println("Elección no válida. Por favor, selecciona una opción válida.");
-                        break;
-                }
-            } while (eleccion != 2);
-        } catch (InputMismatchException e) {
+                    break;
+                case 2:
+                    // Si el usuario elige salir, terminar el programa
+                    System.out.println("Saliendo del juego...");
+                    break;
+                default:
+                    // Si la elección no es válida, mostrar un mensaje de error
+                    System.out.println("Elección no válida. Por favor, selecciona una opción válida.");
+                    break;
+            }
+        } while (eleccion != 2);
+        }catch(InputMismatchException e) {
+          
             System.out.println("Error: Se esperaba un valor entero. " + e.getMessage());
         }
         //se asegura que el scanner se cierre haya excepcion o no
