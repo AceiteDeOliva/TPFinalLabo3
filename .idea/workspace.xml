@@ -6,15 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="526ddedb-0a1f-4afb-97bd-2157b6090c03" name="Changes" comment="">
 
+
       <change afterPath="$PROJECT_DIR$/src/Modelos/Interfaces/Efecto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Modelos/Items/pociones/EfectoCuracion.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Modelos/Items/pociones/EfectoPocion.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Modelos/Items/pociones/EfectoVelocidad.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Modelos/Items/pociones/Pocion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Ejecucion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Ejecucion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Partida.java" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Escenarios/EscenarioItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Escenarios/EscenarioItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Items/Pocion.java" beforeDir="false" />
+
 
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,6 +83,7 @@
       </set>
     </attachedChunks>
   </component>
+
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -94,7 +101,7 @@
       <workItem from="1717004110108" duration="3637000" />
       <workItem from="1717356855566" duration="3400000" />
       <workItem from="1717601482215" duration="3373000" />
-      <workItem from="1717680471702" duration="2613000" />
+      <workItem from="1717680471702" duration="7119000" />
     </task>
     <servers />
   </component>

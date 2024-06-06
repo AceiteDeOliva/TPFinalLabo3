@@ -4,20 +4,22 @@ import Modelos.Entidades.Personaje;
 import Modelos.Interfaces.Efecto;
 import Modelos.Items.Item;
 
-public class Pocion <EfectoPocion extends Efecto> extends Item {
+public class Pocion <E extends Efecto> extends Item {
 
-    private EfectoPocion efecto;
+    private E efecto;
 
-    public Pocion(String nombreP, String descripcionP, EfectoPocion efecto) {
+
+    public Pocion(String nombreP, String descripcionP, String nombre, E efecto) {
+
         super(nombreP, descripcionP);
         this.efecto = efecto;
     }
 
-    public EfectoPocion getEfecto() {
+    public E getEfecto() {
         return efecto;
     }
 
-    public void setEfecto(EfectoPocion efecto) {
+    public void setEfecto(E efecto) {
         this.efecto = efecto;
     }
 
@@ -25,6 +27,5 @@ public class Pocion <EfectoPocion extends Efecto> extends Item {
         efecto.aplicarEfecto(personaje);
 
     }
-
 
 }

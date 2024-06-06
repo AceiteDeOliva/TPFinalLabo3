@@ -32,7 +32,6 @@ public class Ejecucion {
         // Menu
         // Leer la elección del usuario
 
-
         try (Scanner scan = new Scanner(System.in)) {
             int eleccion;
             int indice = 0;

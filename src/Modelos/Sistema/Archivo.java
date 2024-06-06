@@ -128,6 +128,7 @@ public class Archivo {
     }
 
 
+
     public void jsonAEscenarioItem(HashSet<Escenario> listaEscenarios) throws JSONException  {
 
         JSONObject jsonObject = new JSONObject(JsonUtiles.leer(NombreArchivos.EscenariosM.getNombre()));
