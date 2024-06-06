@@ -1,6 +1,7 @@
 package Modelos.Sistema;
 
 import Modelos.Entidades.Monstruo;
+import Modelos.Entidades.TipoDeMonstruo;
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Items.Arma;
@@ -133,8 +134,9 @@ public class Archivo {
                 String descripcion = object.optString("descripcion", null);
 
                 ArrayList<Monstruo> listaMonstruos = new ArrayList<>();
-                if (object.has("monstruo")) {
-                    JSONArray lista = object.getJSONArray("monstruo");
+                if (object.has("monstruo"))  //verifica si el JSONObject tiene la clave "monstruo"
+                {
+                    JSONArray lista = object.getJSONArray("monstruo"); //si hay, se obtiene un JSONArray a partir de la clave "monstruo"
 
                     for (int j = 0; j < lista.length(); j++) {
                         JSONObject monstruoJson = lista.getJSONObject(j);
@@ -143,17 +145,50 @@ public class Archivo {
                         int danio = monstruoJson.optInt("danio", 0);
                         int velocidad = monstruoJson.optInt("velocidad", 0);
                         int armadura = monstruoJson.optInt("armadura", 0);
+                        int especialTEspera = monstruoJson.optInt("especialTEspera", 0);
+                        TipoDeMonstruo tipoDeMonstruo = TipoDeMonstruo.valueOf(monstruoJson.optString("tipoDeMonstruo", "DEFAULT"));
+                        //valueOf: Convierte el String obtenido ("tipoDeMonstruo" o "DEFAULT") a la constante del enum que corresponda
 
-                        Monstruo monstruo = new Monstruo(nombreMonstruo, salud, danio, velocidad, armadura);
-                        listaMonstruos.add(monstruo);
+                        Item botin = null;
+                        if (monstruoJson.has("botin")) {
+                            JSONObject botinJson = monstruoJson.getJSONObject("botin"); // busca el objeto asociado con la clave "botin"
+                            String nombreItem = botinJson.optString("nombre", null); // extrae sus atributos
+                            String descripcionItem = botinJson.optString("descripcion", null);
+
+                            if (botinJson.has("danio")) {
+                                int danioItem = botinJson.optInt("danio", 0);
+                                botin = new Arma(nombreItem, descripcionItem, danioItem);
+                            } else if (botinJson.has("defensa")) {
+                                int defensaItem = botinJson.optInt("defensa", 0);
+                                int velocidadItem = botinJson.optInt("velocidad", 0);
+                                botin = new Armadura(nombreItem, descripcionItem, defensaItem, velocidadItem);
+                            } else if (botinJson.has("efecto")) {
+                                String efectoTipo = botinJson.getString("efecto");
+                                EfectoPocion efecto = null;
+                                if (efectoTipo.equals("EfectoVelocidad")) {
+                                    int cantidadVelocidad = botinJson.optInt("cantidadVelocidad", 0);
+                                    efecto = new EfectoVelocidad(cantidadVelocidad);
+                                } else if (efectoTipo.equals("EfectoCuracion")) {
+                                    int cantidadCuracion = botinJson.optInt("cantidadCuracion", 0);
+                                    efecto = new EfectoCuracion(cantidadCuracion);
+                                }
+                                botin = new Pocion<>(nombreItem, descripcionItem, efecto);
+
+                                Monstruo monstruo = new Monstruo(nombreMonstruo, salud, danio, velocidad, armadura, botin);
+                                listaMonstruos.add(monstruo);
+                            }
+                        }
+                        EscenarioMonstruo escenario = new EscenarioMonstruo(nombre, nivel, descripcion, listaMonstruos);
+                        listaEscenarios.add(escenario);
                     }
                 }
-
-                EscenarioMonstruo escenario = new EscenarioMonstruo(nombre, nivel, descripcion, listaMonstruos);
-                listaEscenarios.add(escenario);
             }
-        } catch (JSONException e) {
+        }catch (JSONException e) {
             throw new RuntimeException(e);
+        }catch (IllegalArgumentException e)
+        {
+            System.err.println("Error de argumento ilegal: " + e.getMessage());
+            e.printStackTrace();
         } finally {
             System.out.println("Fin");
         }
@@ -209,6 +244,7 @@ public class Archivo {
             throw new RuntimeException(e);
         }
     }
+
     public static HashSet<EscenarioItem> jsonAEscenarioItem(JSONObject object) {
         HashSet<EscenarioItem> escenarioItems = new HashSet<>();
         try {

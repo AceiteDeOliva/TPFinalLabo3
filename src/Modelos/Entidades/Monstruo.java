@@ -1,13 +1,14 @@
 package Modelos.Entidades;
 
 import Modelos.Interfaces.Habilidades;
+import Modelos.Items.Item;
 
 public class Monstruo extends Entidad implements Habilidades {
 
     private int danio;//valor que le resta a la vida del personaje.
     private int velocidad;
     private int armadura;//Reduccion de danio.
-
+    private Item botin;
     private TipoDeMonstruo tipoDeMonstruo;
 
     //Constructores
@@ -16,13 +17,15 @@ public class Monstruo extends Entidad implements Habilidades {
         this.danio = 0;
         this.velocidad = 0;
         this.armadura = 0;
+        this.botin = new Item();
     }
     
-    public Monstruo(String nombreP, int saludP, int danioP, int velocidadP, int armaduraP) {
+    public Monstruo(String nombreP, int saludP, int danioP, int velocidadP, int armaduraP, Item botinP) {
         super(nombreP, saludP,2);
         this.danio = danioP;
         this.velocidad = velocidadP;
         this.armadura = armaduraP;
+        this.botin = botinP;
     }
 
     //Getters
@@ -38,6 +41,10 @@ public class Monstruo extends Entidad implements Habilidades {
         return armadura;
     }
 
+    public Item getBotin() {
+        return botin;
+    }
+
     //Setters
     public void setDanio(int danioP) {
         this.danio = danioP;
@@ -50,7 +57,11 @@ public class Monstruo extends Entidad implements Habilidades {
     public void setArmadura(int armaduraP) {
         this.armadura = armaduraP;
     }
-    
+
+    public void setBotin(Item botin) {
+        this.botin = botin;
+    }
+
     //Metodos
     @Override
     public int atacar() {

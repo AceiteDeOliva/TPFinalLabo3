@@ -23,7 +23,7 @@ public class Ejecucion {
         ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
 
         // pasar info de escenarios con json
-        HashSet<EscenarioMonstruo> escenarioMonstruos = archivo.jsonAEscenario();
+        HashSet<EscenarioMonstruo> escenarioMonstruos = archivo.jsonAEscenarioMonstruo();
 
 
         // Menu
