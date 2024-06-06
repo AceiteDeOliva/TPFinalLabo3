@@ -181,8 +181,16 @@ public class Archivo {
                         itemJSONObject.put("velocidad", ((Armadura) item).getVelocidad());
                     }else if(item instanceof Pocion<?>)
                     {
-                        //itemJSONObject.put("salud", ((Pocion) item).getSalud());
-                       // itemJSONObject.put("velocidad", ((Pocion) item).getVelocidad());
+                        EfectoPocion efecto = (EfectoPocion) ((Pocion<?>) item).getEfecto();
+                        itemJSONObject.put("efecto", efecto.getClass().getSimpleName()); //obtiene el nombre del efecto
+
+                        if(efecto instanceof EfectoCuracion)
+                        {
+                            itemJSONObject.put("cantidad curacion", ((EfectoCuracion) efecto).getCantidadCuracion());
+                        }else if(efecto instanceof EfectoVelocidad)
+                        {
+                            itemJSONObject.put("cantidad velocidad", ((EfectoVelocidad) efecto).getCantidadVelocidad());
+                        }
                     }
                     itemsJSONArray.put(itemJSONObject);
                 }
