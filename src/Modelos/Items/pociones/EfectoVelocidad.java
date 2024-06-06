@@ -2,7 +2,7 @@ package Modelos.Items.pociones;
 
 import Modelos.Entidades.Personaje;
 
-public class EfectoVelocidad extends EfectoPocion{
+public class EfectoVelocidad extends EfectoPocion{ //todo hacer que el efecto solo dure un turno
 
     private int cantidadVelocidad;
 
