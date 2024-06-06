@@ -23,11 +23,11 @@ public class Personaje extends Entidad {
         this.inventario = new ArrayList<>();
     }
 
-    public Personaje(String nombreP, int saludP, TipoDePersonaje tipoDePersonajeP, ArrayList<Item> inventarioP) {
-        super(nombreP, saludP, 1);
+    public Personaje(String nombreP, TipoDePersonaje tipoDePersonajeP) {
+        super(nombreP, 200, 1);
 
         this.tipoDePersonaje = tipoDePersonajeP;
-        this.inventario = inventarioP;
+        this.inventario = new ArrayList<>();
 
         switch (tipoDePersonajeP) {
             case GUERRERO:
