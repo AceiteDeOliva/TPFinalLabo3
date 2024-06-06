@@ -79,7 +79,7 @@ public class Monstruo extends Entidad implements Habilidades {
 
     }
     @Override
-    public  boolean estaVivo() { //devuelve si el monstruo esta viva o no
+    public  boolean estaVivo() { //devuelve si el monstruo esta vivo o no
         boolean vivo;
         vivo = getSalud() > 0;
         return vivo;

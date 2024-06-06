@@ -1,11 +1,10 @@
 package Modelos.Escenarios;
 
-import Modelos.Entidades.Monstruo;
 import Modelos.Entidades.Personaje;
 import Modelos.Items.Arma;
 import Modelos.Items.Armadura;
 import Modelos.Items.Item;
-import Modelos.Items.Pocion;
+import Modelos.Items.pociones.Pocion;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -83,11 +83,13 @@ public class Archivo {
         }
     }
 
+
     public void EscenariosAJson(HashSet<EscenarioMonstruo> listaEscenarioMounstruos) {
 
         JSONObject object = new JSONObject();
         try {
             Iterator<EscenarioMonstruo> iterator = listaEscenarioMounstruos.iterator();
+
             while (iterator.hasNext()) {
                 EscenarioMonstruo escenarioMonstruo = iterator.next();
                 object.put("nombre", escenarioMonstruo.getNombre());
