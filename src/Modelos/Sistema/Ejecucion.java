@@ -25,7 +25,9 @@ public class Ejecucion {
 
         // pasar info de escenarios con json
         HashSet<Escenario> escenarioMonstruos = new HashSet<>();
+
         archivo.jsonAEscenarioMonstruo(escenarioMonstruos);
+
         archivo.jsonAEscenarioItem(escenarioMonstruos);
 
 
