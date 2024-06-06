@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="526ddedb-0a1f-4afb-97bd-2157b6090c03" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modelos/Exceptions/ExcepcionSwitch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Exceptions/ExcepcionSwitch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Ejecucion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Ejecucion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modelos/Sistema/Partida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Sistema/Partida.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +85,7 @@
       <workItem from="1717004110108" duration="3637000" />
       <workItem from="1717356855566" duration="3400000" />
       <workItem from="1717601482215" duration="3373000" />
-      <workItem from="1717680471702" duration="2613000" />
+      <workItem from="1717680471702" duration="7119000" />
     </task>
     <servers />
   </component>
