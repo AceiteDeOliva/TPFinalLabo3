@@ -118,7 +118,6 @@ public class Partida implements Serializable {
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // funciones de batalla
-
     public int chequeoFinDeAtaque(Monstruo monstruo) { //Chequea al final de un ataque si el monstruo y/o el jugador esta vivo
         int resultado = 0; //devuelve 0 si la batalla continua
         if (jugador.estaVivo()) {
@@ -145,7 +144,6 @@ public class Partida implements Serializable {
     }
 
     // inicializar partidas
-
     public boolean chequearExistencia(Partida partida){
         //Chequea si la partida ingresada esta vacia y devuelve true si lo esta
         return partida.getJugador().getNombre().equals("Partida Vacia");
