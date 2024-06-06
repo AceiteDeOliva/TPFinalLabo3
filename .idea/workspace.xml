@@ -67,6 +67,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+
   }
 }</component>
   <component name="SharedIndexes">
@@ -93,6 +94,7 @@
       <workItem from="1717004110108" duration="3637000" />
       <workItem from="1717356855566" duration="3400000" />
       <workItem from="1717601482215" duration="3373000" />
+      <workItem from="1717680471702" duration="2613000" />
     </task>
     <servers />
   </component>
