@@ -117,7 +117,7 @@ public class Partida implements Serializable {
 
         while (iterator.hasNext()) {
             Escenario escenarioIterado = iterator.next();
-            //recibe la lista del nivel y si la lista no existe crea un nuevo array
+            //recibe la lista del nivel y si la lista no existe crea una nueva lista
             ArrayList<Escenario> listaNivel = escenarios.computeIfAbsent(escenarioIterado.getNivel(), k -> new ArrayList<>());
             listaNivel.add(escenarioIterado); // Agrega el escenario al nivel
         }
