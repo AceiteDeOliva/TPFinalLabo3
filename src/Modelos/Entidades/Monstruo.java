@@ -28,15 +28,6 @@ public class Monstruo extends Entidad implements Habilidades {
         this.botin = botin;
     }
 
-    public Monstruo(String nombreP, int saludP, int danioP, int velocidadP, int armaduraP) {//todo para que sirve este constructor?
-        super(nombreP, saludP,2);
-        this.danio = danioP;
-        this.velocidad = velocidadP;
-        this.armadura = armaduraP;
-        this.botin = botinP;
-
-    }
-
     //Getters
     public int getDanio() {
         return danio;

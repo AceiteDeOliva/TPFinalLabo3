@@ -176,7 +176,8 @@ public class Partida implements Serializable {
     }
     public static void agregarPartidasVacias (ArrayList<Partida>listaPartidas)
     {
-        if (listaPartidas.size() < 3) {
+
+        if (listaPartidas == null && listaPartidas.size() < 3) {
             crearPartidasVacias(listaPartidas);
         }
     }

@@ -4,7 +4,7 @@ public enum NombreArchivos {
 
     Partidas("Partidas.dat"),
     EscenariosM("Escenarios Monstruos"),
-    EscenrariosI("Escenarios items");
+    EscenariosI("src/Escenarios Items");
 
     private String nombre;
 
