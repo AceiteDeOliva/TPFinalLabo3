@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="526ddedb-0a1f-4afb-97bd-2157b6090c03" name="Changes" comment="">
+
       <change afterPath="$PROJECT_DIR$/src/Modelos/Interfaces/Efecto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Modelos/Items/pociones/EfectoCuracion.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Modelos/Items/pociones/EfectoPocion.java" afterDir="false" />
@@ -14,6 +15,7 @@
       <change beforePath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Entidades/Personaje.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Escenarios/EscenarioItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modelos/Escenarios/EscenarioItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Modelos/Items/Pocion.java" beforeDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +48,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,

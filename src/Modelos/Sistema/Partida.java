@@ -4,12 +4,17 @@ import Modelos.Entidades.Monstruo;
 import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
 import Modelos.Escenarios.EscenarioItem;
+import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Items.Item;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import java.util.HashSet;
+
 import java.util.Iterator;
+
 import java.util.Random;
 
 
@@ -104,6 +109,11 @@ public class Partida implements Serializable {
         Item nuevoItem = escenarioItem.elegirItem();
         jugador.agregarItem(nuevoItem);
         return "" + nuevoItem;
+    }
+
+    public void monstruosAArrayList(HashSet<EscenarioMonstruo> listaMonstruos)
+    {
+
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
