@@ -10,7 +10,6 @@ public class Pocion <E extends Efecto> extends Item {
 
 
     public Pocion(String nombreP, String descripcionP, String nombre, E efecto) {
-
         super(nombreP, descripcionP);
         this.efecto = efecto;
     }

@@ -10,14 +10,15 @@ public class Monstruo extends Entidad implements Habilidades {
     private int armadura;//Reduccion de danio.
     private Item botin;
 
-
     //Constructores
     public Monstruo () {
         super();
         this.danio = 0;
         this.velocidad = 0;
         this.armadura = 0;
+        this.botin = new Item();
     }
+
 
     public Monstruo(String nombreP, int saludP, int especialTEsperaP, int danio, int velocidad, int armadura, Item botin) {
         super(nombreP, saludP, especialTEsperaP);
@@ -32,6 +33,7 @@ public class Monstruo extends Entidad implements Habilidades {
         this.danio = danioP;
         this.velocidad = velocidadP;
         this.armadura = armaduraP;
+        this.botin = botinP;
 
     }
 
@@ -47,6 +49,7 @@ public class Monstruo extends Entidad implements Habilidades {
     public int getArmadura() {
         return armadura;
     }
+
 
     public Item tirarBotin() {
         return botin;
