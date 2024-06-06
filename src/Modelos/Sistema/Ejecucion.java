@@ -5,6 +5,7 @@ import Modelos.Escenarios.Escenario;
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Exceptions.ExcepcionSwitch;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,7 +15,7 @@ import java.util.Scanner;
 public class Ejecucion {
     private static Escenario escenarioActual;
 
-    public static void ejecucion() {
+    public static void ejecucion() throws JSONException {
 
         // Pasar objetos de los archivos de inventario, armas y armaduras a arrays
         Archivo archivo = new Archivo();
@@ -23,17 +24,19 @@ public class Ejecucion {
         ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
 
         // pasar info de escenarios con json
-        HashSet<EscenarioMonstruo> escenarioMonstruos = archivo.jsonAEscenarioMonstruo();
+        HashSet<Escenario> escenarioMonstruos = new HashSet<>();
+        archivo.jsonAEscenarioMonstruo(escenarioMonstruos);
+        archivo.jsonAEscenarioItem(escenarioMonstruos);
+
 
 
         // Menu
         // Leer la elección del usuario
 
-
         try (Scanner scan = new Scanner(System.in)) {
             int eleccion;
             int indice = 0;
-            Partida partida = new Partida();
+            Partida partida;
             do {
                 for (int i = 0; i < 50; ++i) System.out.println();
                 System.out.println(Ejecucion.titulo());
@@ -252,6 +255,7 @@ public class Ejecucion {
         switch (resultado) {
             case 1:
                 System.out.println("Ha ganado la batalla.");
+                System.out.println("El botin encontrado es: " + monstruo.tirarBotin().toString());
 
                 break;
 
@@ -407,9 +411,14 @@ public class Ejecucion {
                         // Si no quiere elegir una partida para eliminar y elije volver se devuelve -1
                         indice = elegirPartida(listaPartidas);
                         if (indice != -1) {
-                            Partida.eliminarPartida(listaPartidas, listaPartidas.get(indice));
-                            Partida.agregarPartidasVacias(listaPartidas);
-                            indice = 2;
+                            if(Partida.eliminarPartida(listaPartidas, listaPartidas.get(indice)))
+                            {
+                                System.out.println("Parida eliminada exitosamente");
+                                Partida.agregarPartidasVacias(listaPartidas);
+                                indice = 2;
+                                //todo hacer exeption
+                            }
+
                         } else {
                             volver = indice;
                         }

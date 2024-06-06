@@ -1,7 +1,8 @@
 package Modelos.Sistema;
 
 import Modelos.Entidades.Monstruo;
-import Modelos.Entidades.TipoDeMonstruo;
+import Modelos.Escenarios.Escenario;
+
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Items.Arma;
@@ -9,10 +10,7 @@ import Modelos.Items.Armadura;
 import Modelos.Items.Item;
 import Modelos.Items.pociones.Pocion;
 import Modelos.Items.pociones.EfectoCuracion;
-import Modelos.Items.pociones.EfectoPocion;
 import Modelos.Items.pociones.EfectoVelocidad;
-import Modelos.Items.pociones.Pocion;
-import Modelos.Sistema.JsonUtiles;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -24,12 +22,11 @@ import org.json.JSONObject;
 
 
 import java.util.HashSet;
-import java.util.Iterator;
+
 
 
 public class Archivo {
-    public Archivo() {
-    }
+
 
     //Pasar datos de archivos a listasde items
     public ArrayList<Partida> leerArchivoPartidas(String archivo) {
@@ -76,6 +73,7 @@ public class Archivo {
                 objectOutputStream.writeObject(partida);
             }
         } catch (IOException ex) {
+            System.out.println("ERROR AL LEER EL ARCHIVO");
             ex.printStackTrace();
         } finally {
             try {
@@ -89,38 +87,7 @@ public class Archivo {
     }
 
 
-    public void EscenariosMonstruoAJson(HashSet<EscenarioMonstruo> listaEscenarioMounstruos) {
-
-        JSONObject object = new JSONObject();
-        try {
-
-            for (EscenarioMonstruo escenarioMonstruo : listaEscenarioMounstruos) {
-                object.put("nombre", escenarioMonstruo.getNombre());
-                object.put("nivel", escenarioMonstruo.getNivel());
-                object.put("descripcion", escenarioMonstruo.getDescripcion());
-                JSONArray monstruosJSONArray = new JSONArray();
-
-                // Recorre la lista a monstruos y agrega a json
-                for (Monstruo monstruo : escenarioMonstruo.getListaMonstruos()) {
-                    JSONObject monstruoJSONObject = new JSONObject();
-                    monstruoJSONObject.put("nombre", monstruo.getNombre()); //agrega las propiedades de monstruo
-                    monstruoJSONObject.put("ataque", monstruo.getDanio());
-                    monstruoJSONObject.put("defensa", monstruo.getVelocidad());
-
-                    monstruosJSONArray.put(monstruoJSONObject);
-                }
-                object.put("monstruos", monstruosJSONArray);
-            }
-            JsonUtiles.grabar(object,NombreArchivos.EscenariosM.getNombre());
-
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    public static HashSet<EscenarioMonstruo> jsonAEscenarioMonstruo() {
-        HashSet<EscenarioMonstruo> listaEscenarios = new HashSet<>();
+    public static void jsonAEscenarioMonstruo(HashSet<Escenario> listaDeEscenarios) {
         try {
             // Aquí asumo que el JSON completo está almacenado en una sola cadena
             String jsonCompleto = JsonUtiles.leer(NombreArchivos.EscenariosM.getNombre());
@@ -182,8 +149,17 @@ public class Archivo {
                         listaEscenarios.add(escenario);
                     }
                 }
+
+
+                EscenarioMonstruo escenario = new EscenarioMonstruo(nombre, nivel, descripcion, listaMonstruos);
+                listaDeEscenarios.add(escenario);
+            }
+        } catch (JSONException e) {
+            System.out.println("ERROR AL LEER EL JASON");
+
             }
         }catch (JSONException e) {
+
             throw new RuntimeException(e);
         }catch (IllegalArgumentException e)
         {
@@ -192,52 +168,14 @@ public class Archivo {
         } finally {
             System.out.println("Fin");
         }
-        return listaEscenarios;
     }
 
-    public void escenarioItemAJson (HashSet<EscenarioItem> listaEscenarioItems)
-    {
-        JSONObject object = new JSONObject();
-        try
-        {
-            for (EscenarioItem escenarioItem : listaEscenarioItems) {
-                object.put("nombre", escenarioItem.getNombre());
-                object.put("nivel", escenarioItem.getNivel());
-                object.put("descripcion", escenarioItem.getDescripcion());
-                JSONArray itemsJSONArray = new JSONArray();
-
-                for (Item item : escenarioItem.getListaItems()) {
-                    JSONObject itemJSONObject = new JSONObject();
-                    itemJSONObject.put("nombre", item.getNombre());
-                    itemJSONObject.put("descripcion", item.getDescripcion());
 
 
-                    if(item instanceof Arma)
-                    {
-                        itemJSONObject.put("danio", ((Arma) item).getDanio());
-                    }else if(item instanceof Armadura)
-                    {
-                        itemJSONObject.put("defensa", ((Armadura) item).getDefensa());
-                        itemJSONObject.put("velocidad", ((Armadura) item).getVelocidad());
-                    }else if(item instanceof Pocion<?>)
-                    {
-                        EfectoPocion efecto = (EfectoPocion) ((Pocion<?>) item).getEfecto();
-                        itemJSONObject.put("efecto", efecto.getClass().getSimpleName()); //obtiene el nombre del efecto
 
-                        if(efecto instanceof EfectoCuracion)
-                        {
-                            itemJSONObject.put("cantidad curacion", ((EfectoCuracion) efecto).getCantidadCuracion());
-                        }else if(efecto instanceof EfectoVelocidad)
-                        {
-                            itemJSONObject.put("cantidad velocidad", ((EfectoVelocidad) efecto).getCantidadVelocidad());
-                        }
-                    }
-                    itemsJSONArray.put(itemJSONObject);
-                }
-                object.put("items", itemsJSONArray);
-            }
+    public void jsonAEscenarioItem(HashSet<Escenario> listaEscenarios) throws JSONException  {
 
-            JsonUtiles.grabar(object, NombreArchivos.EscenrariosI.getNombre());
+        JSONObject jsonObject = new JSONObject(JsonUtiles.leer(NombreArchivos.EscenariosM.getNombre()));
 
         }catch(JSONException e)
         {
@@ -247,44 +185,67 @@ public class Archivo {
 
     public static HashSet<EscenarioItem> jsonAEscenarioItem(JSONObject object) {
         HashSet<EscenarioItem> escenarioItems = new HashSet<>();
-        try {
-            Iterator<String> keys = object.keys();
-            while (keys.hasNext()) {
-                String key = keys.next();
-                JSONObject escenarioItemJson = object.getJSONObject(key);
-                EscenarioItem escenarioItem = new EscenarioItem();
-                escenarioItem.setNombre(escenarioItemJson.getString("nombre"));
-                escenarioItem.setNivel(escenarioItemJson.getInt("nivel"));
-                escenarioItem.setDescripcion(escenarioItemJson.getString("descripcion"));
 
-                JSONArray itemsJSONArray = escenarioItemJson.getJSONArray("items");
-                for (int i = 0; i < itemsJSONArray.length(); i++) {
-                    JSONObject itemJSONObject = itemsJSONArray.getJSONObject(i);
+        try {
+            JSONArray escenariosJSONArray = new JSONArray(jsonObject);
+
+            for (int i = 0; i < escenariosJSONArray.length(); i++) {
+                JSONObject escenarioJSONObject = escenariosJSONArray.getJSONObject(i);
+                String nombre = escenarioJSONObject.getString("nombre");
+                int nivel = escenarioJSONObject.getInt("nivel");
+                String descripcion = escenarioJSONObject.getString("descripcion");
+
+                JSONArray itemsJSONArray = escenarioJSONObject.getJSONArray("items");
+                ArrayList<Item> listaItems = new ArrayList<>();
+
+                for (int j = 0; j < itemsJSONArray.length(); j++) {
+                    JSONObject itemJSONObject = itemsJSONArray.getJSONObject(j);
+                    String nombreItem = itemJSONObject.getString("nombre");
+                    String descripcionItem = itemJSONObject.getString("descripcion");
                     Item item = null;
-                    if (itemJSONObject.getString("tipo").equals("Arma")) {
-                        // Construir un objeto Arma
-                        item = new Arma(itemJSONObject.getString("nombre"), itemJSONObject.getString("descripcion"), itemJSONObject.getInt("danio"));
-                    } else if (itemJSONObject.getString("tipo").equals("Armadura")) {
-                        // Construir un objeto Armadura
-                        item = new Armadura(itemJSONObject.getString("nombre"), itemJSONObject.getString("descripcion"), itemJSONObject.getInt("defensa"), itemJSONObject.getInt("velocidad"));
-                    } else if (itemJSONObject.getString("tipo").equals("Pocion")) {
-                        // Construir un objeto Pocion con su efecto correspondiente
-                        String efectoType = itemJSONObject.getString("efecto");
-                        if (efectoType.equals("EfectoCuracion")) {
-                            item = new Pocion<EfectoCuracion>(itemJSONObject.getString("nombre"), itemJSONObject.getString("descripcion"), new EfectoCuracion(itemJSONObject.getInt("cantidadCuracion")));
-                        } else if (efectoType.equals("EfectoVelocidad")) {
-                            item = new Pocion<EfectoVelocidad>(itemJSONObject.getString("nombre"), itemJSONObject.getString("descripcion"), new EfectoVelocidad(itemJSONObject.getInt("cantidadVelocidad")));
+
+                    if (itemJSONObject.has("danio")) {
+                        int danio = itemJSONObject.getInt("danio");
+                        item = new Arma(nombreItem, descripcionItem, danio);
+                    } else if (itemJSONObject.has("defensa")) {
+                        int defensa = itemJSONObject.getInt("defensa");
+                        int velocidad = itemJSONObject.getInt("velocidad");
+                        item = new Armadura(nombreItem, descripcionItem, defensa, velocidad);
+                    } else if (itemJSONObject.has("tipo")) {
+                        String tipo = itemJSONObject.getString("tipo");
+                        String efecto = itemJSONObject.getString("efecto");
+
+                        if ("Pocion".equals(tipo)) {
+                            int cantidadCuracion = itemJSONObject.optInt("cantidadCuracion", 0);
+                            int cantidadVelocidad = itemJSONObject.optInt("cantidadVelocidad", 0);
+                            switch (efecto) {
+                                case "EfectoCuracion":
+                                    item = new Pocion<EfectoCuracion>(nombreItem, descripcionItem, new EfectoCuracion(cantidadCuracion));
+                                    break;
+                                case "EfectoVelocidad":
+                                    item = new Pocion<EfectoVelocidad>(nombreItem, descripcionItem, new EfectoVelocidad(cantidadVelocidad));
+                                    break;
+                                default:
+                                    // Manejar cualquier otro tipo de efecto
+                            }
                         }
                     }
-                    escenarioItem.agregarItem(item);
+
+                    if (item != null) {
+                        listaItems.add(item);
+                    }
                 }
-                escenarioItems.add(escenarioItem);
+
+                EscenarioItem escenarioItem = new EscenarioItem(nombre, nivel, descripcion, listaItems);
+                listaEscenarios.add(escenarioItem);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            System.out.println("ERROR AL LEER EL JASON");
+            throw new RuntimeException(e);
         }
-        return escenarioItems;
+
     }
+
 
 
 }

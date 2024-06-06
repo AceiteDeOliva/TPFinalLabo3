@@ -9,7 +9,6 @@ public class Monstruo extends Entidad implements Habilidades {
     private int velocidad;
     private int armadura;//Reduccion de danio.
     private Item botin;
-    private TipoDeMonstruo tipoDeMonstruo;
 
     //Constructores
     public Monstruo () {
@@ -19,13 +18,23 @@ public class Monstruo extends Entidad implements Habilidades {
         this.armadura = 0;
         this.botin = new Item();
     }
-    
-    public Monstruo(String nombreP, int saludP, int danioP, int velocidadP, int armaduraP, Item botinP) {
+
+
+    public Monstruo(String nombreP, int saludP, int especialTEsperaP, int danio, int velocidad, int armadura, Item botin) {
+        super(nombreP, saludP, especialTEsperaP);
+        this.danio = danio;
+        this.velocidad = velocidad;
+        this.armadura = armadura;
+        this.botin = botin;
+    }
+
+    public Monstruo(String nombreP, int saludP, int danioP, int velocidadP, int armaduraP) {//todo para que sirve este constructor?
         super(nombreP, saludP,2);
         this.danio = danioP;
         this.velocidad = velocidadP;
         this.armadura = armaduraP;
         this.botin = botinP;
+
     }
 
     //Getters
@@ -41,7 +50,8 @@ public class Monstruo extends Entidad implements Habilidades {
         return armadura;
     }
 
-    public Item getBotin() {
+
+    public Item tirarBotin() {
         return botin;
     }
 
@@ -87,7 +97,6 @@ public class Monstruo extends Entidad implements Habilidades {
             jugador.recibirDanio(danio);
         }
         return danio;
-
     }
     @Override
     public  boolean estaVivo() { //devuelve si el monstruo esta vivo o no
@@ -105,10 +114,11 @@ public class Monstruo extends Entidad implements Habilidades {
 
     @Override
     public String toString() {
-        return "Monstruo: " + super.toString() +
-                "Danio=" + danio +
-                ",Velocidad=" + velocidad +
-                ",Armadura=" + armadura +
-                ",TipoDeMonstruo: " + tipoDeMonstruo;
+        return "Monstruo{" +
+                "danio=" + danio +
+                ", velocidad=" + velocidad +
+                ", armadura=" + armadura +
+                ", botin=" + botin +
+                '}';
     }
 }

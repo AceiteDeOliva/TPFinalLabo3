@@ -4,18 +4,10 @@ import Modelos.Entidades.Monstruo;
 import Modelos.Entidades.Personaje;
 import Modelos.Escenarios.Escenario;
 import Modelos.Escenarios.EscenarioItem;
-import Modelos.Escenarios.EscenarioMonstruo;
 import Modelos.Items.Item;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import java.util.HashSet;
-
-import java.util.Iterator;
-
-import java.util.Random;
+import java.util.*;
 
 
 public class Partida implements Serializable {
@@ -111,9 +103,16 @@ public class Partida implements Serializable {
         return "" + nuevoItem;
     }
 
-    public void monstruosAArrayList(HashSet<EscenarioMonstruo> listaMonstruos)
-    {
+    public void escenariosAHashMap(HashSet<Escenario> listaEscenarios) { //funcion que ordena los monstruos por nivel en listas
+        Iterator<Escenario> iterator = listaEscenarios.iterator(); //Se crea iterator para recorrer la lista
 
+        //noinspection WhileLoopReplaceableByForEach
+        while (iterator.hasNext()) {
+            Escenario escenarioIterado = iterator.next();
+            //recibe la lista del nivel y si la lista no existe crea una nueva lista
+            ArrayList<Escenario> listaNivel = escenarios.computeIfAbsent(escenarioIterado.getNivel(), k -> new ArrayList<>());
+            listaNivel.add(escenarioIterado); // Agrega el escenario al nivel
+        }
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -124,6 +123,7 @@ public class Partida implements Serializable {
             if (!monstruo.estaVivo()) {
                 resultado = 1; //devuelve 1 si el jugador ha ganado la batalla
                 nivelActual += 1;
+                jugador.agregarItem(monstruo.tirarBotin());
             }
         } else {
             resultado = -1; //devuelve -1 si el jugador a perdido la batalla
@@ -151,14 +151,14 @@ public class Partida implements Serializable {
 
     }
     //Eliminar una partida de la lista
-    public static int eliminarPartida(ArrayList<Partida> listaPartidas, Partida partidaEliminar) {
+    public static boolean eliminarPartida(ArrayList<Partida> listaPartidas, Partida partidaEliminar) {
         Iterator<Partida> iter = listaPartidas.iterator();
-        int flag = 0;
+        boolean flag = false;
         while (iter.hasNext()) {
             Partida partida = iter.next();
             if (partida.equals(partidaEliminar)) {
                 iter.remove(); // Eliminar de forma segura utilizando el iterador
-                flag = 1;
+                flag = true;
             }
         }
         return flag;
