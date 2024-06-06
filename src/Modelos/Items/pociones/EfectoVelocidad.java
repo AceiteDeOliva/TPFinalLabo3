@@ -15,13 +15,13 @@ public class EfectoVelocidad extends EfectoPocion{ //todo hacer que el efecto so
     }
 
     public EfectoVelocidad(int cantidadVelocidad) {
-        super("Curacion");
+        super("Velocidad");
         this.cantidadVelocidad = cantidadVelocidad;
     }
 
     @Override
     public void aplicarEfecto(Personaje personaje) {
-        personaje.curar(cantidadVelocidad);
+        personaje.aumentarVelocidad(cantidadVelocidad);
     }
 
 }
