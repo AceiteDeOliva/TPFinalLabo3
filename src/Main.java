@@ -9,7 +9,7 @@ import Modelos.Sistema.Partida;
 
 public class Main {
 
-    public static void main(String[] args) throws ExcepcionSwitch {
+    public static void main(String[] args){
         Ejecucion.figuras();
         Ejecucion.esperar(1);
         Ejecucion.pantallaDeCarga();
