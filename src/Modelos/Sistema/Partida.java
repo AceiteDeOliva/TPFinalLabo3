@@ -131,6 +131,7 @@ public class Partida implements Serializable {
             if (!monstruo.estaVivo()) {
                 resultado = 1; //devuelve 1 si el jugador ha ganado la batalla
                 nivelActual += 1;
+                jugador.agregarItem(monstruo.tirarBotin());
             }
         } else {
             resultado = -1; //devuelve -1 si el jugador a perdido la batalla

@@ -254,6 +254,7 @@ public class Ejecucion {
         switch (resultado) {
             case 1:
                 System.out.println("Ha ganado la batalla.");
+                System.out.println("El botin encontrado es: " + monstruo.tirarBotin().toString());
 
                 break;
 
