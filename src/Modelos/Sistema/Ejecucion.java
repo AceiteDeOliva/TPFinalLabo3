@@ -28,9 +28,10 @@ public class Ejecucion {
         // pasar info de escenarios con json
         HashSet<Escenario> escenarioMonstruos = new HashSet<>();
 
-        //archivo.jsonAEscenarioMonstruo(escenarioMonstruos);
+        archivo.jsonAEscenarioMonstruo(escenarioMonstruos);
 
         archivo.jsonAEscenarioItem(escenarioMonstruos);
+
         listaPartidas.add(new Partida(new Personaje("mili", TipoDePersonaje.ASESINO)));
 
 
@@ -209,6 +210,7 @@ public class Ejecucion {
 
         System.out.println("Ingrese un nombre para su personaje:");
         String nombrePersonaje = scan.nextLine();
+        scan.nextLine(); // Limpiar el buffer
 
         // Solicitar al usuario que elija un tipo de personaje mediante un número
         System.out.println("Seleccione el tipo de su personaje:");

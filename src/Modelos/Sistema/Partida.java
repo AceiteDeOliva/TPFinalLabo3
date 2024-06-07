@@ -180,7 +180,7 @@ public class Partida implements Serializable {
         Archivo archivo = new Archivo();
         ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
 
-        System.out.println("Lista de partidas leídas:");
+
         for (Partida p : listaPartidas) {
             System.out.println(p);
         }
