@@ -48,7 +48,7 @@ public class Ejecucion {
         Partida partida;
         do {
 
-            for (int i = 0; i < 50; ++i) System.out.println();
+            limpiarConsola();
             System.out.println(Ejecucion.titulo());
             // Presentar las opciones del menú
             System.out.println("1.Jugar");
@@ -247,11 +247,7 @@ public class Ejecucion {
     public static void manejarEncuentro(Partida partida, ArrayList<Partida> listaPartidas) {//funcion que maneja la eleccion de encuentros
         int respuesta = -1;
         while (partida.getJugador().estaVivo() && respuesta != 0) {
-            try {
-                LimpiarConsola.limpiarConsola();
-            } catch (IOException | InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            limpiarConsola();
             respuesta = elegirEncuentro(partida); //funcion en la que elegis un encuentro
             if(respuesta == 0){
                 break;
@@ -595,6 +591,13 @@ public class Ejecucion {
             Thread.sleep((long) segundos * 1000); // Convertimos 'segundos' a 'long' antes de multiplicar
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
+        }
+    }
+
+    public static void limpiarConsola(){
+        for(int i = 0;i < 50;i++){
+            System.out.println(" ");
+
         }
     }
 }
