@@ -1,8 +1,4 @@
-
-import Modelos.Entidades.Personaje;
-import Modelos.Exceptions.ExcepcionSwitch;
 import Modelos.Sistema.Ejecucion;
-import Modelos.Sistema.Partida;
 import org.json.JSONException;
 
 
