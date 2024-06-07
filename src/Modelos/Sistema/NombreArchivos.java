@@ -3,7 +3,7 @@ package Modelos.Sistema;
 public enum NombreArchivos {
 
     Partidas("Partidas.dat"),
-    EscenariosM("Escenarios Monstruos"),
+    EscenariosM("src/Escenarios Monstruos"),
     EscenariosI("src/Escenarios Items");
 
     private String nombre;

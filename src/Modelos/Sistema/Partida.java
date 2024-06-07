@@ -181,7 +181,7 @@ public class Partida implements Serializable {
         ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
 
         // Debugging information to check if the list is being populated correctly
-        System.out.println("Lista de partidas leídas:");
+
         for (Partida p : listaPartidas) {
             System.out.println(p); // Make sure Partida has a meaningful toString() method
         }

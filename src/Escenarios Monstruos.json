@@ -1,0 +1,750 @@
+[
+        {
+            "nombre": "La Cripta de los Ecos",
+            "descripcion": "Delante de ti, una entrada de piedra tallada en la roca te invita a descender. Cada paso que das envía un eco resonante que parece multiplicarse en la vastedad oculta. El aire se vuelve más denso y pesado con cada paso, y la sensación de ser observado desde las sombras se intensifica, como si las paredes estuvieran vivas con el espíritu de los que descansan aquí.",
+            "nivel": 1,
+            "monstruos": [
+                {
+                    "nombre": "Rata Directa",
+                    "velocidad": 7,
+                    "danio": 7,
+                    "armadura": 3,
+                    "salud": 35,
+                    "botin": {
+                        "nombre": "Pocion Mayor  Agilidad",
+                        "descripcion": "Aumenta ligeramente la agilidad del usuario.",
+                        "tipo": "Pocion",
+                        "efecto": "EfectoVelocidad",
+                        "cantidadVelocidad": 10
+                    }
+                },
+                {
+                    "nombre": "Esqueleto Errante",
+                    "velocidad": 6,
+                    "danio": 8,
+                    "armadura": 4,
+                    "salud": 40,
+                    "botin": {
+                        "nombre": "Escudo Desgastado",
+                        "descripcion": "Escudo que aunque esté usado ofrece mejor defensa que uno básico.",
+                        "defensa": 20,
+                        "velocidad": 32
+                    }
+                },
+                {
+                    "nombre": "Lobo Salvaje",
+                    "velocidad": 9,
+                    "danio": 7,
+                    "armadura": 2,
+                    "salud": 25,
+                    "botin": {
+                        "nombre": "Capa de Piel de Lobo",
+                        "descripcion": "Una capa que otorga velocidad y seguridad en la oscuridad, inspirada en el lobo nocturno.",
+                        "defensa": 44,
+                        "velocidad": 50
+                    }
+                },
+                {
+                    "nombre": "Alma Perdida",
+                    "velocidad": 5,
+                    "danio": 7,
+                    "armadura": 6,
+                    "salud": 40,
+                    "botin": {
+                        "nombre": "Pocion de Espíritu",
+                        "descripcion": "Una poción que restaura el alma de aquel que la bebe.",
+                        "tipo": "Pocion",
+                        "efecto": "EfectoCuracion",
+                        "cantidadCuracion": 40
+                    }
+                },
+                {
+                    "nombre": "Golem de Piedra",
+                    "velocidad": 4,
+                    "danio": 10,
+                    "armadura": 7,
+                    "salud": 50,
+                    "botin": {
+                        "nombre": "Martillo de Piedra",
+                        "descripcion": "Un pesado martillo tallado en una roca sólida.",
+                        "danio": 15
+                    }
+                }
+            ]
+        },
+        {
+            "nombre": "El Bosque Petrificado",
+            "descripcion": "Desde la entrada, puedes ver árboles enormes y retorcidos que han sido convertidos en piedra, sus ramas inmóviles extendiéndose como garras hacia el cielo oscuro. Un silencio inquietante reina en el lugar, y la escasa luz que penetra apenas logra revelar el camino. La sensación de antigüedad y de algo olvidado hace que el aire se sienta pesado y cargado de misterio.",
+            "nivel": 1,
+            "monstruos": []
+        },
+        {
+            "nombre": "La Laguna Negra",
+            "descripcion": "Las aguas negras del lago delante de ti son inquietantemente quietas. Reflejan sombras que parecen moverse de manera independiente, creando figuras que bailan y se retuercen. Hay una sensación de inquietud en el aire, como si algo acechara justo bajo la superficie.",
+            "nivel": 1,
+            "monstruos": [
+                {
+                    "nombre": "Duende",
+                    "velocidad": 8,
+                    "danio": 6,
+                    "armadura": 3,
+                    "salud": 30,
+                    "botin": {
+                        "nombre": "Daga Oxidada",
+                        "descripcion": "Una daga antigua y oxidada, menos efectiva en combate pero aún peligrosa.",
+                        "danio": 10
+                    }
+                },
+                {
+                    "nombre": "Bruja del Pantano",
+                    "velocidad": 5,
+                    "danio": 9,
+                    "armadura": 4,
+                    "salud": 40,
+                    "botin": {
+                        "nombre": "Pocion de Mana",
+                        "descripcion": "Esta poción, destilada en las profundidades de los bosques encantados, revitaliza al bebedor con energías místicas, llenando su ser con la esencia misma de la magia.",
+                        "tipo": "Pocion",
+                        "efecto": "EfectoCuracion",
+                        "cantidadCuracion": 50
+                    }
+                },
+                {
+                    "nombre": "Arania Encantada",
+                    "velocidad": 7,
+                    "danio": 5,
+                    "armadura": 5,
+                    "salud": 35,
+                    "botin": {
+                        "nombre": "Látigo de Araña Fuerte",
+                        "descripcion": "Un látigo fabricado con hilos de tela de araña extremadamente fuertes, adecuado para atrapar y someter a los enemigos.",
+                        "danio": 11
+                    }
+                },
+                {
+                    "nombre": "Acechador de Sombras",
+                    "velocidad": 6,
+                    "danio": 6,
+                    "armadura": 6,
+                    "salud": 35,
+                    "botin": {
+                        "nombre": "Daga de Sombras",
+                        "descripcion": "Una daga oscura que brilla con energía misteriosa.",
+                        "danio": 12
+                    }
+                },
+                {
+                    "nombre": "Jabali Acorazado",
+                    "velocidad": 7,
+                    "danio": 8,
+                    "armadura": 5,
+                    "salud": 30,
+                    "botin": {
+                        "nombre": "Armadura de Cuero",
+                        "descripcion": "Una armadura hecha de cuero resistente, ideal para la defensa básica.",
+                        "defensa": 15,
+                        "velocidad": 12
+                    }
+                }
+            ]
+        },
+        {
+            "nombre": "La Garganta Susurrante",
+            "descripcion": "Frente a ti, la entrada de la caverna parece exhalar un murmullo inquietante. El aire que sale está cargado de voces incomprensibles, como si la misma roca hablara. La oscuridad interior es densa, prometiendo secretos olvidados y peligros ocultos.",
+            "nivel": 2,
+            "monstruos": [
+                {
+                    "nombre": "Goblin Maestro",
+                    "velocidad": 9,
+                    "danio": 9,
+                    "armadura": 5,
+                    "salud": 45,
+                    "botin": {
+                        "nombre": "Espada Rota",
+                        "descripcion": "Una espada quebrada y desgastada, apenas útil en combate.",
+                        "danio": 5
+                    }
+                },
+                {
+                    "nombre": "Rata Gigante Alfa",
+                    "velocidad": 10,
+                    "danio": 10,
+                    "armadura": 6,
+                    "salud": 50,
+                    "botin": {
+                        "nombre": "Pocion de Inteligencia Menor",
+                        "descripcion": "Una poción que aumenta temporalmente la inteligencia del bebedor, mejorando su capacidad para resolver problemas y comprender conceptos.",
+                        "tipo": "Pocion",
+                        "efecto": "EfectoCuracion",
+                        "cantidadCuracion": 30
+                    }
+                },
+                {
+                    "nombre": "Lobo Alfa Legendario",
+                    "velocidad": 12,
+                    "danio": 10,
+                    "armadura": 4,
+                    "salud": 40,
+                    "botin": {
+                        "nombre": "Armadura de Piel de Lobo",
+                        "descripcion": "Una armadura resistente hecha de la piel del legendario lobo alfa, que otorga protección contra ataques físicos y mágicos.",
+                        "defensa": 60,
+                        "velocidad": 30
+                    }
+                },
+                {
+                    "nombre": "Arania Venenosa Reina",
+                    "velocidad": 10,
+                    "danio": 8,
+                    "armadura": 7,
+                    "salud": 45,
+                    "botin": {
+                        "nombre": "Pocion de Veneno",
+                        "descripcion": "Una poción que inflige veneno al objetivo, causando daño con el tiempo.",
+                        "tipo": "Pocion",
+                        "efecto": "EfectoCuracion",
+                        "cantidadCuracion": 20
+                    }
+                },
+                {
+                    "nombre": "Jabali Acorazado con Colmillos Jefe",
+                    "velocidad": 8,
+                    "danio": 11,
+                    "armadura": 8,
+                    "salud": 50,
+                    "botin": {
+                        "nombre": "Armadura de Cuero Reforzado",
+                        "descripcion": "Una armadura mejorada hecha de cuero resistente, que ofrece una defensa significativamente mayor que la armadura de cuero básica.",
+                        "defensa": 40,
+                        "velocidad": 40
+                    }
+                }
+            ]
+        },
+        {
+            "nombre": "El Abismo Eterno",
+            "descripcion": "Al borde del precipicio, solo puedes ver una oscuridad insondable extendiéndose más allá de la vista. La brisa que sopla desde abajo es fría y lleva consigo un susurro vacío. Te invade una sensación de vértigo, como si el abismo intentara atraerte hacia su eterna caída.",
+            "nivel": 2,
+            "monstruos": [
+                {
+                    "nombre": "Arquero Esqueleto Líder",
+                    "velocidad": 8,
+                    "danio": 11,
+                    "armadura": 4,
+                    "salud": 40,
+                    "botin": {
+                        "nombre": "Arco Desgastado",
+                        "descripcion": "Un arco antiguo y desgastado que alguna vez fue una herramienta letal en manos de un arquero experto.",
+                        "danio": 8
+                    }
+                },
+                {
+                    "nombre": "Hechicera",
+                    "velocidad": 6,
+                    "danio": 12,
+                    "armadura": 6,
+                    "salud": 45,
+                    "botin": {
+                        "nombre": "Pocion de Mana",
+                        "descripcion": "Esta poción, destilada en las profundidades de los bosques encantados, revitaliza al bebedor con energías místicas, llenando su ser con la esencia misma de la magia.",
+                        "tipo": "Pocion",
+                        "efecto": "EfectoCuracion",
+                        "cantidadCuracion": 50
+                    }
+                },
+                {
+                    "nombre": "Espectro de Sombras",
+                    "velocidad": 8,
+                    "danio": 9,
+                    "armadura": 6,
+                    "salud": 45,
+                    "botin": {
+                        "nombre": "Espada de Sombras",
+                        "descripcion": "Una espada oscura imbuida con el poder de las sombras, capaz de infligir daño devastador a los enemigos.",
+                        "danio": 15
+                    }
+                },
+                {
+                    "nombre": "Banshee Aullante",
+                    "velocidad": 4,
+                    "danio": 12,
+                    "armadura": 6,
+                    "salud": 40,
+                    "botin": {
+                        "nombre": "Pocion de Grito",
+                        "descripcion": "Una poción que, al ser consumida, otorga al usuario la capacidad de emitir un grito ensordecedor que aturde a los enemigos cercanos.",
+                        "efecto": "EfectoCuracion",
+                        "cantidadCuracion": 50
+                    }
+                },
+                {
+                    "nombre": "Guardián de la Cripta Protector",
+                    "velocidad": 4,
+                    "danio": 13,
+                    "armadura": 11,
+                    "salud": 55,
+                    "botin": {
+                        "nombre": "Pocion de Proteccion",
+                        "descripcion": "Una poción que fortalece la resistencia del bebedor, envolviéndolo en un aura protectora que aumenta su salud una vez usada.",
+                        "efecto": "EfectoCuracion",
+                        "cantidadCuracion": 10
+                    }
+                }
+            ]
+        },
+        {
+            "nombre": "Las Cavernas del Olvido",
+            "descripcion": "Frente a ti se abre una vasta caverna con estalactitas y estalagmitas que parecen dientes afilados de una bestia gigantesca. La humedad se cuela en tus huesos y un eco constante de gotas de agua crea un ritmo inquietante. La oscuridad profunda sugiere que muchos han entrado pero pocos han salido, dejando sus historias para perderse en el olvido.",
+            "nivel": 3,
+            "monstruos": [
+                {
+                    "nombre": "Ogro Devorador de Hombres",
+                    "velocidad": 13,
+                    "danio": 15,
+                    "armadura": 10,
+                    "salud": 70,
+                    "botin": {
+                        "nombre": "Maza Grande",
+                        "descripcion": "Una enorme maza utilizada por los ogros para aplastar a sus enemigos con fuerza bruta.",
+                        "danio": 20
+                    }
+                },
+                {
+                    "nombre": "Dragón de las Llamas",
+                    "velocidad": 18,
+                    "danio": 20,
+                    "armadura": 12,
+                    "salud": 90,
+                    "botin": {
+                        "nombre": "Espada de Fuego",
+                        "descripcion": "Una espada forjada en las llamas del dragón, que arde con fuego mágico capaz de quemar a los enemigos con su mera presencia.",
+                        "danio": 25
+                    }
+                },
+                {
+                    "nombre": "Behemoth de las Sombras",
+                    "velocidad": 12,
+                    "danio": 16,
+                    "armadura": 12,
+                    "salud": 80,
+                    "botin": {
+                        "nombre": "Armadura de Sombras",
+                        "descripcion": "Una armadura oscura que otorga una defensa sobrenatural, envolviendo al portador en sombras protectoras.",
+                        "defensa": 30,
+                        "velocidad": 40
+                    }
+                },
+                {
+                    "nombre": "Gárgola",
+                    "velocidad": 16,
+                    "danio": 14,
+                    "armadura": 10,
+                    "salud": 55,
+                    "botin": {
+                        "nombre": "Escudo de Piedra",
+                        "descripcion": "Un escudo tallado en la roca sólida, que ofrece una defensa formidable contra los ataques enemigos.",
+                        "defensa": 25,
+                        "velocidad": 30
+                    }
+                },
+                {
+                    "nombre": "Manticora",
+                    "velocidad": 19,
+                    "danio": 23,
+                    "armadura": 10,
+                    "salud": 70,
+                    "botin": {
+                        "nombre": "Espada de Manticora",
+                        "descripcion": "Una espada hecha con los colmillos afilados de la manticora, que puede desgarrar a los enemigos con su afilada hoja.",
+                        "danio": 28
+                    }
+                }
+            ]
+        },
+        {
+            "nombre": "La Gruta de las Lamentaciones",
+            "descripcion": "Una entrada angosta lleva a una gruta donde el aire es espeso y el ambiente opresivo. Desde fuera, se escucha un lamento continuo, como si las paredes mismas guardaran recuerdos de antiguas tragedias. El suelo está cubierto de una fina capa de polvo que parece no haber sido perturbada en siglos.",
+            "nivel": 3,
+            "monstruos": [
+                {
+                    "nombre": "Mago Arcano",
+                    "velocidad": 10,
+                    "danio": 18,
+                    "armadura": 8,
+                    "salud": 60,
+                    "botin": {
+                        "nombre": "Poción de Mana Superior",
+                        "descripcion": "Una poción de mana de gran potencia, capaz de revitalizar al usuario con una cantidad considerable de energía mágica.",
+                        "tipo": "Poción",
+                        "efecto": "EfectoCuracion",
+                        "cantidadCuracion": 70
+                    }
+                },
+                {
+                    "nombre": "Centauro Cazador",
+                    "velocidad": 20,
+                    "danio": 17,
+                    "armadura": 7,
+                    "salud": 65,
+                    "botin": {
+                        "nombre": "Arco del Centauro",
+                        "descripcion": "Un arco hecho con madera de roble de los bosques más antiguos, capaz de lanzar flechas con gran precisión y fuerza.",
+                        "danio": 22
+                    }
+                },
+                {
+                    "nombre": "Hidra Venenosa",
+                    "velocidad": 15,
+                    "danio": 19,
+                    "armadura": 11,
+                    "salud": 75,
+                    "botin": {
+                        "nombre": "Poción de Veneno Potente",
+                        "descripcion": "Una poción que, a pesar de su etiqueta errónea que indica un veneno potente, en realidad contiene una mezcla curativa poderosa, capaz de sanar al bebedor y restaurar su vitalidad.",
+                        "tipo": "Poción",
+                        "efecto": "EfectoCuracion",
+                        "cantidadCuracion": 30
+                    }
+                },
+                {
+                    "nombre": "Guardián de los Lamentos",
+                    "velocidad": 13,
+                    "danio": 21,
+                    "armadura": 9,
+                    "salud": 55,
+                    "botin": {
+                        "nombre": "Armadura de Lamentos",
+                        "descripcion": "Una armadura antigua que emite un lamento siniestro cuando se usa, protegiendo al portador con su aura melancólica.",
+                        "defensa": 28,
+                        "velocidad": 50
+                    }
+                },
+                {
+                    "nombre": "Espíritu Elemental",
+                    "velocidad": 17,
+                    "danio": 22,
+                    "armadura": 8,
+                    "salud": 60,
+                    "botin": {
+                        "nombre": "Poción Elemental",
+                        "descripcion": "Una poción que canaliza el poder elemental del mundo, otorgando al usuario habilidades mágicas de curacion.",
+                        "tipo": "Poción",
+                        "efecto": "EfectoCuracion",
+                        "cantidadCuracion": 50
+                    }
+                }
+            ]
+        },
+        {
+            "nombre": "El Altar de los Secretos",
+            "descripcion": "A lo lejos, ves un antiguo altar de piedra iluminado por una luz espectral que no tiene fuente visible. El aire está cargado con la sensación de un poder antiguo y prohibido. Las paredes circundantes están cubiertas de runas y tallas que emiten un brillo suave y siniestro. Cada paso hacia el altar hace que la sensación de peligro y revelación aumente, como si secretos oscuros estuvieran a punto de ser desvelados.",
+            "nivel": 4,
+            "monstruos": [
+                {
+                    "nombre": "Dragón de Escamas Doradas",
+                    "velocidad": 28,
+                    "danio": 32,
+                    "armadura": 30,
+                    "salud": 180,
+                    "botin": {
+                        "nombre": "Espada de Fuego",
+                        "descripcion": "Una espada forjada en el corazón de un volcán, capaz de infligir daño ardiente a sus enemigos.",
+                        "danio": 40
+                    }
+                },
+                {
+                    "nombre": "Quimera Alada",
+                    "velocidad": 25,
+                    "danio": 35,
+                    "armadura": 20,
+                    "salud": 200,
+                    "botin": {
+                        "nombre": "Armadura de Quimera",
+                        "descripcion": "Una armadura hecha con las pieles y escamas de la quimera, otorgando al usuario protección contra una variedad de ataques.",
+                        "defensa": 38,
+                        "velocidad": 20
+                    }
+                },
+                {
+                    "nombre": "Dragón de Hielo",
+                    "velocidad": 22,
+                    "danio": 40,
+                    "armadura": 24,
+                    "salud": 160,
+                    "botin": {
+                        "nombre": "Espada de Hielo",
+                        "descripcion": "Una espada hecha de hielo mágico, capaz de congelar a sus enemigos con un solo golpe.",
+                        "danio": 35
+                    }
+                },
+                {
+                    "nombre": "Grifo Majestuoso",
+                    "velocidad": 23,
+                    "danio": 38,
+                    "armadura": 21,
+                    "salud": 160,
+                    "botin": {
+                        "nombre": "Poción de Agilidad",
+                        "descripcion": "Una poción que aumenta la agilidad del usuario, permitiéndole moverse más rápido y esquivar ataques con mayor facilidad.",
+                        "tipo": "Poción",
+                        "efecto": "EfectoVelocidad",
+                        "cantidadVelocidad": 15
+                    }
+                },
+                {
+                    "nombre": "Fénix Inmortal",
+                    "velocidad": 31,
+                    "danio": 30,
+                    "armadura": 25,
+                    "salud": 210,
+                    "botin": {
+                        "nombre": "Poción de Renacimiento",
+                        "descripcion": "Una poción que otorga al usuario la capacidad de renacer de sus cenizas una vez que es derrotado, restaurando su salud y energía al máximo.",
+                        "tipo": "Poción",
+                        "efecto": "EfectoCuracion",
+                        "CantidadCuracion": 30
+                    }
+                }
+            ]
+        },
+        {
+            "nombre": "Las Ruinas Sumergidas",
+            "descripcion": "A través del agua cristalina, se pueden ver los restos de una ciudad antigua sumergida. Columnas caídas y estructuras derrumbadas se alzan desde el lecho del lago, envueltas en algas y corales. La tranquilidad del agua contrasta con la sensación de desolación y olvido que emana de las ruinas.",
+            "nivel": 4,
+            "monstruos": [
+                {
+                    "nombre": "Coloso Abisal",
+                    "velocidad": 26,
+                    "danio": 36,
+                    "armadura": 25,
+                    "salud": 190,
+                    "botin": {
+                        "nombre": "Poción de Poder Abisal",
+                        "descripcion": "Una poción que otorga poderes abisales al bebedor, aumentando velocidad durante un corto período de tiempo.",
+                        "tipo": "Poción",
+                        "efecto": "EfectoVelociad",
+                        "cantidadVelocidad": 0
+                    }
+                },
+                {
+                    "nombre": "Basilisco de la Mirada Mortal",
+                    "velocidad": 24,
+                    "danio": 38,
+                    "armadura": 22,
+                    "salud": 170,
+                    "botin": {
+                        "nombre": "Espada de Basilisco",
+                        "descripcion": "Una espada forjada con la mirada mortal del basilisco, capaz de petrificar a sus enemigos con un solo golpe.",
+                        "danio": 40
+                    }
+                },
+                {
+                    "nombre": "Titán Acuático",
+                    "velocidad": 30,
+                    "danio": 30,
+                    "armadura": 28,
+                    "salud": 210,
+                    "botin": {
+                        "nombre": "Poción de Fuerza Titánica",
+                        "descripcion": "Una poción que infunde al bebedor la fuerza y la resistencia de un titán, permitiéndole Curarse.",
+                        "tipo": "Poción",
+                        "efecto": "EfectoCuracion",
+                        "cantidadCuracion": 0
+                    }
+                },
+                {
+                    "nombre": "Gólem de Adamantita",
+                    "velocidad": 27,
+                    "danio": 33,
+                    "armadura": 27,
+                    "salud": 220,
+                    "botin": {
+                        "nombre": "Armadura de Adamantita",
+                        "descripcion": "Una armadura creada con el indestructible metal de adamantita, que ofrece una protección superior contra todo tipo de ataques.",
+                        "defensa": 50,
+                        "velocidad": 30
+                    }
+                },
+                {
+                    "nombre": "Leviatán de las Profundidades",
+                    "velocidad": 29,
+                    "danio": 34,
+                    "armadura": 26,
+                    "salud": 230,
+                    "botin": {
+                        "nombre": "Escudo de Leviatán",
+                        "descripcion": "Un escudo tallado con la piel escamosa del leviatán, conocido por su resistencia excepcional tanto en tierra como en el agua.",
+                        "defensa": 40,
+                        "velocidad": 20
+                    }
+                }
+            ]
+        },
+        {
+            "nombre": "Las Catacumbas Prohibidas",
+            "descripcion": "Un pasadizo estrecho y oscuro se extiende hacia las catacumbas, donde se dice que descansan los restos de aquellos que jamás encontraron paz. La atmósfera es pesada y cargada, y el aire está lleno del olor a moho y tierra. La sensación de que algo antiguo y poderoso yace en espera es ineludible.",
+            "nivel": 5,
+            "monstruos": [
+                {
+                    "nombre": "Titán de la Oscuridad",
+                    "velocidad": 30,
+                    "danio": 50,
+                    "armadura": 35,
+                    "salud": 330,
+                    "botin": {
+                        "nombre": "Armadura de Oscuridad",
+                        "descripcion": "Una armadura forjada en las profundidades de la oscuridad, que otorga al usuario poderes sombríos y una resistencia excepcional contra la luz.",
+                        "defensa": 60,
+                        "Velocidad": 40
+                    }
+                },
+                {
+                    "nombre": "Behemoth de la Desolación",
+                    "velocidad": 34,
+                    "danio": 48,
+                    "armadura": 38,
+                    "salud": 340,
+                    "botin": {
+                        "nombre": "Espada de Desolación",
+                        "descripcion": "Una espada imbuida con el poder de la desolación, capaz de sembrar la destrucción y el caos en su camino.",
+                        "danio": 55
+                    }
+                },
+                {
+                    "nombre": "Ente Espectral Antiguo",
+                    "velocidad": 42,
+                    "danio": 40,
+                    "armadura": 48,
+                    "salud": 380,
+                    "botin": {
+                        "nombre": "Poción de Espíritu Ancestral",
+                        "descripcion": "Una poción que invoca los espíritus ancestrales para fortalecer su espíritu interior mejorando su velocidad.",
+                        "tipo": "Poción",
+                        "efecto": "EfectoVelocidad",
+                        "cantidadVelocidad": 0
+                    }
+                },
+                {
+                    "nombre": "Devorador de Almas",
+                    "velocidad": 30,
+                    "danio": 65,
+                    "armadura": 55,
+                    "salud": 410,
+                    "botin": {
+                        "nombre": "Poción de Alma",
+                        "descripcion": "Una poción que absorbe las almas de los enemigos caídos, otorgando al bebedor mas salud.",
+                        "tipo": "Poción",
+                        "efecto": "EfectoCuracion",
+                        "cantidadCuracion": 30
+                    }
+                },
+                {
+                    "nombre": "Dragón de las Sombras",
+                    "velocidad": 32,
+                    "danio": 45,
+                    "armadura": 40,
+                    "salud": 320,
+                    "botin": {
+                        "nombre": "Espada de las Sombras",
+                        "descripcion": "Una espada imbuida con el poder de las sombras, capaz de oscurecer la luz y consumir la esperanza de sus enemigos.",
+                        "danio": 50
+                    }
+                },
+                {
+                    "nombre": "Guardián de las Sombras",
+                    "velocidad": 46,
+                    "danio": 40,
+                    "armadura": 35,
+                    "salud": 330,
+                    "botin": {
+                        "nombre": "Lanza de las Sombras",
+                        "descripcion": "Una lanza forjada en la oscuridad, que emana un aura sombría y es capaz de atravesar incluso las defensas más sólidas.",
+                        "danio": 45
+                    }
+                },
+                {
+                    "nombre": "Coloso de la Ruina",
+                    "velocidad": 32,
+                    "danio": 60,
+                    "armadura": 48,
+                    "salud": 400,
+                    "botin": {
+                        "nombre": "Espada de la Ruina",
+                        "descripcion": "Una espada que encarna la destrucción y el caos, capaz de reducir a escombros las fortalezas más impenetrables y aniquilar ejércitos enteros.",
+                        "danio": 70
+                    }
+                }
+            ]
+        },
+        {
+            "nombre": "La Ciudadela del Abismo",
+            "descripcion": "Entre las sombras de la tierra, se alza una imponente Ciudadela, una fortaleza antigua envuelta en un manto de oscuridad eterna. Sus torres se alzan como garras hacia el techo de la caverna, sus siluetas apenas visibles contra la penumbra que las rodea.El aire alrededor de la Ciudadela está impregnado de un silencio sepulcral, roto solo por el eco distante de tus propios pasos.",
+            "nivel": 5,
+            "monstruos": []
+        },
+        {
+            "nombre": "El Monolito Encantado",
+            "descripcion": "Un obelisco de piedra oscura se alza en la distancia, como un pilar de sombras en la penumbra eterna. Las inscripciones rúnicas titilan débilmente, emitiendo destellos que cortan la oscuridad y murmuran secretos olvidados en el silencio envolvente.",
+            "nivel": 5,
+            "monstruos": [
+                {
+                    "nombre": "Ángel Caído",
+                    "velocidad": 50,
+                    "danio": 52,
+                    "armadura": 26,
+                    "salud": 300,
+                    "botin": {
+                        "nombre": "Poción de Luz Caída",
+                        "descripcion": "Una poción que concede al bebedor una breve pero poderosa aura de luz, repeliendo a las fuerzas de la oscuridad y sanando las heridas del alma.",
+                        "tipo": "Poción",
+                        "efecto": "EfectoCuracion",
+                        "cantidadCuracion": 100
+                    }
+                },
+                {
+                    "nombre": "Quimera Infernal",
+                    "velocidad": 40,
+                    "danio": 45,
+                    "armadura": 45,
+                    "salud": 370,
+                    "botin": {
+                        "nombre": "Espada Infernal",
+                        "descripcion": "Una espada imbuida con el fuego de los infiernos, capaz de infligir quemaduras eternas y devastar todo a su paso con una llama infernal.",
+                        "danio": 55
+                    }
+                },
+                {
+                    "nombre": "Dragón de la Tempestad",
+                    "velocidad": 45,
+                    "danio": 55,
+                    "armadura": 50,
+                    "salud": 390,
+                    "botin": {
+                        "nombre": "Espada de la Tempestad",
+                        "descripcion": "Una espada que canaliza el poder de las tormentas, capaz de desatar rayos y truenos devastadores que barren a sus enemigos con un furioso vendaval.",
+                        "danio": 65
+                    }
+                }
+            ]
+{
+    "nombre": "Las Profundidades Olvidadas",
+    "descripcion": "Ante ti se extiende un paisaje desolado y oscuro que yace olvidado por el tiempo y la memoria. El suelo está cubierto de un manto de niebla espesa que envuelve cada rincón, ocultando los secretos que yacen en estas profundidades. Una sensación de antigüedad y misterio te envuelve mientras avanzas, como si estuvieras explorando los recuerdos olvidados de un mundo que ya no existe.",
+    "nivel": 6,
+    "monstruos": [
+        {
+            "nombre": "Guardián de las Profundidades Olvidadas",
+            "velocidad":50,
+            "danio": 15,
+            "armadura": 10,
+            "salud": 500,
+            "botin": {
+                "nombre": "Corona del Olvido",
+                "descripcion": "Una corona antigua adornada con runas olvidadas, que otorga al portador el poder de borrar recuerdos y desvanecerse en la niebla del olvido. Concede resistencia y velocidad mejorada.",
+                "defensa": 30,
+                "velocidad": 20
+            }
+        }
+    ]
+}
+        }
+    ]
