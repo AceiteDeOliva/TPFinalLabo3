@@ -33,7 +33,7 @@ public class Item  {
 
     @Override
     public String toString() {
-        return "Item: " +
+        return
                 "\n  Nombre: '" + nombre + '\'' +
                 "\n  Descripcion: '" + descripcion + '\'';
     }

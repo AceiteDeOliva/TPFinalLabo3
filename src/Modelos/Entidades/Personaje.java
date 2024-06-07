@@ -155,13 +155,5 @@ public class Personaje extends Entidad implements Serializable {
         setSalud(getSalud() - danioEfectivo);
     }
 
-    @Override
-    public String toString() {
-        return "Personaje: \n " + super.toString() +
-                "\n  Inventario: " + inventario +
-                "\n  Arma: " + arma +
-                "\n  Armadura: " + armadura +
-                "\n  Tipo de Personaje: " + tipoDePersonaje +
-                "\n";
-    }
+
 }

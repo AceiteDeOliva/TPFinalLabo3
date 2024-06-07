@@ -40,7 +40,7 @@ public class Armadura extends Item implements Serializable {
 
     @Override
     public String toString() {
-        return "Armadura: " + super.toString() +
+        return super.toString() +
                 "\n  Defensa: " + defensa +
                 "\n  Velocidad: " + velocidad;
     }

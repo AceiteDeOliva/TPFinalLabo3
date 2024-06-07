@@ -42,7 +42,7 @@ public class Arma extends Item implements IHabilidades, Serializable {
 
     @Override
     public String toString() {
-        return "Arma: " + super.toString() +
+        return super.toString() +
                 "\n  Danio: " + danio;
     }
 }

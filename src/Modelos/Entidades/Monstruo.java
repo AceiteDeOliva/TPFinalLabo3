@@ -103,13 +103,4 @@ public class Monstruo extends Entidad implements IHabilidades {
         setSalud(getSalud() - danioEfectivo);
     }
 
-    @Override
-    public String toString() {
-        return "Monstruo " +
-                "\n  Danio: " + danio +
-                "\n  Velocidad: " + velocidad +
-                "\n  Armadura: " + armadura +
-                "\n  Botin: " + botin +
-                "\n";
-    }
 }

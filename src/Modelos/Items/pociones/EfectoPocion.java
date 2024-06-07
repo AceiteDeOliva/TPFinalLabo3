@@ -12,6 +12,12 @@ public abstract class EfectoPocion implements IEfecto {
 
     @Override
     public abstract void aplicarEfecto(Personaje personaje);
+
+    @Override
+    public String toString() {
+        return
+                "tipoEfecto='" + tipoEfecto + '\'';
+    }
 }
 
 

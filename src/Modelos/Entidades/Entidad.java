@@ -51,7 +51,7 @@ public abstract class Entidad {
 
     @Override
     public String toString() {
-        return "Entidad " +
+        return
                 "\n  Nombre: '" + nombre + '\'' +
                 "\n  Salud: " + salud +
                 "\n";
