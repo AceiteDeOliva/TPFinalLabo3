@@ -29,6 +29,10 @@ public class Partida implements Serializable {
         this.nivelActual = nivelInicial;
         this.escenarios = new HashMap<>();
     }
+    public void construirHashMap(){
+
+        this.escenarios = new HashMap<>();
+    }
 
     //getters & setters
     @SuppressWarnings("unused")
@@ -139,14 +143,7 @@ public class Partida implements Serializable {
     }
 
     public boolean compararVelocidad(Monstruo monstruo){ //devuelve true si el jugador es igual o mas rapido y false si empieza el monstruo
-        boolean respuesta = false;
-            if (jugador.getArmadura().getVelocidad() >= monstruo.getVelocidad()) {
-                respuesta = true;
-            } else if (jugador.getArmadura().getVelocidad() < monstruo.getVelocidad()) {
-                respuesta = true;
-            }
-
-        return respuesta;
+        return jugador.getArmadura().getVelocidad() >= monstruo.getVelocidad();
     }
 
 
@@ -160,30 +157,9 @@ public class Partida implements Serializable {
     }
 
     //Guardar partidas
-    /*public boolean guardarPartida() {
-        Archivo archivo = new Archivo();
-        ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
-        Iterator<Partida> iter = listaPartidas.iterator();
-        boolean flag = false;
-        while (iter.hasNext()) {
-            Partida partida = iter.next();
-            if (partida.equals(this)) {
-                partida = this;
-                archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre());
-                flag = true;
-            }
-        }
-        return flag;
-    }*/
 
     public boolean guardarPartida(ArrayList<Partida>listaPartidas) {
         Archivo archivo = new Archivo();
-
-
-
-        for (Partida p : listaPartidas) {
-            System.out.println(p);
-        }
 
         boolean flag = false;
 
@@ -240,7 +216,6 @@ public class Partida implements Serializable {
             jugadorVacio.setNombre("Partida Vacia");
             Partida aux = new Partida(jugadorVacio);
             listaPartidas.add(aux);
-            System.out.println(jugadorVacio.getNombre());
         }
 
     }

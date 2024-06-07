@@ -11,7 +11,7 @@ public class Monstruo extends Entidad implements IHabilidades {
     private Item botin;
 
     //Constructores
-    public Monstruo () {
+    public Monstruo() {
         super();
         this.danio = 0;
         this.velocidad = 0;
@@ -80,27 +80,29 @@ public class Monstruo extends Entidad implements IHabilidades {
         if (estaVivo()) {
             if (getEspecialTEspera() <= 0) { // chequea si puede usar el especial
                 danio = ataqueEspecial();
-                setEspecialTEspera(2);
+                setEspecialTEspera(3);
             } else {
                 danio = atacar();
                 setEspecialTEspera(getEspecialTEspera() - 1);
             }
-            jugador.recibirDanio(danio);
+           danio = jugador.recibirDanio(danio);
         }
         return danio;
     }
+
     @Override
-    public  boolean estaVivo() { //devuelve si el monstruo esta vivo o no
+    public boolean estaVivo() { //devuelve si el monstruo esta vivo o no
         boolean vivo;
         vivo = getSalud() > 0;
         return vivo;
     }
 
     @Override
-    public void recibirDanio(int danio){
+    public int recibirDanio(int danio) {
         float reduccionDanio = (float) armadura / (armadura + 100);
         int danioEfectivo = (int) (danio * (1 - reduccionDanio));
         setSalud(getSalud() - danioEfectivo);
+        return danioEfectivo;
     }
 
 }

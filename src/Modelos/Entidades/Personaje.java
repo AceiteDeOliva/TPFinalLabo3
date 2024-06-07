@@ -127,17 +127,17 @@ public class Personaje extends Entidad implements Serializable {
 //------------------------------------------------------------------------------------------------------------------
     //metodos de pelea
     public int ataqueJugador(Monstruo monstruo) { //el jugador usa su ataque basico
-
+        setEspecialTEspera(getEspecialTEspera() - 1);
         int danioJugador = getArma().atacar();
-        monstruo.recibirDanio(danioJugador);
+        danioJugador =  monstruo.recibirDanio(danioJugador);
         return danioJugador;
 
     }
 
     public int ataqueEspecialJugador(Monstruo monstruo) { //el jugador usa su ataque especial
-
+        setEspecialTEspera(2);
         int danioJugador = getArma().ataqueEspecial();
-        monstruo.recibirDanio(danioJugador);
+        danioJugador = monstruo.recibirDanio(danioJugador);
         return danioJugador;
 
     }
@@ -149,10 +149,12 @@ public class Personaje extends Entidad implements Serializable {
     }
 
     @Override
-    public void recibirDanio(int danio) {
+    public int recibirDanio(int danio) {
         float reduccionDanio = (float) armadura.getDefensa() / (armadura.getDefensa() + 100);
         int danioEfectivo = (int) (danio * (1 - reduccionDanio));
         setSalud(getSalud() - danioEfectivo);
+        return danioEfectivo;
+
     }
 
 

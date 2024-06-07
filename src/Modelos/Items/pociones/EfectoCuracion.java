@@ -2,7 +2,9 @@ package Modelos.Items.pociones;
 
 import Modelos.Entidades.Personaje;
 
-public class EfectoCuracion extends EfectoPocion{
+import java.io.Serializable;
+
+public class EfectoCuracion extends EfectoPocion implements Serializable {
     private int cantidadCuracion;
 
     public int getCantidadCuracion() {

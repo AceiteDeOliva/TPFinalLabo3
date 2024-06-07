@@ -1,6 +1,8 @@
 package Modelos.Entidades;
 
-public abstract class Entidad {
+import java.io.Serializable;
+
+public abstract class Entidad implements Serializable {
     private String nombre;
     private int salud;
     private int especialTEspera;
@@ -47,7 +49,7 @@ public abstract class Entidad {
 
     abstract boolean estaVivo();
 
-    abstract void recibirDanio(int danio);
+    abstract int recibirDanio(int danio);
 
     @Override
     public String toString() {

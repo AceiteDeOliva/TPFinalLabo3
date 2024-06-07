@@ -1,6 +1,8 @@
 package Modelos.Escenarios;
 
-public class Escenario {
+import java.io.Serializable;
+
+public class Escenario implements Serializable {
     private  String nombre;
     private int nivel;
     private String descripcion;

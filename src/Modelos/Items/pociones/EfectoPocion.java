@@ -3,7 +3,9 @@ package Modelos.Items.pociones;
 import Modelos.Entidades.Personaje;
 import Modelos.Interfaces.IEfecto;
 
-public abstract class EfectoPocion implements IEfecto {
+import java.io.Serializable;
+
+public abstract class EfectoPocion implements IEfecto, Serializable {
     protected String tipoEfecto;
 
     public EfectoPocion(String tipoEfecto) {

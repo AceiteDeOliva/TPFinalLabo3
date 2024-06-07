@@ -334,15 +334,15 @@
     "descripcion": "Una entrada angosta lleva a una gruta donde el aire es espeso y el ambiente opresivo. Desde fuera, se escucha un lamento continuo, como si las paredes mismas guardaran recuerdos de antiguas tragedias. El suelo está cubierto de una fina capa de polvo que parece no haber sido perturbada en siglos.",
     "items": [
       {
-        "nombre": "Item 1",
-        "descripcion": "Descripción del Item 1",
-        "danio": 10
+        "nombre": "Arco del Centauro",
+        "descripcion": "Un arco poderoso y preciso utilizado por los centauros.",
+        "danio": 34
       },
       {
-        "nombre": "Item 2",
-        "descripcion": "Descripción del Item 2",
-        "defensa": 5,
-        "velocidad": 3
+        "nombre": "Armadura de Lamentos",
+        "descripcion": "Armadura que emite un lamento constante, causando miedo a los enemigos cercanos.",
+        "defensa": 32,
+        "velocidad": 32
       },
       {
         "nombre": "Poción de Curación",

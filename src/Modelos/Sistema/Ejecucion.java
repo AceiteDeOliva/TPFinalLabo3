@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class Ejecucion {
     private static final Scanner scan = new Scanner(System.in);
     private static Escenario escenarioActual;
-    private static ArrayList<Partida>listaPartidas;
+    private static ArrayList<Partida> listaPartidas;
 
     public static void ejecucion() throws JSONException {
 
@@ -31,7 +31,7 @@ public class Ejecucion {
 
         archivo.jsonAEscenarioMonstruo(escenarios);
 
-        //archivo.jsonAEscenarioItem(escenarios);
+        archivo.jsonAEscenarioItem(escenarios);
 
 
         menuPrincipal(escenarios);
@@ -53,7 +53,13 @@ public class Ejecucion {
             System.out.println("1.Jugar");
             System.out.println("2.Salir del juego");
             // Leer la elección del usuario
-            eleccion = scan.nextInt();
+            try {
+                eleccion = scan.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Se esperaba un valor entero. " + e.getMessage());
+                scan.next();
+                eleccion = -1;
+            }
 
 
             // Realizar acciones basadas en la elección del usuario usando un switch
@@ -80,6 +86,7 @@ public class Ejecucion {
                     break;
             }
         } while (eleccion != 2);
+
 
     }
 
@@ -113,6 +120,7 @@ public class Ejecucion {
                 scan.next(); // Limpiamos el buffer del scanner
             }
         }
+
 
         return eleccion;
     }
@@ -185,8 +193,8 @@ public class Ejecucion {
                 if (volver != -1) {
                     Partida partida;
                     partida = CrearPersonaje();
-                    listaPartidas.set(indice,partida);
-                    archivo.grabarArchivoPartidas(listaPartidas,NombreArchivos.Partidas.getNombre());
+                    listaPartidas.set(indice, partida);
+                    archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre());
 
                 }
 
@@ -194,6 +202,7 @@ public class Ejecucion {
 
             case 2:
                 indice = elegirPartida();
+                listaPartidas.get(indice).construirHashMap();
 
                 break;
 
@@ -250,29 +259,37 @@ public class Ejecucion {
     public static void manejarEncuentro(Partida partida) {//funcion que maneja la eleccion de encuentros
         int respuesta = -1;
 
-        while (partida.getJugador().estaVivo()) {
+        while (partida.getJugador().estaVivo() && partida.getNivelActual()< 7) {
             limpiarConsola();//limpia la consola || en realidad solo imprime 50 lines vacias
             respuesta = elegirEncuentro(partida); //funcion en la que elegis un encuentro
             if (respuesta == 0) {// si la respuesta de elegir encuentro es 0 termina la funcion
                 break;
             }
-            if (escenarioActual instanceof EscenarioMonstruo) { // cheque0 el tipo de instancia elegida
+            if (escenarioActual instanceof EscenarioMonstruo) { // chequeo el tipo de instancia elegida
                 encuentro(partida, (EscenarioMonstruo) escenarioActual); //se llama a la funcion de escenario correspondiente(polimorfismo)
 
             } else if (escenarioActual instanceof EscenarioItem) { //idem if the arriba
                 encuentro(partida, (EscenarioItem) escenarioActual);
             }
 
-            if (partida.guardarPartida(listaPartidas)){//Se guarda la partida || imprime mensaje si lo logro
+            if (partida.guardarPartida(listaPartidas)) {//Se guarda la partida || imprime mensaje si lo logro
                 System.out.println("Se guardo la partida");
 
             } else {
 
                 System.out.println("Error: No se pudo guardar la partida");
             }
-            System.out.println("Ingrese algo para continuar.");
-            scan.next();
-            scan.nextLine();
+            ingresarParaContinuar();
+
+
+        }
+        if (partida.getNivelActual() == 7){//chequea si ganaste el juego
+
+            pantallaGanador();
+            esperar(5);
+
+        }else if(!partida.getJugador().estaVivo()){
+            Partida.eliminarPartida(listaPartidas,partida);
 
         }
     }
@@ -287,9 +304,11 @@ public class Ejecucion {
 
         System.out.println("Estas en una bifurcacion en el camino.");
         System.out.println("A un lado ves:");
-        System.out.println(escenario1.getDescripcion());
+        manejoLineas(escenario1.getDescripcion());
+        System.out.println("-----------------------------------------------------------------------------------------");
         System.out.println("Al otro lado ves:");
-        System.out.println(escenario2.getDescripcion());
+        System.out.println("-----------------------------------------------------------------------------------------");
+        manejoLineas(escenario2.getDescripcion());
         System.out.println("Que camino deseas tomar?");
         System.out.println("1. Primer camino.");
         System.out.println("2. Segundo camino.");
@@ -329,8 +348,9 @@ public class Ejecucion {
         Monstruo monstruo = escenario.elegirMounstruo();
         while (partida.getJugador().estaVivo() && monstruo.estaVivo()) {
 
+            limpiarConsola();
             System.out.println("\n" + escenario.getNombre());
-            System.out.println(escenario.getDescripcion());
+            manejoLineas(escenario.getDescripcion());
             System.out.println(monstruo);
             System.out.println(partida.getJugador());
 
@@ -344,7 +364,7 @@ public class Ejecucion {
             try {
                 eleccion = scan.nextInt();
             } catch (InputMismatchException e) {
-                scan.nextLine(); // Clear the buffer after the exception
+                scan.nextLine(); // limpia el buffer
                 System.out.println("Error: Ingrese un numero valido.");
                 continue;
             }
@@ -352,38 +372,53 @@ public class Ejecucion {
             switch (eleccion) {
 
                 case 1:
+                    limpiarConsola();
                     if (partida.compararVelocidad(monstruo)) {
                         ataqueJugadorPrimero(partida, monstruo);
                     } else {
                         ataqueMonstruoPrimero(partida, monstruo);
                     }
 
-                    chequeoBatalla(partida, monstruo); // Check battle outcome
+                    chequeoBatalla(partida, monstruo); // Chequea el resultado de la batalla
+                    ingresarParaContinuar();
                     break;
 
                 case 2:
-                    if (partida.compararVelocidad(monstruo)) {
-                        ataqueEspecialJugadorPrimero(partida, monstruo);
-                    } else {
-                        ataqueEspecialMonstruoPrimero(partida, monstruo);
-                    }
+                    limpiarConsola();
+                    if (partida.getJugador().getEspecialTEspera() <= 0) { //chequea si el ataque especial esta disponible
+                        if (partida.compararVelocidad(monstruo)) {
+                            ataqueEspecialJugadorPrimero(partida, monstruo);
+                        } else {
+                            ataqueEspecialMonstruoPrimero(partida, monstruo);
+                        }
 
-                    chequeoBatalla(partida, monstruo); // Check battle outcome
+                        chequeoBatalla(partida, monstruo); // Chequea el resultado de la batalla
+                    }else{
+                        System.out.println("Ataque especial en espera."+ "\n Quedan " + partida.getJugador().getEspecialTEspera() + " turnos.");
+
+                    }
+                    ingresarParaContinuar();
                     break;
 
                 case 3:
-                    mostrarInventario(partida); // Display and manage inventory
+                    limpiarConsola();
+                    mostrarInventario(partida); // Muestra y maneja el inventario
+                    ingresarParaContinuar();
                     break;
 
                 case 4:
+                    limpiarConsola();
                     System.out.println(partida.getJugador().getArma().toString()); // Muestra arma equipada
                     System.out.println(" ");
                     System.out.println(partida.getJugador().getArmadura().toString()); // Muestra armadura equipada
+                    ingresarParaContinuar();
+
                     break;
 
                 default:
 
                     System.out.println("Opcion invalida. Solo se permiten 1, 2, 3 o 4.");
+                    ingresarParaContinuar();
                     break;
 
             }
@@ -397,14 +432,15 @@ public class Ejecucion {
         System.out.println("Exploras el lugar...");
         String itemEncontrado = partida.itemEncontrado(escenario);
         System.out.println("Econtraste:" + itemEncontrado + "!!!");
+        ingresarParaContinuar();
     }
 
     public static void ataqueJugadorPrimero(Partida partida, Monstruo monstruo) { //Situacion en la que el jugador ataca primero
 
-        System.out.println("El jugador inflige" + partida.getJugador().ataqueJugador(monstruo) + "puntos de danio");//El danio que inflige el jugador
+        System.out.println(partida.getJugador().getNombre() + " inflige " + partida.getJugador().ataqueJugador(monstruo) + " puntos de danio");//El danio que inflige el jugador
 
         if (monstruo.estaVivo()) {
-            System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
+            System.out.println(monstruo.getNombre() + " inflige " + monstruo.ataqueMonstruo(partida.getJugador()) + " puntos de danio");//el danio que inflige el monstruo
         }
 
     }
@@ -412,10 +448,10 @@ public class Ejecucion {
 
     public static void ataqueMonstruoPrimero(Partida partida, Monstruo monstruo) { //situacion en la que el monstruo ataca primero
 
-        System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
+        System.out.println(monstruo.getNombre() + " inflige " + monstruo.ataqueMonstruo(partida.getJugador()) + " puntos de danio");//el danio que inflige el monstruo
 
         if (partida.getJugador().estaVivo()) {
-            System.out.println("El jugador inflige" + partida.getJugador().ataqueJugador(monstruo) + "puntos de danio");//El danio que inflige el jugador
+            System.out.println(partida.getJugador().getNombre() + " inflige " + partida.getJugador().ataqueJugador(monstruo) + " puntos de danio");//El danio que inflige el jugador
 
         }
 
@@ -423,20 +459,20 @@ public class Ejecucion {
 
     public static void ataqueEspecialJugadorPrimero(Partida partida, Monstruo monstruo) { //situacion en la que el usa un ataque especial primero
 
-        System.out.println("El jugador inflige" + partida.getJugador().ataqueEspecialJugador(monstruo) + "puntos de danio");
+        System.out.println(partida.getJugador().getNombre() + " inflige " + partida.getJugador().ataqueEspecialJugador(monstruo) + " puntos de danio");
 
         if (monstruo.estaVivo()) {
-            System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");
+            System.out.println(monstruo.getNombre() + " inflige " + monstruo.ataqueMonstruo(partida.getJugador()) + " puntos de danio");
         }
 
     }
 
     public static void ataqueEspecialMonstruoPrimero(Partida partida, Monstruo monstruo) {// el monstruo es mas rapido y el jugador usa un ataque especial
 
-        System.out.println("El monstruo inflige" + monstruo.ataqueMonstruo(partida.getJugador()) + "puntos de danio");//el danio que inflige el monstruo
+        System.out.println("El monstruo inflige " + monstruo.ataqueMonstruo(partida.getJugador()) + " puntos de danio");//el danio que inflige el monstruo
 
         if (partida.getJugador().estaVivo()) {
-            System.out.println("El jugador inflige" + partida.getJugador().ataqueEspecialJugador(monstruo) + "puntos de danio");//El danio que inflige el jugador
+            System.out.println(partida.getJugador().getNombre() + " inflige " + partida.getJugador().ataqueEspecialJugador(monstruo) + " puntos de danio");//El danio que inflige el jugador
 
         }
 
@@ -459,6 +495,7 @@ public class Ejecucion {
 
             case -1:
                 System.out.println("Ha perdido la batalla");
+                ingresarParaContinuar();
                 break;
 
             default:
@@ -600,6 +637,31 @@ public class Ejecucion {
 
     }
 
+    public static void pantallaGanador() {
+        String asciiArt =
+                "                                                                                             \n" +
+                        "                      __ __   ___ _____ _  _  _  __ __                                     \n" +
+                        "                     |_ |_ |   | /   | | \\|_|| \\|_ (_  |                                      \n" +
+                        "                     |  |__|___|_\\___|_|_/| ||_/|____) o                                      \n" +
+                        " __                                                    _         _                           \n" +
+                        "|_ __     |  _  _     _  _ __ |_  __ _  _    __  _    |_) __ _ _|_   __  _| _  _             \n" +
+                        "|__| |    | (_|_>    _> (_)||||_) | (_|_>    |||_>    |   | (_) | |_|| |(_|(_|_>  /          \n" +
+                        "                                                                            _                \n" +
+                        " _ __  _  _ __ _|_ __ _  _ _|_ _     |  _     |     _     _| _     |  _    (_| |  _  __ o  _ \n" +
+                        "(/_| |(_ (_)| | |_ | (_|_>  |_(/_    | (_|    | |_| /_   (_|(/_    | (_|   __| | (_) |  | (_| ";
+
+        System.out.println(asciiArt);
+
+
+        String creditos = "Juego desarrollado por: Jose Valentin Letamendia Muzio, Milagros Abril Rodriguez, Chiara Ciardi";
+
+        System.out.println(asciiArt);
+        System.out.println("\n" + creditos);
+
+
+    }
+
+
     public static void esperar(int segundos) {
         try {
             Thread.sleep((long) segundos * 1000); // Convertimos 'segundos' a 'long' antes de multiplicar
@@ -612,6 +674,33 @@ public class Ejecucion {
         for (int i = 0; i < 50; i++) {
             System.out.println(" ");
 
+        }
+    }
+
+    public static void ingresarParaContinuar() {
+        System.out.println("Ingrese algo para continuar.");
+        scan.next();
+        scan.nextLine();
+    }
+
+    public static void manejoLineas(String str) {
+        int inicio = 0;
+        int longitud = 100; // La longitud máxima de cada línea
+
+        while (inicio < str.length()) {
+            int end = Math.min(inicio + longitud, str.length());
+
+            // Si no estamos al final del string, ajustar el 'end' al último espacio dentro del rango
+            if (end < str.length()) {
+                int lastSpace = str.lastIndexOf(' ', end);
+                if (lastSpace > inicio) {
+                    end = lastSpace;
+                }
+            }
+
+            System.out.println(str.substring(inicio, end));
+            // Ajustamos 'inicio' al siguiente carácter después del espacio
+            inicio = end + 1;
         }
     }
 }

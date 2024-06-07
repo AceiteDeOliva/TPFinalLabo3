@@ -2,7 +2,9 @@ package Modelos.Items.pociones;
 
 import Modelos.Entidades.Personaje;
 
-public class EfectoVelocidad extends EfectoPocion{ //todo hacer que el efecto solo dure un turno
+import java.io.Serializable;
+
+public class EfectoVelocidad extends EfectoPocion implements Serializable {
 
     private int cantidadVelocidad;
 
