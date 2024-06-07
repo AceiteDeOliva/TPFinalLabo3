@@ -157,7 +157,7 @@ public class Personaje extends Entidad implements Serializable {
 
     @Override
     public String toString() {
-        return "Personaje " +
+        return "Personaje: \n " + super.toString() +
                 "\n  Inventario: " + inventario +
                 "\n  Arma: " + arma +
                 "\n  Armadura: " + armadura +

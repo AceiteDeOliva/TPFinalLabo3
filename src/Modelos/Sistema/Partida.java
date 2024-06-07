@@ -176,9 +176,9 @@ public class Partida implements Serializable {
         return flag;
     }*/
 
-    public boolean guardarPartida() {
+    public boolean guardarPartida(ArrayList<Partida>listaPartidas) {
         Archivo archivo = new Archivo();
-        ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
+
 
 
         for (Partida p : listaPartidas) {
@@ -240,14 +240,24 @@ public class Partida implements Serializable {
             jugadorVacio.setNombre("Partida Vacia");
             Partida aux = new Partida(jugadorVacio);
             listaPartidas.add(aux);
+            System.out.println(jugadorVacio.getNombre());
         }
+
+    }
+
+    @Override
+    public String toString() {
+        return "Partida{" +
+                "jugador=" + jugador +
+                ", escenarios=" + escenarios +
+                ", nivelActual=" + nivelActual +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
         boolean resultado = false;
-        if(o != null && o instanceof Partida){
-            Partida partidaAcomparar = (Partida) o;
+        if(o instanceof Partida partidaAcomparar){
             String thisJugadorNombre = jugador.getNombre();
             String otherJugadorNombre = partidaAcomparar.getJugador().getNombre();
             resultado = Objects.equals(thisJugadorNombre, otherJugadorNombre);

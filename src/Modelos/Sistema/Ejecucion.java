@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class Ejecucion {
     private static final Scanner scan = new Scanner(System.in);
     private static Escenario escenarioActual;
+    private static ArrayList<Partida>listaPartidas;
 
     public static void ejecucion() throws JSONException {
 
@@ -23,25 +24,23 @@ public class Ejecucion {
         Archivo archivo = new Archivo();
 
         // Pasar info de partida
-        ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
+        listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
 
         // pasar info de escenarios con json
-        HashSet<Escenario> escenarioMonstruos = new HashSet<>();
+        HashSet<Escenario> escenarios = new HashSet<>();
 
-        archivo.jsonAEscenarioMonstruo(escenarioMonstruos);
+        archivo.jsonAEscenarioMonstruo(escenarios);
 
-        archivo.jsonAEscenarioItem(escenarioMonstruos);
-
-        listaPartidas.add(new Partida(new Personaje("mili", TipoDePersonaje.ASESINO)));
+        //archivo.jsonAEscenarioItem(escenarios);
 
 
-        menuPrincipal(listaPartidas, escenarioMonstruos);
+        menuPrincipal(escenarios);
 
         archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre());
     }
 
 
-    public static void menuPrincipal(ArrayList<Partida> listaPartidas, HashSet<Escenario> listaEscenarios) {
+    public static void menuPrincipal(HashSet<Escenario> listaEscenarios) {
 
         int eleccion;
         int indice;
@@ -61,13 +60,13 @@ public class Ejecucion {
             switch (eleccion) {
                 case 1:
                     //CONTROLA LA ELECCION Y CREACION DE PARTIDAS
-                    indice = menuPartida(listaPartidas);
+                    indice = menuPartida();
                     //SI NO QUIERE VOLVER AL MENU INICIAL
                     if (indice != -1) {
                         //Esta es la partida que cambiara mientras juega
                         partida = listaPartidas.get(indice);
                         partida.escenariosAHashMap(listaEscenarios);
-                        manejarEncuentro(partida, listaPartidas);
+                        manejarEncuentro(partida);
                     }
 
                     break;
@@ -85,15 +84,15 @@ public class Ejecucion {
     }
 
     //Elegir dentro de las partidas existentes en el caso de no elegir una devuelve -1
-    public static int elegirPartida(ArrayList<Partida> listaPartidas) {
+    public static int elegirPartida() {
         int contador = 0;
 
         System.out.println("Partidas:");
         System.out.println("0.Volver");
         for (int i = 0; i < listaPartidas.size(); i++) {
             if (!listaPartidas.get(i).chequearExistencia(listaPartidas.get(i))) {
-                System.out.println((i + 1) + ". " + listaPartidas.get(i).getJugador().getNombre());
                 contador++;
+                System.out.println(contador + ". " + listaPartidas.get(i).getJugador().getNombre());
             }
         }
 
@@ -104,7 +103,7 @@ public class Ejecucion {
         while (!entradaValida) {
             try {
                 eleccion = scan.nextInt();
-                if (eleccion >= 0 && eleccion <= contador) {
+                if (eleccion >= 0 && eleccion <= contador) { // Includes 0
                     entradaValida = true;
                 } else {
                     System.out.println("Selección invalida. Ingrese nuevamente:");
@@ -115,12 +114,11 @@ public class Ejecucion {
             }
         }
 
-        return eleccion - 1;
-
+        return eleccion;
     }
 
 
-    public static int menuPartida(ArrayList<Partida> listaPartidas) {
+    public static int menuPartida() {
         Partida.agregarPartidasVacias(listaPartidas);
         int eleccion = -1;
         int indice = -1;
@@ -140,7 +138,7 @@ public class Ejecucion {
                 if ((eleccion != 1 && eleccion != 2 && eleccion != 0) || (eleccion == 2 && !Partida.saberSiContienePartidas(listaPartidas))) {
                     System.out.println("No es una opción correcta. Por favor, elige otra opción.");
                 } else if (eleccion != 0) {
-                    indice = manejarPartidas(eleccion, listaPartidas);
+                    indice = manejarPartidas(eleccion);
                     eleccion = 0;
                     // Si el índice es 0, significa que el usuario eligió volver atrás
                     if (indice == -1) {
@@ -157,9 +155,9 @@ public class Ejecucion {
         return indice;
     }
 
-    public static int manejarPartidas(int eleccion, ArrayList<Partida> listaPartidas) {
+    public static int manejarPartidas(int eleccion) {
         int indice = -1;
-
+        Archivo archivo = new Archivo();
 
         String nombre;
         int volver = 0;
@@ -173,7 +171,7 @@ public class Ejecucion {
                 if (indice == -1) {
                     System.out.println("No hay espacio para nuevas partidas");
                     System.out.println("Elija que partida eliminar");
-                    indice = elegirPartida(listaPartidas);
+                    indice = elegirPartida();
                     if (indice != -1) {
                         if (Partida.eliminarPartida(listaPartidas, listaPartidas.get(indice))) {
                             System.out.println("Partida eliminada exitosamente");
@@ -185,15 +183,17 @@ public class Ejecucion {
                     }
                 }
                 if (volver != -1) {
-                    Partida partida = listaPartidas.get(indice);
+                    Partida partida;
                     partida = CrearPersonaje();
-                    listaPartidas.add(indice,partida);
+                    listaPartidas.set(indice,partida);
+                    archivo.grabarArchivoPartidas(listaPartidas,NombreArchivos.Partidas.getNombre());
+
                 }
 
                 break;
 
             case 2:
-                indice = elegirPartida(listaPartidas);
+                indice = elegirPartida();
 
                 break;
 
@@ -201,16 +201,18 @@ public class Ejecucion {
                 // El usuario eligió volver atrás
                 indice = -1;
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + eleccion);
         }
 
         return indice;
     }
 
     public static Partida CrearPersonaje() {
-
+        scan.nextLine(); // Limpiar el buffer
         System.out.println("Ingrese un nombre para su personaje:");
         String nombrePersonaje = scan.nextLine();
-        scan.nextLine(); // Limpiar el buffer
+
 
         // Solicitar al usuario que elija un tipo de personaje mediante un número
         System.out.println("Seleccione el tipo de su personaje:");
@@ -245,13 +247,13 @@ public class Ejecucion {
     }
 
 
-    public static void manejarEncuentro(Partida partida, ArrayList<Partida> listaPartidas) {//funcion que maneja la eleccion de encuentros
+    public static void manejarEncuentro(Partida partida) {//funcion que maneja la eleccion de encuentros
         int respuesta = -1;
 
         while (partida.getJugador().estaVivo()) {
             limpiarConsola();//limpia la consola || en realidad solo imprime 50 lines vacias
             respuesta = elegirEncuentro(partida); //funcion en la que elegis un encuentro
-            if(respuesta == 0){// si la respuesta de elegir encuentro es 0 termina la funcion
+            if (respuesta == 0) {// si la respuesta de elegir encuentro es 0 termina la funcion
                 break;
             }
             if (escenarioActual instanceof EscenarioMonstruo) { // cheque0 el tipo de instancia elegida
@@ -260,10 +262,11 @@ public class Ejecucion {
             } else if (escenarioActual instanceof EscenarioItem) { //idem if the arriba
                 encuentro(partida, (EscenarioItem) escenarioActual);
             }
-            if(partida.guardarPartida()){//Se guarda la partida || imprime mensaje si lo logro
+
+            if (partida.guardarPartida(listaPartidas)){//Se guarda la partida || imprime mensaje si lo logro
                 System.out.println("Se guardo la partida");
 
-            }else{
+            } else {
 
                 System.out.println("Error: No se pudo guardar la partida");
             }
@@ -605,8 +608,8 @@ public class Ejecucion {
         }
     }
 
-    public static void limpiarConsola(){
-        for(int i = 0;i < 50;i++){
+    public static void limpiarConsola() {
+        for (int i = 0; i < 50; i++) {
             System.out.println(" ");
 
         }

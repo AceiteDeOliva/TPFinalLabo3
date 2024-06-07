@@ -72,12 +72,7 @@
                 }
             ]
         },
-        {
-            "nombre": "El Bosque Petrificado",
-            "descripcion": "Desde la entrada, puedes ver árboles enormes y retorcidos que han sido convertidos en piedra, sus ramas inmóviles extendiéndose como garras hacia el cielo oscuro. Un silencio inquietante reina en el lugar, y la escasa luz que penetra apenas logra revelar el camino. La sensación de antigüedad y de algo olvidado hace que el aire se sienta pesado y cargado de misterio.",
-            "nivel": 1,
-            "monstruos": []
-        },
+
         {
             "nombre": "La Laguna Negra",
             "descripcion": "Las aguas negras del lago delante de ti son inquietantemente quietas. Reflejan sombras que parecen moverse de manera independiente, creando figuras que bailan y se retuercen. Hay una sensación de inquietud en el aire, como si algo acechara justo bajo la superficie.",
@@ -677,12 +672,6 @@
             ]
         },
         {
-            "nombre": "La Ciudadela del Abismo",
-            "descripcion": "Entre las sombras de la tierra, se alza una imponente Ciudadela, una fortaleza antigua envuelta en un manto de oscuridad eterna. Sus torres se alzan como garras hacia el techo de la caverna, sus siluetas apenas visibles contra la penumbra que las rodea.El aire alrededor de la Ciudadela está impregnado de un silencio sepulcral, roto solo por el eco distante de tus propios pasos.",
-            "nivel": 5,
-            "monstruos": []
-        },
-        {
             "nombre": "El Monolito Encantado",
             "descripcion": "Un obelisco de piedra oscura se alza en la distancia, como un pilar de sombras en la penumbra eterna. Las inscripciones rúnicas titilan débilmente, emitiendo destellos que cortan la oscuridad y murmuran secretos olvidados en el silencio envolvente.",
             "nivel": 5,
@@ -725,7 +714,7 @@
                         "danio": 65
                     }
                 }
-            ]
+            ]},
 {
     "nombre": "Las Profundidades Olvidadas",
     "descripcion": "Ante ti se extiende un paisaje desolado y oscuro que yace olvidado por el tiempo y la memoria. El suelo está cubierto de un manto de niebla espesa que envuelve cada rincón, ocultando los secretos que yacen en estas profundidades. Una sensación de antigüedad y misterio te envuelve mientras avanzas, como si estuvieras explorando los recuerdos olvidados de un mundo que ya no existe.",
@@ -746,5 +735,5 @@
         }
     ]
 }
-        }
+
     ]
