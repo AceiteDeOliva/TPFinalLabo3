@@ -34,7 +34,7 @@ public class Item  {
     @Override
     public String toString() {
         return "Item: " +
-                "Nombre: '" + nombre + '\'' +
-                ",Descripcion: '" + descripcion + '\'';
+                "\n  Nombre: '" + nombre + '\'' +
+                "\n  Descripcion: '" + descripcion + '\'';
     }
 }

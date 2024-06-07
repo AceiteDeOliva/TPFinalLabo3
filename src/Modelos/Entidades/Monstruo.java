@@ -105,11 +105,11 @@ public class Monstruo extends Entidad implements IHabilidades {
 
     @Override
     public String toString() {
-        return "Monstruo{" +
-                "danio=" + danio +
-                ", velocidad=" + velocidad +
-                ", armadura=" + armadura +
-                ", botin=" + botin +
-                '}';
+        return "Monstruo " +
+                "\n  Danio: " + danio +
+                "\n  Velocidad: " + velocidad +
+                "\n  Armadura: " + armadura +
+                "\n  Botin: " + botin +
+                "\n";
     }
 }
