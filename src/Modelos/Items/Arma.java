@@ -2,7 +2,9 @@ package Modelos.Items;
 
 import Modelos.Interfaces.IHabilidades;
 
-public class Arma extends Item implements IHabilidades {
+import java.io.Serializable;
+
+public class Arma extends Item implements IHabilidades, Serializable {
 
     private int danio;
 

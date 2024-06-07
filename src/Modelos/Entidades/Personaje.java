@@ -5,9 +5,10 @@ import Modelos.Items.Armadura;
 import Modelos.Items.Item;
 import Modelos.Items.pociones.Pocion;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Personaje extends Entidad {
+public class Personaje extends Entidad implements Serializable {
     private ArrayList<Item> inventario;
     private Arma arma;
     private Armadura armadura;

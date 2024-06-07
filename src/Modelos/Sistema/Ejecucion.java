@@ -8,6 +8,7 @@ import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
 import org.json.JSONException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.InputMismatchException;
@@ -114,7 +115,6 @@ public class Ejecucion {
             }
         }
 
-
         return eleccion - 1;
 
     }
@@ -187,7 +187,9 @@ public class Ejecucion {
                 if (volver != -1) {
                     Partida partida = listaPartidas.get(indice);
                     partida = CrearPersonaje();
+                    listaPartidas.add(indice,partida);
                 }
+
                 break;
 
             case 2:
@@ -245,6 +247,11 @@ public class Ejecucion {
     public static void manejarEncuentro(Partida partida, ArrayList<Partida> listaPartidas) {//funcion que maneja la eleccion de encuentros
         int respuesta = -1;
         while (partida.getJugador().estaVivo() && respuesta != 0) {
+            try {
+                LimpiarConsola.limpiarConsola();
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             respuesta = elegirEncuentro(partida); //funcion en la que elegis un encuentro
             if(respuesta == 0){
                 break;

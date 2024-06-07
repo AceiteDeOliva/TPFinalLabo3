@@ -1,6 +1,8 @@
 package Modelos.Items;
 
-public class Armadura extends Item {
+import java.io.Serializable;
+
+public class Armadura extends Item implements Serializable {
     private int defensa;
     private int velocidad;
 

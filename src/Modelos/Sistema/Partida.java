@@ -160,7 +160,7 @@ public class Partida implements Serializable {
     }
 
     //Guardar partidas
-    public boolean guardarPartida() {
+    /*public boolean guardarPartida() {
         Archivo archivo = new Archivo();
         ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
         Iterator<Partida> iter = listaPartidas.iterator();
@@ -173,6 +173,35 @@ public class Partida implements Serializable {
                 flag = true;
             }
         }
+        return flag;
+    }*/
+
+    public boolean guardarPartida() {
+        Archivo archivo = new Archivo();
+        ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
+
+        // Debugging information to check if the list is being populated correctly
+        System.out.println("Lista de partidas leídas:");
+        for (Partida p : listaPartidas) {
+            System.out.println(p); // Make sure Partida has a meaningful toString() method
+        }
+
+        boolean flag = false;
+
+        for (int i = 0; i < listaPartidas.size(); i++) {
+            Partida partida = listaPartidas.get(i);
+            if (partida.equals(this)) {
+                listaPartidas.set(i, this); //
+                flag = true;
+                break;
+            }
+        }
+
+        // Save the list back to the file only if it was updated
+        if (flag) {
+            archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre());
+        }
+
         return flag;
     }
 
