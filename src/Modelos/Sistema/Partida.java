@@ -174,22 +174,19 @@ public class Partida implements Serializable {
         }
         return flag;
     }
-    public static void agregarPartidasVacias (ArrayList<Partida>listaPartidas)
-    {
-        if (listaPartidas.size() < 3) {
+    public static void agregarPartidasVacias(ArrayList<Partida> listaPartidas) {
+        if (listaPartidas == null || listaPartidas.size() < 3) {
             crearPartidasVacias(listaPartidas);
         }
     }
     public static void crearPartidasVacias(ArrayList<Partida> listaPartidas) {
-        for (int i = 0; i < 3; i++) {
-            if (listaPartidas.get(i) == null) {
-                Personaje jugadorVacio = new Personaje();
-                jugadorVacio.setNombre("Partida Vacia");
-                Partida aux = new Partida(jugadorVacio);
-                listaPartidas.set(i, aux);
-            }
+        int cantidadFaltante = 3 - listaPartidas.size();
+        for (int i = 0; i < cantidadFaltante; i++) {
+            Personaje jugadorVacio = new Personaje();
+            jugadorVacio.setNombre("Partida Vacia");
+            Partida aux = new Partida(jugadorVacio);
+            listaPartidas.add(aux);
         }
-
     }
 
 }

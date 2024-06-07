@@ -1,0 +1,654 @@
+[
+
+  {
+    "nombre": "La Cripta de los Ecos",
+    "nivel": 2,
+    "descripcion": "Delante de ti, una entrada de piedra tallada en la roca te invita a descender. Cada paso que das envía un eco resonante que parece multiplicarse en la vastedad oculta. El aire se vuelve más denso y pesado con cada paso, y la sensación de ser observado desde las sombras se intensifica, como si las paredes estuvieran vivas con el espíritu de los que descansan aquí.",
+    "items": [
+      {
+        "nombre": "Arco Desgastado",
+        "descripcion": "Un arco viejo y usado, tiene precisión reducida.",
+        "danio": 22
+      },
+      {
+        "nombre": "Espada de Sombras",
+        "descripcion": "Espada oscura que inflige daño adicional en ambientes sombríos.",
+        "danio": 25
+      },
+      {
+        "nombre": "Bastón de Hechicería",
+        "descripcion": "Bastón utilizado para canalizar hechizos mágicos.",
+        "danio": 25
+      },
+      {
+        "nombre": "Capa de Lamento",
+        "descripcion": "Una capa que emite un lamento, causando miedo en los enemigos cercanos.",
+        "defensa": 17,
+        "velocidad": 30
+      },
+      {
+        "nombre": "Armadura de Hierro",
+        "descripcion": "Armadura sólida y resistente hecha de hierro.",
+        "defensa": 22,
+        "velocidad": 34
+      },
+      {
+        "nombre": "Poción de Mana",
+        "descripcion": "Esta poción, destilada en las profundidades de los bosques encantados, revitaliza al bebedor con energías místicas, llenando su ser con la esencia misma de la magia.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 2
+      },
+      {
+        "nombre": "Poción de Grito",
+        "descripcion": "Una poción elaborada con las lágrimas de dragón y el rugido de las bestias antiguas. Otorga al bebedor una voz tan poderosa que hace temblar los cimientos de los mismos cielos.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 2
+      },
+      {
+        "nombre": "Poción de Protección",
+        "descripcion": "Forjada en las fraguas de los enanos de las montañas, esta poción envuelve al bebedor con un escudo mágico que desvía los golpes más feroces de sus enemigos otorgando.Velocidad +2",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 2
+      },
+      {
+        "nombre": "Poción de Velocidad",
+        "descripcion": "Una elixir destilado de la esencia misma del viento, que acelera al bebedor hasta límites que desafían la realidad. Velocidad +2",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 3
+      },
+      {
+        "nombre": "Poción de Fuerza",
+        "descripcion": "Esta poción, destilada en los calderos de los magos más poderosos, infunde al bebedor una velocidad sobrehumana, como si los vientos mismos lo guiaran en su camino. Velocidad +2.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 5
+      },
+      {
+        "nombre": "Poción de Curación",
+        "descripcion": "Elixir de sanación, hecho con las hierbas más raras y los conocimientos de los curanderos ancestrales.",
+        "tipo": "Poción",
+        "efecto": "EfectoCuracion",
+        "cantidadCuracion": 20
+      }
+    ]
+  },
+  {
+    "nombre": "El Bosque Petrificado",
+    "nivel": 1,
+    "descripcion": "Desde la entrada, puedes ver árboles enormes y retorcidos que han sido convertidos en piedra, sus ramas inmóviles extendiéndose como garras hacia el cielo oscuro. Un silencio inquietante reina en el lugar, y la escasa luz que penetra apenas logra revelar el camino. La sensación de antigüedad y de algo olvidado hace que el aire se sienta pesado y cargado de misterio.",
+    "items": [
+      {
+        "nombre": "Armadura de Raíces",
+        "descripcion": "Una armadura hecha de las raíces petrificadas de los árboles antiguos.",
+        "defensa": 22,
+        "velocidad": 8
+      },
+      {
+        "nombre": "Espada de Piedra Antigua",
+        "descripcion": "Una espada tallada de una roca antigua del bosque, imbuida con la esencia petrificada de su entorno.",
+        "danio": 13
+      }
+    ]
+  },
+  {
+    "nombre": "La Laguna Negra",
+    "nivel": 1,
+    "descripcion": "Las aguas negras del lago delante de ti son inquietantemente quietas. Reflejan sombras que parecen moverse de manera independiente, creando figuras que bailan y se retuercen. Hay una sensación de inquietud en el aire, como si algo acechara justo bajo la superficie.",
+    "items": [
+      {
+        "nombre": "Daga Oxidada",
+        "descripcion": "Una daga antigua y oxidada, menos efectiva en combate pero aún peligrosa.",
+        "danio": 10
+      },
+      {
+        "nombre": "Látigo de Araña Fuerte",
+        "descripcion": "Un látigo fabricado con hilos de tela de araña extremadamente fuertes, adecuado para atrapar y someter a los enemigos.",
+        "danio": 11
+      },
+      {
+        "nombre": "Daga de Sombras",
+        "descripcion": "Daga infundida con poder oscuro, inflige daño adicional en la oscuridad.",
+        "danio": 12
+      },
+      {
+        "nombre": "Armadura de Cuero",
+        "descripcion": "Armadura ligera hecha de cuero, ofrece protección básica.",
+        "defensa": 14,
+        "velocidad": 22
+      },
+      {
+        "nombre": "Armadura de Tela",
+        "descripcion": "Armadura básica hecha de tela, ofrece poca protección.",
+        "defensa": 8,
+        "velocidad": 14
+      },
+      {
+        "nombre": "Poción Menor de Velocidad",
+        "descripcion": "Aumenta ligeramente la velocidad del usuario por un corto tiempo.",
+        "tipo": "Pocion",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 10
+      },
+      {
+        "nombre": "Poción de Invisibilidad Menor",
+        "descripcion": "Vuelve al usuario parcialmente invisible por un corto período.Dandole la habilidad de curarse",
+        "tipo": "Pocion",
+        "efecto": "EfectoCuracion",
+        "cantidadCuracion": 20
+      },
+      {
+        "nombre": "Collar de Alma",
+        "descripcion": "Un collar que aumenta la capacidad espiritual del portador.",
+        "defensa": 6,
+        "velocidad": 12
+      },
+      {
+        "nombre": "Armadura de Piedra",
+        "descripcion": "Armadura pesada hecha de piedra, ofrece gran resistencia.",
+        "defensa": 16,
+        "velocidad": 26
+      }
+    ]
+  },
+  {
+    "nombre": "El Santuario de las Sombras",
+    "nivel": 2,
+    "descripcion": "Un portal oscuro se alza ante ti, rodeado de símbolos antiguos grabados que emiten un leve brillo. La entrada parece absorber toda la luz circundante, proyectando un aura de misterio y peligro. El interior promete revelaciones oscuras y poderosas, pero también una amenaza omnipresente que acecha en cada esquina.",
+    "items": [
+      {
+        "nombre": "Capa del Espectro Umbrío",
+        "descripcion": "Una capa oscura que parece absorber la luz a su alrededor, otorgando a quien la lleva una invisibilidad parcial en la penumbra.",
+        "defensa": 30,
+        "velocidad": 17
+      },
+      {
+        "nombre": "Daga Ceremonial",
+        "descripcion": "Una daga finamente decorada, utilizada en ceremonias ancestrales para rituales de poder.",
+        "danio": 24
+      }
+    ]
+  },
+  {
+    "nombre": "La Garganta Susurrante",
+    "nivel": 2,
+    "descripcion": "Frente a ti, la entrada de la caverna parece exhalar un murmullo inquietante. El aire que sale está cargado de voces incomprensibles, como si la misma roca hablara. La oscuridad interior es densa, prometiendo secretos olvidados y peligros ocultos.",
+    "items": [
+      {
+        "nombre": "Espada Rota",
+        "descripcion": "Una espada rota, no muy efectiva en combate.",
+        "danio": 23
+      },
+      {
+        "nombre": "Poción de Inteligencia Menor",
+        "descripcion": "Aumenta temporalmente la inteligencia.Provocando que sepas usar mejor tu velocidad",
+        "tipo": "Pocion",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 20
+      },
+      {
+        "nombre": "Armadura de Piel de Lobo",
+        "descripcion": "Armadura ligera hecha de piel de lobo, ofrece buena movilidad y protección básica.",
+        "defensa": 18,
+        "velocidad": 24
+      },
+      {
+        "nombre": "Poción de Veneno",
+        "descripcion": "Resulta que fue mal etiquetada y en realidad es una poción de salud.",
+        "tipo": "Pocion",
+        "efecto": "EfectoCuracion",
+        "cantidadCuracion": 5
+      },
+      {
+        "nombre": "Armadura de Cuero Reforzado",
+        "descripcion": "Armadura de cuero con refuerzos metálicos, ofrece mejor protección que la de cuero normal.",
+        "defensa": 20,
+        "velocidad": 26
+      },
+      {
+        "nombre": "Armadura de Piel de Rata",
+        "descripcion": "Armadura ligera hecha de piel de rata, ofrece mínima protección.",
+        "defensa": 15,
+        "velocidad": 28
+      },
+      {
+        "nombre": "Poción de Precisión Menor",
+        "descripcion": "Aumenta ligeramente la precisión del usuario por un corto tiempo.",
+        "tipo": "Pocion",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 5
+      },
+      {
+        "nombre": "Látigo de Araña Venenosa",
+        "descripcion": "Un látigo elaborado con hilos de tela de araña impregnados de veneno, diseñado para atrapar y paralizar a los enemigos.",
+        "danio": 22
+      },
+      {
+        "nombre": "Poción de Invisibilidad",
+        "descripcion": "Vuelve al usuario invisible por un período moderado.",
+        "tipo": "Pocion",
+        "efecto": "EfectoCuracion",
+        "cantidadCuracion": 30
+      },
+      {
+        "nombre": "Escudo de la Cripta",
+        "descripcion": "Escudo que ofrece gran protección y tiene un aura de muerte.",
+        "defensa": 20,
+        "velocidad": 32
+      }
+    ]
+  },
+  {
+    "nombre": "El Laberinto de Cristal",
+    "nivel": 3,
+    "descripcion": "Ante ti se extiende un entramado de pasajes formados por cristales resplandecientes. La luz se refracta y se multiplica en todas direcciones, creando un caleidoscopio de sombras y reflejos que confunden la vista. Cada paso en este laberinto promete tanto maravillas como trampas invisibles, con el constante riesgo de perderte para siempre en su resplandor hipnótico.",
+    "items": [
+      {
+        "nombre": "Armadura de Reflejos Irisados",
+        "descripcion": "Una armadura adornada con cristales resplandecientes que reflejan la luz en todas direcciones. Sus destellos desorientan a los enemigos en combate.",
+        "defensa": 30,
+        "velocidad": 30
+      },
+      {
+        "nombre": "Poción de Claridad",
+        "descripcion": "Aumenta la percepción y la resistencia a efectos mentales.",
+        "tipo": "Poción",
+        "efecto": "EfectoCuracion",
+        "cantidadCuracion": 5
+      }
+    ]
+  },
+  {
+    "nombre": "Las Cavernas del Olvido",
+    "nivel": 3,
+    "descripcion": "Frente a ti se abre una vasta caverna con estalactitas y estalagmitas que parecen dientes afilados de una bestia gigantesca. La humedad se cuela en tus huesos y un eco constante de gotas de agua crea un ritmo inquietante. La oscuridad profunda sugiere que muchos han entrado pero pocos han salido, dejando sus historias para perderse en el olvido.",
+    "items": [
+      {
+        "nombre": "Maza Grande",
+        "descripcion": "Una maza pesada que inflige gran daño en combate cuerpo a cuerpo.",
+        "danio": 35
+      },
+      {
+        "nombre": "Espada de Fuego",
+        "descripcion": "Espada encantada con fuego, inflige daño por quemaduras.",
+        "danio": 36
+      },
+      {
+        "nombre": "Armadura de Sombras",
+        "descripcion": "Armadura que proporciona invisibilidad parcial en la oscuridad.",
+        "defensa": 24,
+        "velocidad": 38
+      },
+      {
+        "nombre": "Escudo de Piedra",
+        "descripcion": "Un escudo robusto hecho de piedra, ofrece gran resistencia.",
+        "defensa": 33,
+        "velocidad": 28
+      },
+      {
+        "nombre": "Espada de Manticora",
+        "descripcion": "Espada con veneno de manticora, inflige daño adicional con el tiempo.",
+        "danio": 35
+      },
+      {
+        "nombre": "Bastón Arcano",
+        "descripcion": "Bastón utilizado para lanzar poderosos hechizos arcanos.",
+        "danio": 37
+      },
+      {
+        "nombre": "Poción de Sombras",
+        "descripcion": "Proporciona invisibilidad en las sombras y aumenta el daño de ataques furtivos.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 20
+      },
+      {
+        "nombre": "Poción de Petrificación",
+        "descripcion": "Vuelve al usuario resistente a ataques físicos, casi como piedra.",
+        "tipo": "Poción",
+        "efecto": "EfectoCuracion",
+        "cantidadCuracion": 5
+      },
+      {
+        "nombre": "Poción de Cazador",
+        "descripcion": "Aumenta la precisión y velocidad del usuario, ideal para cazadores.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 10
+      },
+      {
+        "nombre": "Poción de Fuego Dorado",
+        "descripcion": "Aumenta el daño de los ataques de fuego.",
+        "tipo": "Poción",
+        "efecto": "EfectoCuracion",
+        "cantidadCuracion": 40
+      }
+    ]
+  },
+  {
+    "nombre": "La Gruta de las Lamentaciones",
+    "nivel": 3,
+    "descripcion": "Una entrada angosta lleva a una gruta donde el aire es espeso y el ambiente opresivo. Desde fuera, se escucha un lamento continuo, como si las paredes mismas guardaran recuerdos de antiguas tragedias. El suelo está cubierto de una fina capa de polvo que parece no haber sido perturbada en siglos.",
+    "items": [
+      {
+        "nombre": "Item 1",
+        "descripcion": "Descripción del Item 1",
+        "danio": 10
+      },
+      {
+        "nombre": "Item 2",
+        "descripcion": "Descripción del Item 2",
+        "defensa": 5,
+        "velocidad": 3
+      },
+      {
+        "nombre": "Poción de Curación",
+        "descripcion": "Restaura salud",
+        "tipo": "Pocion",
+        "efecto": "EfectoCuracion",
+        "cantidadCuracion": 20
+      }
+    ]
+  },
+  {
+    "nombre": "El Altar de los Secretos",
+    "nivel": 4,
+    "descripcion": "A lo lejos, ves un antiguo altar de piedra iluminado por una luz espectral que no tiene fuente visible. El aire está cargado con la sensación de un poder antiguo y prohibido. Las paredes circundantes están cubiertas de runas y tallas que emiten un brillo suave y siniestro. Cada paso hacia el altar hace que la sensación de peligro y revelación aumente, como si secretos oscuros estuvieran a punto de ser desvelados.",
+    "items": [
+      {
+        "nombre": "Escudo Dorado",
+        "descripcion": "Escudo brillante que refleja ataques mágicos.",
+        "defensa": 36,
+        "velocidad": 34
+      },
+      {
+        "nombre": "Armadura de Quimera",
+        "descripcion": "Armadura hecha de piel de quimera, proporciona gran resistencia.",
+        "defensa": 40,
+        "velocidad": 36
+      },
+      {
+        "nombre": "Espada de Hielo",
+        "descripcion": "Espada encantada con hielo, puede congelar a los enemigos.",
+        "danio": 56
+      },
+      {
+        "nombre": "Poción de Agilidad",
+        "descripcion": "Aumenta temporalmente la agilidad del usuario.",
+        "tipo": "Pocion",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 5
+      },
+      {
+        "nombre": "Poción de Renacimiento",
+        "descripcion": "Permite al usuario revivir tras la muerte con salud parcial.",
+        "tipo": "Pocion",
+        "efecto": "EfectoCuracion",
+        "cantidadCuracion": 50
+      },
+      {
+        "nombre": "Espada Abisal",
+        "descripcion": "Espada con poder oscuro del abismo, causa gran daño.",
+        "danio": 62
+      },
+      {
+        "nombre": "Tridente del Titán",
+        "descripcion": "Un tridente poderoso utilizado por los titanes, causa gran daño.",
+        "danio": 65
+      },
+      {
+        "nombre": "Poción de Resistencia",
+        "descripcion": "Aumenta la resistencia del usuario a todo tipo de daño.",
+        "tipo": "Pocion",
+        "efecto": "EfectoDefensa",
+        "cantidadDefensa": 10
+      },
+      {
+        "nombre": "Poción de Profundidades",
+        "descripcion": "Permite al usuario respirar bajo el agua y moverse libremente.",
+        "tipo": "Pocion",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 5
+      },
+      {
+        "nombre": "Armadura de las Sombras",
+        "descripcion": "Armadura que proporciona invisibilidad parcial y protección en la oscuridad.",
+        "defensa": 42,
+        "velocidad": 42
+      }
+    ]
+  },
+  {
+    "nombre": "Las Ruinas Sumergidas",
+    "nivel": 4,
+    "descripcion": "A través del agua cristalina, se pueden ver los restos de una ciudad antigua sumergida. Columnas caídas y estructuras derrumbadas se alzan desde el lecho del lago, envueltas en algas y corales. La tranquilidad del agua contrasta con la sensación de desolación y olvido que emana de las ruinas.",
+    "items": [
+      {
+        "nombre": "Poción de Poder Abisal",
+        "descripcion": "Aumenta temporalmente el poder de los hechizos oscuros.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 10
+      },
+      {
+        "nombre": "Espada de Basilisco",
+        "descripcion": "Espada con la capacidad de petrificar a los enemigos.",
+        "danio": 55
+      },
+      {
+        "nombre": "Poción de Fuerza Titánica",
+        "descripcion": "Aumenta significativamente la fuerza del usuario por un tiempo limitado.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 20
+      },
+      {
+        "nombre": "Armadura de Adamantita",
+        "descripcion": "Armadura extremadamente resistente, casi indestructible.",
+        "defensa": 44,
+        "velocidad": 38
+      },
+      {
+        "nombre": "Escudo de Leviatán",
+        "descripcion": "Escudo enorme y resistente, proporciona gran protección.",
+        "defensa": 48,
+        "velocidad": 40
+      },
+      {
+        "nombre": "Poción de Petrificación",
+        "descripcion": "Vuelve al usuario resistente a ataques físicos, casi como piedra.",
+        "tipo": "Poción",
+        "efecto": "EfectoCuracion",
+        "cantidadCuracion": 5
+      },
+      {
+        "nombre": "Poción de Vuelo",
+        "descripcion": "Permite al usuario volar por un tiempo limitado.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 30
+      },
+      {
+        "nombre": "Armadura de Hielo",
+        "descripcion": "Armadura que ofrece resistencia al frío y puede congelar a los atacantes.",
+        "defensa": 36,
+        "velocidad": 40
+      },
+      {
+        "nombre": "Espada del Grifo",
+        "descripcion": "Espada infundida con la fuerza y agilidad del grifo.",
+        "danio": 56
+      },
+      {
+        "nombre": "Pluma de Fénix",
+        "descripcion": "Pluma mágica que puede llenarle la vida al  portador una vez.",
+        "tipo": "Poción",
+        "efecto": "EfectoCuracion",
+        "cantidadCuracion": 100
+      }
+    ]
+  },
+  {
+    "nombre": "La Torre del Vigía",
+    "nivel": 4,
+    "descripcion": "En la distancia, una torre alta y esbelta se alza solitaria en la llanura subterránea. Desde fuera, se puede ver que sus ventanas están rotas y cubiertas de hiedra, y una sensación de abandono y vigilancia se cierne sobre el lugar. Las sombras que la rodean parecen estar permanentemente estacionadas allí, dándole un aspecto aún más siniestro.",
+    "items": [
+      {
+        "nombre": "Escudo de la Torre Abandonada",
+        "descripcion": "Un escudo robusto con grabados antiguos, que una vez protegió a los vigilantes de la torre. Aunque ahora descuidado, conserva su poder defensivo.",
+        "defensa": 48,
+        "velocidad": 36
+      },
+      {
+        "nombre": "Báculo de Vigilancia Arcana",
+        "descripcion": "Un báculo tallado con runas de protección y vigía.",
+        "danio": 63
+      }
+    ]
+  },
+  {
+    "nombre": "Las Catacumbas Prohibidas",
+    "nivel": 5,
+    "descripcion": "Un pasadizo estrecho y oscuro se extiende hacia las catacumbas, donde se dice que descansan los restos de aquellos que jamás encontraron paz. La atmósfera es pesada y cargada, y el aire está lleno del olor a moho y tierra. La sensación de que algo antiguo y poderoso yace en espera es ineludible.",
+    "items": [
+      {
+        "nombre": "Armadura de Oscuridad",
+        "descripcion": "Armadura que absorbe luz, ofreciendo invisibilidad en sombras profundas.",
+        "defensa": 54,
+        "velocidad": 42
+      },
+      {
+        "nombre": "Espada de Desolación",
+        "descripcion": "Espada que causa desesperación en los enemigos.",
+        "danio": 50
+      },
+      {
+        "nombre": "Poción de Espíritu Ancestral",
+        "descripcion": "Aumenta temporalmente el poder espiritual y la regeneración de mana.",
+        "tipo": "Poción",
+        "efecto": "EfectoCuracion",
+        "cantidadCuracion": 10
+      },
+      {
+        "nombre": "Poción de Alma",
+        "descripcion": "Aumenta temporalmente la capacidad de los poderes espirituales.",
+        "tipo": "Poción",
+        "efecto": "EfectoCuracion",
+        "cantidadCuracion": 20
+      },
+      {
+        "nombre": "Poción de Oscuridad",
+        "descripcion": "Aumenta la resistencia a ataques oscuros y proporciona visión nocturna.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 5
+      },
+      {
+        "nombre": "Poción de Destrucción",
+        "descripcion": "Aumenta significativamente el daño de los ataques del usuario.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 30
+      },
+      {
+        "nombre": "Vara Espectral",
+        "descripcion": "Vara utilizada para canalizar poderes espirituales y oscuros.",
+        "danio": 89
+      },
+      {
+        "nombre": "Espada de Almas",
+        "descripcion": "Espada que captura las almas de los enemigos derrotados, incrementando su poder.",
+        "danio": 90
+      }
+    ]
+  },
+  {
+    "nombre": "La Ciudadela del Abismo",
+    "nivel": 5,
+    "descripcion": "Entre las sombras de la tierra, se alza una imponente Ciudadela, una fortaleza antigua envuelta en un manto de oscuridad eterna. Sus torres se alzan como garras hacia el techo de la caverna, sus siluetas apenas visibles contra la penumbra que las rodea.El aire alrededor de la Ciudadela está impregnado de un silencio sepulcral, roto solo por el eco distante de tus propios pasos.",
+    "items": [
+      {
+        "nombre": "Espada de las Sombras",
+        "descripcion": "Espada que se fortalece en la oscuridad, causando gran daño.",
+        "danio": 50
+      },
+      {
+        "nombre": "Lanza de las Sombras",
+        "descripcion": "Arma mística imbuida con el poder de las sombras. Su filo está envuelto en oscuridad, causando daño con su toque oscuro.",
+        "danio": 82
+      },
+      {
+        "nombre": "Espada de la Ruina",
+        "descripcion": "Espada que drena la vida de los enemigos.",
+        "danio": 87
+      },
+      {
+        "nombre": "Poción Menor de Agilidad",
+        "descripcion": "Aumenta ligeramente la agilidad del usuario por un corto tiempo.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 10
+      },
+      {
+        "nombre": "Capa de las Sombras",
+        "descripcion": "Proporciona una sensación de seguridad en la oscuridad, permitiendo al usuario moverse con agilidad y rapidez.",
+        "defensa": 44,
+        "velocidad": 50
+      },
+      {
+        "nombre": "Poción de Ruina",
+        "descripcion": "Aumenta el daño infligido y reduce la resistencia del enemigo.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 20
+      }
+    ]
+  },
+  {
+    "nombre": "El Monolito Encantado",
+    "nivel": 5,
+    "descripcion": "Un obelisco de piedra oscura se alza en la distancia, como un pilar de sombras en la penumbra eterna. Las inscripciones rúnicas titilan débilmente, emitiendo destellos que cortan la oscuridad y murmuran secretos olvidados en el silencio envolvente.",
+    "items": [
+      {
+        "nombre": "Poción de Luz Caída",
+        "descripcion": "Proporciona visibilidad en la oscuridad y aumenta la resistencia a ataques oscuros.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 10
+      },
+      {
+        "nombre": "Espada Infernal",
+        "descripcion": "Espada con fuego infernal, inflige graves quemaduras.",
+        "danio": 85
+      },
+      {
+        "nombre": "Espada de la Tempestad",
+        "descripcion": "Espada encantada con el poder de las tormentas, causa daño eléctrico.",
+        "danio": 86
+      },
+      {
+        "nombre": "Espada del Ángel Caído",
+        "descripcion": "Espada con el poder oscuro de un ángel caído, causa gran daño y absorbe vida.",
+        "danio": 88
+      },
+      {
+        "nombre": "Poción de Fuego Infernal",
+        "descripcion": "Aumenta el daño de los ataques de fuego infernal.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 40
+      },
+      {
+        "nombre": "Poción de Tormenta",
+        "descripcion": "Proporciona resistencia a los daños eléctricos y aumenta el poder de los ataques de tormenta.",
+        "tipo": "Poción",
+        "efecto": "EfectoVelocidad",
+        "cantidadVelocidad": 5
+      }
+    ]
+  }
+
+]
