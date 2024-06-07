@@ -1,8 +1,8 @@
 package Modelos.Items;
 
-import Modelos.Interfaces.Habilidades;
+import Modelos.Interfaces.IHabilidades;
 
-public class Arma extends Item implements Habilidades {
+public class Arma extends Item implements IHabilidades {
 
     private int danio;
 

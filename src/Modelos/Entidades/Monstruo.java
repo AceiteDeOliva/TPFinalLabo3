@@ -1,9 +1,9 @@
 package Modelos.Entidades;
 
-import Modelos.Interfaces.Habilidades;
+import Modelos.Interfaces.IHabilidades;
 import Modelos.Items.Item;
 
-public class Monstruo extends Entidad implements Habilidades {
+public class Monstruo extends Entidad implements IHabilidades {
 
     private int danio;//valor que le resta a la vida del personaje.
     private int velocidad;
