@@ -8,7 +8,6 @@ import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
 import org.json.JSONException;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.InputMismatchException;
@@ -248,10 +247,11 @@ public class Ejecucion {
 
     public static void manejarEncuentro(Partida partida, ArrayList<Partida> listaPartidas) {//funcion que maneja la eleccion de encuentros
         int respuesta = -1;
-        while (partida.getJugador().estaVivo() && respuesta != 0) {
-            limpiarConsola();
+
+        while (partida.getJugador().estaVivo()) {
+            limpiarConsola();//limpia la consola || en realidad solo imprime 50 lines vacias
             respuesta = elegirEncuentro(partida); //funcion en la que elegis un encuentro
-            if(respuesta == 0){
+            if(respuesta == 0){// si la respuesta de elegir encuentro es 0 termina la funcion
                 break;
             }
             if (escenarioActual instanceof EscenarioMonstruo) { // cheque0 el tipo de instancia elegida
@@ -260,7 +260,16 @@ public class Ejecucion {
             } else if (escenarioActual instanceof EscenarioItem) { //idem if the arriba
                 encuentro(partida, (EscenarioItem) escenarioActual);
             }
-            partida.guardarPartida();//Se guarda la partida
+            if(partida.guardarPartida()){//Se guarda la partida || imprime mensaje si lo logro
+                System.out.println("Se guardo la partida");
+
+            }else{
+
+                System.out.println("Error: No se pudo guardar la partida");
+            }
+            System.out.println("Ingrese algo para continuar.");
+            scan.next();
+            scan.nextLine();
 
         }
     }

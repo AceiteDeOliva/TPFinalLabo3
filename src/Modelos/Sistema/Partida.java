@@ -180,10 +180,9 @@ public class Partida implements Serializable {
         Archivo archivo = new Archivo();
         ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
 
-        // Debugging information to check if the list is being populated correctly
 
         for (Partida p : listaPartidas) {
-            System.out.println(p); // Make sure Partida has a meaningful toString() method
+            System.out.println(p);
         }
 
         boolean flag = false;
@@ -197,7 +196,7 @@ public class Partida implements Serializable {
             }
         }
 
-        // Save the list back to the file only if it was updated
+        // Lo guarda solo si se cambia
         if (flag) {
             archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre());
         }
