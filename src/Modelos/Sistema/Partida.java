@@ -149,6 +149,8 @@ public class Partida implements Serializable {
         return respuesta;
     }
 
+
+    //funciones partidas:
     // inicializar partidas
     public boolean chequearExistencia(Partida partida){
         //Chequea si la partida ingresada esta vacia y devuelve true si lo esta
@@ -156,6 +158,24 @@ public class Partida implements Serializable {
 
 
     }
+
+    //Guardar partidas
+    public boolean guardarPartida() {
+        Archivo archivo = new Archivo();
+        ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
+        Iterator<Partida> iter = listaPartidas.iterator();
+        boolean flag = false;
+        while (iter.hasNext()) {
+            Partida partida = iter.next();
+            if (partida.equals(this)) {
+                partida = this;
+                archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre());
+                flag = true;
+            }
+        }
+        return flag;
+    }
+
     //Eliminar una partida de la lista
     public static boolean eliminarPartida(ArrayList<Partida> listaPartidas, Partida partidaEliminar) {
         Iterator<Partida> iter = listaPartidas.iterator();
@@ -195,6 +215,23 @@ public class Partida implements Serializable {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        boolean resultado = false;
+        if(o != null && o instanceof Partida){
+            Partida partidaAcomparar = (Partida) o;
+            String thisJugadorNombre = jugador.getNombre();
+            String otherJugadorNombre = partidaAcomparar.getJugador().getNombre();
+            resultado = Objects.equals(thisJugadorNombre, otherJugadorNombre);
+        }
+
+        return resultado;
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
+    }
 }
 
 
