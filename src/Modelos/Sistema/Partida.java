@@ -100,6 +100,7 @@ public class Partida implements Serializable {
     public String itemEncontrado(EscenarioItem escenarioItem){
         Item nuevoItem = escenarioItem.elegirItem();
         jugador.agregarItem(nuevoItem);
+        subirNivel();
         return "" + nuevoItem;
     }
 
@@ -115,6 +116,11 @@ public class Partida implements Serializable {
         }
     }
 
+    public void subirNivel(){//funcion que sube el nivel
+
+        nivelActual +=1;
+    }
+
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // funciones de batalla
     public int chequeoFinDeAtaque(Monstruo monstruo) { //Chequea al final de un ataque si el monstruo y/o el jugador esta vivo
@@ -122,7 +128,7 @@ public class Partida implements Serializable {
         if (jugador.estaVivo()) {
             if (!monstruo.estaVivo()) {
                 resultado = 1; //devuelve 1 si el jugador ha ganado la batalla
-                nivelActual += 1;
+                subirNivel();
                 jugador.agregarItem(monstruo.tirarBotin());
             }
         } else {
