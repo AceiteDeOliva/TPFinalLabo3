@@ -7,6 +7,7 @@ import Modelos.Items.Item;
 import Modelos.Items.pociones.Pocion;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class EscenarioItem extends Escenario {
@@ -45,5 +46,20 @@ public class EscenarioItem extends Escenario {
             interaccion+= pocionDrop.toString()+"!";
         }
         return interaccion;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        boolean resultado = false;
+        if(o != null && o instanceof EscenarioItem){
+            EscenarioItem escenarioItem = (EscenarioItem)o;
+            super.equals(escenarioItem);
+        }
+        return resultado;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), listaItems);
     }
 }

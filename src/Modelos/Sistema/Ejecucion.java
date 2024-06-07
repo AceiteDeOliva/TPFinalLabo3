@@ -297,18 +297,22 @@ public class Ejecucion {
     public static int elegirEncuentro(Partida partida) {
 
         Escenario escenario1 = partida.escenarioPosible(); // Recibir 2 escenarios random
-        Escenario escenario2 = partida.escenarioPosible();
-
+        Escenario escenario2;
+        do {
+            escenario2 = partida.escenarioPosible();
+        } while (escenario2.equals(escenario1));
 
         int eleccion = -1;
 
         System.out.println("Estas en una bifurcacion en el camino.");
         System.out.println("A un lado ves:");
+        System.out.println("-----------------------------------------------------------------------------------------");
         manejoLineas(escenario1.getDescripcion());
         System.out.println("-----------------------------------------------------------------------------------------");
         System.out.println("Al otro lado ves:");
         System.out.println("-----------------------------------------------------------------------------------------");
         manejoLineas(escenario2.getDescripcion());
+        System.out.println("-----------------------------------------------------------------------------------------");
         System.out.println("Que camino deseas tomar?");
         System.out.println("1. Primer camino.");
         System.out.println("2. Segundo camino.");
@@ -337,6 +341,7 @@ public class Ejecucion {
                 System.out.println("Error: Opcion invalida.");
                 break;
         }
+
         return eleccion;
 
 

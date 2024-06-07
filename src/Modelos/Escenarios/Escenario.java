@@ -1,6 +1,9 @@
 package Modelos.Escenarios;
 
+import Modelos.Sistema.Partida;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Escenario implements Serializable {
     private  String nombre;
@@ -53,5 +56,21 @@ public class Escenario implements Serializable {
                 "\n  Nivel: " + nivel +
                 "\n  Descripcion: '" + descripcion + '\'' +
                 "\n}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        boolean resultado = false;
+        if(o instanceof Escenario escenarioAcomparar){
+            String nombreEscenario = nombre;
+            String nombreEscenarioOtro = escenarioAcomparar.nombre;
+            resultado = Objects.equals(nombreEscenario, nombreEscenarioOtro);
+        }
+
+        return resultado;
+    }
+    @Override
+    public int hashCode() {
+        return 1;
     }
 }

@@ -3,6 +3,7 @@ import Modelos.Entidades.Monstruo;
 import Modelos.Entidades.Personaje;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class EscenarioMonstruo extends Escenario {
@@ -38,5 +39,20 @@ public class EscenarioMonstruo extends Escenario {
         int indice = random.nextInt(listaMonstruos.size());
         monstruoElegido = listaMonstruos.get(indice);
         return monstruoElegido;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        boolean resultado = false;
+        if(o != null && o instanceof EscenarioMonstruo){
+            EscenarioMonstruo escenarioMonstruo = (EscenarioMonstruo)o;
+            super.equals(escenarioMonstruo);
+        }
+        return resultado;
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
     }
 }
