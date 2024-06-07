@@ -101,11 +101,11 @@ public class Partida implements Serializable {
         return rand.nextInt(maximo); //devuelve un numero aleatorio con valor maximo maximo
     }
 
-    public String itemEncontrado(EscenarioItem escenarioItem){
+    public String itemEncontrado(EscenarioItem escenarioItem){//agrega el item encontrado al inventario y devuelve el string con los datos
         Item nuevoItem = escenarioItem.elegirItem();
         jugador.agregarItem(nuevoItem);
         subirNivel();
-        return "" + nuevoItem;
+        return String.valueOf(nuevoItem);
     }
 
     public void escenariosAHashMap(HashSet<Escenario> listaEscenarios) { //funcion que ordena los monstruos por nivel en listas
@@ -157,13 +157,12 @@ public class Partida implements Serializable {
     }
 
     //Guardar partidas
-
     public boolean guardarPartida(ArrayList<Partida>listaPartidas) {
         Archivo archivo = new Archivo();
 
         boolean flag = false;
 
-        for (int i = 0; i < listaPartidas.size(); i++) {
+        for (int i = 0; i < listaPartidas.size(); i++) {//recorrer el array de partidas,busca la partida y la cambia
             Partida partida = listaPartidas.get(i);
             if (partida.equals(this)) {
                 listaPartidas.set(i, this); //

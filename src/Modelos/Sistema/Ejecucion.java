@@ -92,129 +92,148 @@ public class Ejecucion {
 
     //Elegir dentro de las partidas existentes en el caso de no elegir una devuelve -1
     public static int elegirPartida() {
+        // Inicialización del contador para enumerar las partidas disponibles.
         int contador = 0;
 
+        // Mostrar las partidas disponibles.
         System.out.println("Partidas:");
-        System.out.println("0.Volver");
+        System.out.println("0.Volver"); // Opción para volver atrás.
+        // Iterar sobre la lista de partidas.
         for (int i = 0; i < listaPartidas.size(); i++) {
+            // Verificar si la partida no está vacía.
             if (!listaPartidas.get(i).chequearExistencia(listaPartidas.get(i))) {
-                contador++;
+                contador++; // Incrementar el contador.
+                // Mostrar el número de la partida y el nombre del jugador asociado.
                 System.out.println(contador + ". " + listaPartidas.get(i).getJugador().getNombre());
             }
         }
 
+        // Solicitar al usuario que ingrese el número de la partida.
         System.out.println("Ingrese el número de la partida:");
         int eleccion = 0;
         boolean entradaValida = false;
 
+        // Bucle para esperar una entrada válida del usuario.
         while (!entradaValida) {
             try {
+                // Intentar leer la entrada del usuario como un entero.
                 eleccion = scan.nextInt();
+                // Verificar si la elección está dentro del rango de opciones disponibles.
                 if (eleccion >= 0 && eleccion <= contador) { // Includes 0
-                    entradaValida = true;
+                    entradaValida = true; // Marcar la entrada como válida.
                 } else {
+                    // Mostrar un mensaje de error si la selección es inválida.
                     System.out.println("Selección invalida. Ingrese nuevamente:");
                 }
             } catch (InputMismatchException e) {
+                // Capturar excepción si la entrada no es un entero.
                 System.out.println("Entrada no valida. Ingrese un numero:");
-                scan.next(); // Limpiamos el buffer del scanner
+                scan.next(); // Limpiar el buffer del scanner.
             }
         }
 
-
-        return eleccion;
+        // Devolver la elección de partida seleccionada, ajustada para la indexación de listas basada en cero.
+        return eleccion - 1;
     }
 
-
     public static int menuPartida() {
+        // Agregar partidas vacías al inicio, si no hay ninguna
         Partida.agregarPartidasVacias(listaPartidas);
-        int eleccion = -1;
-        int indice = -1;
+        int eleccion = -1; // Variable para almacenar la elección del usuario
+        int indice = -1; // Variable para almacenar el índice de la partida seleccionada
 
+        // Bucle que se ejecuta mientras el usuario no elija salir (opción 0)
         while (eleccion != 0) {
+            // Mostrar las opciones del menú
             System.out.println("1. Nueva partida");
 
+            // Mostrar la opción de continuar partida solo si hay partidas guardadas
             if (Partida.saberSiContienePartidas(listaPartidas)) {
                 System.out.println("2. Continuar partida");
             }
             System.out.println("0. Salir");
 
             try {
+                // Leer la elección del usuario
                 eleccion = scan.nextInt();
 
-
+                // Verificar si la elección es válida
                 if ((eleccion != 1 && eleccion != 2 && eleccion != 0) || (eleccion == 2 && !Partida.saberSiContienePartidas(listaPartidas))) {
                     System.out.println("No es una opción correcta. Por favor, elige otra opción.");
-                } else if (eleccion != 0) {
+                } else if (eleccion != 0) { // Si la elección no es salir
+                    // Manejar la elección del usuario y obtener el índice de la partida seleccionada
                     indice = manejarPartidas(eleccion);
-                    eleccion = 0;
-                    // Si el índice es 0, significa que el usuario eligió volver atrás
+                    eleccion = 0; // Establecer eleccion en 0 para salir del bucle
+
+                    // Si el índice es -1, significa que el usuario eligió volver atrás
                     if (indice == -1) {
                         eleccion = -1; // Reiniciar la variable eleccion para continuar el bucle
                     }
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Entrada no válida. Por favor, ingrese un número.");
-                scan.next();
+                scan.next(); // Limpiar el buffer del scanner
             }
         }
 
-
+        // Devolver el índice de la partida seleccionada
         return indice;
     }
 
     public static int manejarPartidas(int eleccion) {
-        int indice = -1;
-        Archivo archivo = new Archivo();
+        int indice = -1; // Índice de la partida seleccionada
+        Archivo archivo = new Archivo(); // Instancia de la clase Archivo para trabajar con archivos
 
         String nombre;
-        int volver = 0;
+        int volver = 0; // Variable para controlar el flujo de ejecución en caso de volver atrás
+
         switch (eleccion) {
-            case 1:
+            case 1: // Crear nueva partida
                 for (int i = 0; i < listaPartidas.size(); i++) {
                     if (listaPartidas.get(i).chequearExistencia(listaPartidas.get(i))) {
                         indice = i;
                     }
                 }
+                // Si no hay espacio para nuevas partidas, se le pide al usuario que elija una para eliminar
                 if (indice == -1) {
                     System.out.println("No hay espacio para nuevas partidas");
-                    System.out.println("Elija que partida eliminar");
+                    System.out.println("Elija qué partida eliminar");
                     indice = elegirPartida();
                     if (indice != -1) {
+                        // Si se elige una partida para eliminar, se realiza la eliminación
                         if (Partida.eliminarPartida(listaPartidas, listaPartidas.get(indice))) {
                             System.out.println("Partida eliminada exitosamente");
+                            // Después de eliminar la partida, se agrega una partida vacía para mantener el tamaño de la lista
                             Partida.agregarPartidasVacias(listaPartidas);
-                            indice = 2;
+                            indice = 2; // Se establece el índice en 2 para indicar que se creará una nueva partida
                         }
                     } else {
-                        volver = indice;
+                        volver = indice; // Si el usuario elige volver atrás, se guarda la elección en la variable volver
                     }
                 }
+                // Si no se elige volver atrás, se procede a crear una nueva partida
                 if (volver != -1) {
                     Partida partida;
-                    partida = CrearPersonaje();
-                    listaPartidas.set(indice, partida);
-                    archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre());
-
+                    partida = CrearPersonaje(); // Se crea un nuevo personaje para la partida
+                    listaPartidas.set(indice, partida); // Se guarda la nueva partida en la lista de partidas
+                    archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre()); // Se guarda la lista de partidas en el archivo
                 }
-
                 break;
 
-            case 2:
-                indice = elegirPartida();
-                listaPartidas.get(indice).construirHashMap();
-
+            case 2: // Continuar partida
+                indice = elegirPartida(); // Se elige una partida para continuar
+                listaPartidas.get(indice).construirHashMap(); // Se construye el HashMap relacionado con la partida seleccionada
                 break;
 
-            case 0:
-                // El usuario eligió volver atrás
-                indice = -1;
+            case 0: // Volver atrás
+                indice = -1; // El usuario eligió volver atrás, por lo que se establece el índice en -1
                 break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + eleccion);
+
+            default: // Opción no válida
+                throw new IllegalStateException("Unexpected value: " + eleccion); // Se lanza una excepción
         }
 
-        return indice;
+        return indice; // Se devuelve el índice de la partida seleccionada
     }
 
     public static Partida CrearPersonaje() {
@@ -251,7 +270,7 @@ public class Ejecucion {
 
         // Crear un nuevo personaje con el nombre y la clase elegida por el usuario y asignarlo a la partida
         Personaje nuevoPersonaje = new Personaje(nombrePersonaje, clasePersonaje);
-        Partida partida = new Partida(nuevoPersonaje); // Asumiendo que partida es una variable accesible aquí
+        Partida partida = new Partida(nuevoPersonaje);
         return partida;
     }
 
@@ -259,7 +278,7 @@ public class Ejecucion {
     public static void manejarEncuentro(Partida partida) {//funcion que maneja la eleccion de encuentros
         int respuesta = -1;
 
-        while (partida.getJugador().estaVivo() && partida.getNivelActual()< 7) {
+        while (partida.getJugador().estaVivo() && partida.getNivelActual() < 7) {
             limpiarConsola();//limpia la consola || en realidad solo imprime 50 lines vacias
             respuesta = elegirEncuentro(partida); //funcion en la que elegis un encuentro
             if (respuesta == 0) {// si la respuesta de elegir encuentro es 0 termina la funcion
@@ -283,13 +302,13 @@ public class Ejecucion {
 
 
         }
-        if (partida.getNivelActual() == 7){//chequea si ganaste el juego
+        if (partida.getNivelActual() == 7) {//chequea si ganaste el juego
 
             pantallaGanador();
             esperar(5);
 
-        }else if(!partida.getJugador().estaVivo()){
-            Partida.eliminarPartida(listaPartidas,partida);
+        } else if (!partida.getJugador().estaVivo()) { //cuando el jugador muere se elimina su partida
+            Partida.eliminarPartida(listaPartidas, partida);
 
         }
     }
@@ -300,18 +319,18 @@ public class Ejecucion {
         Escenario escenario2;
         do {
             escenario2 = partida.escenarioPosible();
-        } while (escenario2.equals(escenario1));
+        } while (escenario2.equals(escenario1) && partida.getNivelActual() != 6);// chequea que no te de las mismas opciones excepto en el 6 que es nivel unico
 
         int eleccion = -1;
 
         System.out.println("Estas en una bifurcacion en el camino.");
         System.out.println("A un lado ves:");
         System.out.println("-----------------------------------------------------------------------------------------");
-        manejoLineas(escenario1.getDescripcion());
+        manejoLineas(escenario1.getDescripcion());//divide la descripcion del escenario en lineas para que sea mas facil de leer
         System.out.println("-----------------------------------------------------------------------------------------");
         System.out.println("Al otro lado ves:");
         System.out.println("-----------------------------------------------------------------------------------------");
-        manejoLineas(escenario2.getDescripcion());
+        manejoLineas(escenario2.getDescripcion());//divide la descripcion del escenario en lineas para que sea mas facil de leer
         System.out.println("-----------------------------------------------------------------------------------------");
         System.out.println("Que camino deseas tomar?");
         System.out.println("1. Primer camino.");
@@ -327,7 +346,7 @@ public class Ejecucion {
 
         }
 
-        switch (eleccion) {
+        switch (eleccion) { //Se selecciona el escenario
             case 1:
                 escenarioActual = escenario1;
                 break;
@@ -342,8 +361,7 @@ public class Ejecucion {
                 break;
         }
 
-        return eleccion;
-
+        return eleccion; //devuelve la eleccion
 
     }
 
@@ -355,7 +373,7 @@ public class Ejecucion {
 
             limpiarConsola();
             System.out.println("\n" + escenario.getNombre());
-            manejoLineas(escenario.getDescripcion());
+            manejoLineas(escenario.getDescripcion()); //divide la descripcion del escenario en lineas para que sea mas facil de leer
             System.out.println(monstruo);
             System.out.println(partida.getJugador());
 
@@ -378,7 +396,7 @@ public class Ejecucion {
 
                 case 1:
                     limpiarConsola();
-                    if (partida.compararVelocidad(monstruo)) {
+                    if (partida.compararVelocidad(monstruo)) {//compara quien es mas rapido si el monstruo o el jugador
                         ataqueJugadorPrimero(partida, monstruo);
                     } else {
                         ataqueMonstruoPrimero(partida, monstruo);
@@ -391,15 +409,15 @@ public class Ejecucion {
                 case 2:
                     limpiarConsola();
                     if (partida.getJugador().getEspecialTEspera() <= 0) { //chequea si el ataque especial esta disponible
-                        if (partida.compararVelocidad(monstruo)) {
+                        if (partida.compararVelocidad(monstruo)) { //compara quien es mas rapido si el monstruo o el jugador
                             ataqueEspecialJugadorPrimero(partida, monstruo);
                         } else {
                             ataqueEspecialMonstruoPrimero(partida, monstruo);
                         }
 
                         chequeoBatalla(partida, monstruo); // Chequea el resultado de la batalla
-                    }else{
-                        System.out.println("Ataque especial en espera."+ "\n Quedan " + partida.getJugador().getEspecialTEspera() + " turnos.");
+                    } else {
+                        System.out.println("Ataque especial en espera." + "\n Quedan " + partida.getJugador().getEspecialTEspera() + " turnos.");
 
                     }
                     ingresarParaContinuar();
@@ -435,7 +453,7 @@ public class Ejecucion {
     public static void encuentro(Partida partida, EscenarioItem escenario) { //encuentro de item
         System.out.println(escenario.getNombre());
         System.out.println("Exploras el lugar...");
-        String itemEncontrado = partida.itemEncontrado(escenario);
+        String itemEncontrado = partida.itemEncontrado(escenario); //devulve un string con los datos del item
         System.out.println("Econtraste:" + itemEncontrado + "!!!");
         ingresarParaContinuar();
     }
@@ -667,7 +685,7 @@ public class Ejecucion {
     }
 
 
-    public static void esperar(int segundos) {
+    public static void esperar(int segundos) { //frena el programa por unos segundos
         try {
             Thread.sleep((long) segundos * 1000); // Convertimos 'segundos' a 'long' antes de multiplicar
         } catch (InterruptedException e) {
@@ -675,14 +693,14 @@ public class Ejecucion {
         }
     }
 
-    public static void limpiarConsola() {
+    public static void limpiarConsola() { // limpia la consola para que sea mas claro
         for (int i = 0; i < 50; i++) {
             System.out.println(" ");
 
         }
     }
 
-    public static void ingresarParaContinuar() {
+    public static void ingresarParaContinuar() { //frena la ejecucion hasta que el usuario desee continuar
         System.out.println("Ingrese algo para continuar.");
         scan.next();
         scan.nextLine();
