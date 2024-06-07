@@ -1,8 +1,10 @@
 package Modelos.Items;
 
-import Modelos.Interfaces.Habilidades;
+import Modelos.Interfaces.IHabilidades;
 
-public class Arma extends Item implements Habilidades {
+import java.io.Serializable;
+
+public class Arma extends Item implements IHabilidades, Serializable {
 
     private int danio;
 
@@ -41,6 +43,6 @@ public class Arma extends Item implements Habilidades {
     @Override
     public String toString() {
         return "Arma: " + super.toString() +
-                "Danio=" + danio;
+                "\n  Danio: " + danio;
     }
 }

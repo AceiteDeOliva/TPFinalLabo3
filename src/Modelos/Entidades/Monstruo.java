@@ -1,9 +1,9 @@
 package Modelos.Entidades;
 
-import Modelos.Interfaces.Habilidades;
+import Modelos.Interfaces.IHabilidades;
 import Modelos.Items.Item;
 
-public class Monstruo extends Entidad implements Habilidades {
+public class Monstruo extends Entidad implements IHabilidades {
 
     private int danio;//valor que le resta a la vida del personaje.
     private int velocidad;
@@ -105,11 +105,11 @@ public class Monstruo extends Entidad implements Habilidades {
 
     @Override
     public String toString() {
-        return "Monstruo{" +
-                "danio=" + danio +
-                ", velocidad=" + velocidad +
-                ", armadura=" + armadura +
-                ", botin=" + botin +
-                '}';
+        return "Monstruo " +
+                "\n  Danio: " + danio +
+                "\n  Velocidad: " + velocidad +
+                "\n  Armadura: " + armadura +
+                "\n  Botin: " + botin +
+                "\n";
     }
 }

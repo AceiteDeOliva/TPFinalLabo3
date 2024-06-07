@@ -1,6 +1,8 @@
 package Modelos.Entidades;
 
-public enum TipoDePersonaje {
+import java.io.Serializable;
+
+public enum TipoDePersonaje implements Serializable {
     GUERRERO,
     MAGO,
     ASESINO

@@ -1,9 +1,9 @@
 package Modelos.Items.pociones;
 
 import Modelos.Entidades.Personaje;
-import Modelos.Interfaces.Efecto;
+import Modelos.Interfaces.IEfecto;
 
-public abstract class EfectoPocion implements Efecto {
+public abstract class EfectoPocion implements IEfecto {
     protected String tipoEfecto;
 
     public EfectoPocion(String tipoEfecto) {

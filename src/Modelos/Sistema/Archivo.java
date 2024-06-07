@@ -39,10 +39,10 @@ public class Archivo {
             System.out.println("FIN");
         } catch (FileNotFoundException ex) {
             System.out.println("El archivo no existe");
-            System.out.println("error");
+            System.out.println("error: 1");
 
         } catch (IOException | ClassNotFoundException exception) {
-            System.out.println("error");
+            System.out.println("error: 2");
 
         } finally {
             try {
@@ -50,7 +50,7 @@ public class Archivo {
                     objectInputStream.close();
                 }
             } catch (IOException ex) {
-                System.out.println("error");
+                System.out.println("error: 3");
 
             }
         }
@@ -76,7 +76,7 @@ public class Archivo {
                     objectOutputStream.close();
                 }
             } catch (IOException ex) {
-                System.out.println("error");
+                System.out.println("error: 4");
             }
         }
     }

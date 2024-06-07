@@ -1,6 +1,8 @@
 package Modelos.Items;
 
-public class Armadura extends Item {
+import java.io.Serializable;
+
+public class Armadura extends Item implements Serializable {
     private int defensa;
     private int velocidad;
 
@@ -38,8 +40,8 @@ public class Armadura extends Item {
 
     @Override
     public String toString() {
-        return "Armadura: " + super.toString()+
-                "Defensa=" + defensa +
-                ",Velocidad= " + velocidad;
+        return "Armadura: " + super.toString() +
+                "\n  Defensa: " + defensa +
+                "\n  Velocidad: " + velocidad;
     }
 }

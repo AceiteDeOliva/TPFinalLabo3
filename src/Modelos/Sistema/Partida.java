@@ -100,6 +100,7 @@ public class Partida implements Serializable {
     public String itemEncontrado(EscenarioItem escenarioItem){
         Item nuevoItem = escenarioItem.elegirItem();
         jugador.agregarItem(nuevoItem);
+        subirNivel();
         return "" + nuevoItem;
     }
 
@@ -115,6 +116,11 @@ public class Partida implements Serializable {
         }
     }
 
+    public void subirNivel(){//funcion que sube el nivel
+
+        nivelActual +=1;
+    }
+
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // funciones de batalla
     public int chequeoFinDeAtaque(Monstruo monstruo) { //Chequea al final de un ataque si el monstruo y/o el jugador esta vivo
@@ -122,7 +128,7 @@ public class Partida implements Serializable {
         if (jugador.estaVivo()) {
             if (!monstruo.estaVivo()) {
                 resultado = 1; //devuelve 1 si el jugador ha ganado la batalla
-                nivelActual += 1;
+                subirNivel();
                 jugador.agregarItem(monstruo.tirarBotin());
             }
         } else {
@@ -143,6 +149,8 @@ public class Partida implements Serializable {
         return respuesta;
     }
 
+
+    //funciones partidas:
     // inicializar partidas
     public boolean chequearExistencia(Partida partida){
         //Chequea si la partida ingresada esta vacia y devuelve true si lo esta
@@ -150,6 +158,53 @@ public class Partida implements Serializable {
 
 
     }
+
+    //Guardar partidas
+    /*public boolean guardarPartida() {
+        Archivo archivo = new Archivo();
+        ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
+        Iterator<Partida> iter = listaPartidas.iterator();
+        boolean flag = false;
+        while (iter.hasNext()) {
+            Partida partida = iter.next();
+            if (partida.equals(this)) {
+                partida = this;
+                archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre());
+                flag = true;
+            }
+        }
+        return flag;
+    }*/
+
+    public boolean guardarPartida() {
+        Archivo archivo = new Archivo();
+        ArrayList<Partida> listaPartidas = archivo.leerArchivoPartidas(NombreArchivos.Partidas.getNombre());
+
+        // Debugging information to check if the list is being populated correctly
+        System.out.println("Lista de partidas leídas:");
+        for (Partida p : listaPartidas) {
+            System.out.println(p); // Make sure Partida has a meaningful toString() method
+        }
+
+        boolean flag = false;
+
+        for (int i = 0; i < listaPartidas.size(); i++) {
+            Partida partida = listaPartidas.get(i);
+            if (partida.equals(this)) {
+                listaPartidas.set(i, this); //
+                flag = true;
+                break;
+            }
+        }
+
+        // Save the list back to the file only if it was updated
+        if (flag) {
+            archivo.grabarArchivoPartidas(listaPartidas, NombreArchivos.Partidas.getNombre());
+        }
+
+        return flag;
+    }
+
     //Eliminar una partida de la lista
     public static boolean eliminarPartida(ArrayList<Partida> listaPartidas, Partida partidaEliminar) {
         Iterator<Partida> iter = listaPartidas.iterator();
@@ -189,6 +244,23 @@ public class Partida implements Serializable {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        boolean resultado = false;
+        if(o != null && o instanceof Partida){
+            Partida partidaAcomparar = (Partida) o;
+            String thisJugadorNombre = jugador.getNombre();
+            String otherJugadorNombre = partidaAcomparar.getJugador().getNombre();
+            resultado = Objects.equals(thisJugadorNombre, otherJugadorNombre);
+        }
+
+        return resultado;
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
+    }
 }
 
 
