@@ -38,8 +38,8 @@ public class Armadura extends Item {
 
     @Override
     public String toString() {
-        return "Armadura: " + super.toString()+
-                "Defensa=" + defensa +
-                ",Velocidad= " + velocidad;
+        return "Armadura: " + super.toString() +
+                "\n  Defensa: " + defensa +
+                "\n  Velocidad: " + velocidad;
     }
 }

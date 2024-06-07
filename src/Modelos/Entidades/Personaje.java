@@ -156,12 +156,11 @@ public class Personaje extends Entidad {
 
     @Override
     public String toString() {
-        return "Personaje{" +
-                "inventario=" + inventario +
-                ", arma=" + arma +
-                ", armadura=" + armadura +
-                ", tipoDePersonaje=" + tipoDePersonaje +
-                ", especialTEspera=" + getEspecialTEspera() +
-                '}';
+        return "Personaje " +
+                "\n  Inventario: " + inventario +
+                "\n  Arma: " + arma +
+                "\n  Armadura: " + armadura +
+                "\n  Tipo de Personaje: " + tipoDePersonaje +
+                "\n";
     }
 }

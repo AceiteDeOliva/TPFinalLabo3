@@ -46,6 +46,10 @@ public class Escenario {
 
     @Override
     public String toString() {
-        return "Escenario" + "Nombre='" + nombre + '\'' + ", Nivel=" + nivel + ", Descripcion='" + descripcion + '\'';
+        return "Escenario {" +
+                "\n  Nombre: '" + nombre + '\'' +
+                "\n  Nivel: " + nivel +
+                "\n  Descripcion: '" + descripcion + '\'' +
+                "\n}";
     }
 }
