@@ -6,7 +6,6 @@ import Modelos.Entidades.TipoDePersonaje;
 import Modelos.Escenarios.Escenario;
 import Modelos.Escenarios.EscenarioItem;
 import Modelos.Escenarios.EscenarioMonstruo;
-import Modelos.Exceptions.ExcepcionSwitch;
 import org.json.JSONException;
 
 import java.util.ArrayList;
@@ -43,8 +42,8 @@ public class Ejecucion {
 
     public static void menuPrincipal(ArrayList<Partida> listaPartidas, HashSet<Escenario> listaEscenarios) {
 
-        int eleccion = -1;
-        int indice = 0;
+        int eleccion;
+        int indice;
         Partida partida;
         do {
 
@@ -67,10 +66,7 @@ public class Ejecucion {
                         //Esta es la partida que cambiara mientras juega
                         partida = listaPartidas.get(indice);
                         partida.escenariosAHashMap(listaEscenarios);
-                        manejarEncuentro(partida);
-                    } else {
-
-                        // menuPrincipal(listaPartidas, listaEscenarios);
+                        manejarEncuentro(partida, listaPartidas);
                     }
 
                     break;
@@ -95,7 +91,7 @@ public class Ejecucion {
         System.out.println("0.Volver");
         for (int i = 0; i < listaPartidas.size(); i++) {
             if (!listaPartidas.get(i).chequearExistencia(listaPartidas.get(i))) {
-                System.out.println((i + 1) + ". " + listaPartidas.get(i).getJugador());
+                System.out.println((i + 1) + ". " + listaPartidas.get(i).getJugador().getNombre());
                 contador++;
             }
         }
@@ -246,19 +242,25 @@ public class Ejecucion {
     }
 
 
-    public static void manejarEncuentro(Partida partida) {//funcion que maneja la eleccion de encuentros
-        while (partida.getJugador().estaVivo()) {
-            elegirEncuentro(partida); //funcion en la que elegis un encuentro
+    public static void manejarEncuentro(Partida partida, ArrayList<Partida> listaPartidas) {//funcion que maneja la eleccion de encuentros
+        int respuesta = -1;
+        while (partida.getJugador().estaVivo() && respuesta != 0) {
+            respuesta = elegirEncuentro(partida); //funcion en la que elegis un encuentro
+            if(respuesta == 0){
+                break;
+            }
             if (escenarioActual instanceof EscenarioMonstruo) { // cheque0 el tipo de instancia elegida
                 encuentro(partida, (EscenarioMonstruo) escenarioActual); //se llama a la funcion de escenario correspondiente(polimorfismo)
 
             } else if (escenarioActual instanceof EscenarioItem) { //idem if the arriba
                 encuentro(partida, (EscenarioItem) escenarioActual);
             }
+            partida.guardarPartida();//Se guarda la partida
+
         }
     }
 
-    public static void elegirEncuentro(Partida partida) {
+    public static int elegirEncuentro(Partida partida) {
 
         Escenario escenario1 = partida.escenarioPosible(); // Recibir 2 escenarios random
         Escenario escenario2 = partida.escenarioPosible();
@@ -274,6 +276,7 @@ public class Ejecucion {
         System.out.println("Que camino deseas tomar?");
         System.out.println("1. Primer camino.");
         System.out.println("2. Segundo camino.");
+        System.out.println("0. volver");
 
         // Validacion
         try {
@@ -291,10 +294,14 @@ public class Ejecucion {
             case 2:
                 escenarioActual = escenario2;
                 break;
+            case 0:
+                System.out.println("Volves para continuar otro dia.");
+                break;
             default:
                 System.out.println("Error: Opcion invalida.");
                 break;
         }
+        return eleccion;
 
 
     }
@@ -352,9 +359,9 @@ public class Ejecucion {
                     break;
 
                 case 4:
-                    System.out.println(partida.getJugador().getArma().toString()); // Display equipped weapon
+                    System.out.println(partida.getJugador().getArma().toString()); // Muestra arma equipada
                     System.out.println(" ");
-                    System.out.println(partida.getJugador().getArmadura().toString()); // Display equipped armor
+                    System.out.println(partida.getJugador().getArmadura().toString()); // Muestra armadura equipada
                     break;
 
                 default:
