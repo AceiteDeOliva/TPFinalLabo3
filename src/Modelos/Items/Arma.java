@@ -41,6 +41,6 @@ public class Arma extends Item implements IHabilidades {
     @Override
     public String toString() {
         return "Arma: " + super.toString() +
-                "Danio=" + danio;
+                "\n  Danio: " + danio;
     }
 }
