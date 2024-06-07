@@ -26,24 +26,28 @@ public class Archivo {
     //Pasar datos de archivos a listasde items
     public ArrayList<Partida> leerArchivoPartidas(String archivo) {
         ObjectInputStream objectInputStream = null;
+        FileInputStream fileInputStream = null;
         ArrayList<Partida> listaPartidas = new ArrayList<>();
 
         try {
-            FileInputStream fileInputStream = new FileInputStream(archivo);
+            fileInputStream = new FileInputStream(archivo);
             objectInputStream = new ObjectInputStream(fileInputStream);
+
             while (true) {
-                Object objeto = objectInputStream.readObject();
-                listaPartidas.add((Partida) objeto);
+                try {
+                    Partida aux = (Partida) objectInputStream.readObject();
+                    listaPartidas.add(aux);
+                } catch (EOFException ex) {
+                    // End of file reached
+                    break;
+                }
             }
-        } catch (EOFException ex) {
-            System.out.println("FIN");
+
         } catch (FileNotFoundException ex) {
             System.out.println("El archivo no existe");
             System.out.println("error: 1");
-
         } catch (IOException | ClassNotFoundException exception) {
             System.out.println("error: 2");
-
         } finally {
             try {
                 if (objectInputStream != null) {
@@ -51,7 +55,6 @@ public class Archivo {
                 }
             } catch (IOException ex) {
                 System.out.println("error: 3");
-
             }
         }
         return listaPartidas;
@@ -59,12 +62,13 @@ public class Archivo {
 
 
 
-    public void grabarArchivoPartidas(ArrayList<Partida> partidas, String archivo) {
+    public void grabarArchivoPartidas(ArrayList<Partida> listaPartidas, String archivo) {
         ObjectOutputStream objectOutputStream = null;
+        FileOutputStream fileOutputStream = null;
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(archivo);
+            fileOutputStream = new FileOutputStream(archivo);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            for (Partida partida : partidas) {
+            for (Partida partida : listaPartidas) {
                 objectOutputStream.writeObject(partida);
             }
         } catch (IOException ex) {
@@ -81,7 +85,6 @@ public class Archivo {
         }
     }
 
-
     public static void jsonAEscenarioMonstruo(HashSet<Escenario> listaDeEscenarios) {
         try {
             // Aquí asumo que el JSON completo está almacenado en una sola cadena
@@ -96,8 +99,8 @@ public class Archivo {
                 String descripcion = object.optString("descripcion", null);
 
                 ArrayList<Monstruo> listaMonstruos = new ArrayList<>();
-                if (object.has("monstruo")) {
-                    JSONArray lista = object.getJSONArray("monstruo");
+                if (object.has("monstruos")) {
+                    JSONArray lista = object.getJSONArray("monstruos");
 
                     for (int j = 0; j < lista.length(); j++) {
                         JSONObject monstruoJson = lista.getJSONObject(j);

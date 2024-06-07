@@ -4,7 +4,9 @@ import Modelos.Entidades.Personaje;
 import Modelos.Interfaces.IEfecto;
 import Modelos.Items.Item;
 
-public class Pocion <E extends IEfecto> extends Item {
+import java.io.Serializable;
+
+public class Pocion <E extends IEfecto> extends Item implements Serializable {
 
     private E efecto;
 
